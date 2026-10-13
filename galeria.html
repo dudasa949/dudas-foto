@@ -20,7 +20,7 @@
 </head>
 <body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
 
-    <!-- ERŐSEBB FEJLÉC -->
+    <!-- FEJLÉC -->
     <header class="fixed top-0 left-0 w-full z-50 bg-darkbg/90 backdrop-blur-xl border-b border-gray-800 shadow-2xl">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="text-xl font-extrabold tracking-wider uppercase flex items-center gap-3">
@@ -53,9 +53,8 @@
         <div class="text-center max-w-2xl mx-auto space-y-4">
             <span class="text-accent text-xs font-semibold uppercase tracking-widest">Vizuális Archívum</span>
             <h1 class="text-4xl font-extrabold tracking-tight">Tematikus Portfólió</h1>
-            <p class="text-gray-400 font-light">Kategóriánként több mint 15-20 képből álló sorozatok. Kattints bármelyik témára a nagyított galéria megnyitásához!</p>
+            <p class="text-gray-400 font-light">Lapozz bele a sorozatokba kis nézetben is, vagy nyisd meg őket nagyban a teljes élményért!</p>
             
-            <!-- Filter Gombok -->
             <div class="flex flex-wrap justify-center gap-2 pt-6">
                 <button onclick="filterGallery('all')" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-accent text-white transition shadow-lg shadow-accent/20">Összes</button>
                 <button onclick="filterGallery('rally')" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-cardbg border border-gray-800 text-gray-400 hover:bg-gray-800 transition">Rally / Motorsport</button>
@@ -63,77 +62,18 @@
             </div>
         </div>
 
-        <!-- TÉMA KÁRTYÁK RÁCSA (Ahol a szöveg folyamatosan látszik lent, és max 3 pötty van) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <!-- Téma 1 -->
-            <div class="gallery-item rally bg-cardbg border border-gray-800 rounded-3xl overflow-hidden group flex flex-col justify-between shadow-lg">
-                <div class="relative aspect-[4/3] overflow-hidden cursor-pointer" onclick="openTopicModal(0)">
-                    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1000&auto=format&fit=crop" alt="Muhi RallyXtreme" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <!-- Kép alatti kis pöttyök (Max 3 db jelölve) -->
-                    <div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full">
-                        <span class="w-2 h-2 rounded-full bg-accent"></span>
-                        <span class="w-2 h-2 rounded-full bg-white/50"></span>
-                        <span class="w-2 h-2 rounded-full bg-white/50"></span>
-                        <span class="text-[10px] text-gray-300 font-medium ml-1">+18 kép</span>
-                    </div>
-                </div>
-                <!-- Állandó szöveges leírás a kártya alatt -->
-                <div class="p-6 space-y-2">
-                    <span class="text-xs font-semibold text-accent uppercase tracking-wider">Motorsport / 20-as sorozat</span>
-                    <h3 class="text-xl font-bold text-white">Muhi RallyXtreme - Gyorsasági szakaszok</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">Nyers akciófotók a hazai rallycross bajnokságról, por, kanyarok és szervizparki pillanatok részletesen bemutatva.</p>
-                </div>
-            </div>
-
-            <!-- Téma 2 -->
-            <div class="gallery-item commercial bg-cardbg border border-gray-800 rounded-3xl overflow-hidden group flex flex-col justify-between shadow-lg">
-                <div class="relative aspect-[4/3] overflow-hidden cursor-pointer" onclick="openTopicModal(1)">
-                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000&auto=format&fit=crop" alt="Használtautó hirdetés" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full">
-                        <span class="w-2 h-2 rounded-full bg-accent"></span>
-                        <span class="w-2 h-2 rounded-full bg-white/50"></span>
-                        <span class="w-2 h-2 rounded-full bg-white/50"></span>
-                        <span class="text-[10px] text-gray-300 font-medium ml-1">+15 kép</span>
-                    </div>
-                </div>
-                <div class="p-6 space-y-2">
-                    <span class="text-xs font-semibold text-accent uppercase tracking-wider">Commercial / 15-ös sorozat</span>
-                    <h3 class="text-xl font-bold text-white">Prémium Használtautó Portfólió</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">Külvilági profilok, belső terek, műszerfal részletek és felnik nagypontosságú hirdetési fotósorozata.</p>
-                </div>
-            </div>
-
-            <!-- Téma 3 -->
-            <div class="gallery-item rally bg-cardbg border border-gray-800 rounded-3xl overflow-hidden group flex flex-col justify-between shadow-lg">
-                <div class="relative aspect-[4/3] overflow-hidden cursor-pointer" onclick="openTopicModal(2)">
-                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop" alt="Viszló Rally" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full">
-                        <span class="w-2 h-2 rounded-full bg-accent"></span>
-                        <span class="w-2 h-2 rounded-full bg-white/50"></span>
-                        <span class="w-2 h-2 rounded-full bg-white/50"></span>
-                        <span class="text-[10px] text-gray-300 font-medium ml-1">+22 kép</span>
-                    </div>
-                </div>
-                <div class="p-6 space-y-2">
-                    <span class="text-xs font-semibold text-accent uppercase tracking-wider">Motorsport / 22-es sorozat</span>
-                    <h3 class="text-xl font-bold text-white">Viszló Rally Stage</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">Erdős, technikás pályaszakaszok, izgalmas ívek és versenyhangulat a Panasonic Lumix lencséjén keresztül.</p>
-                </div>
-            </div>
-
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="topics-grid">
+            <!-- Dinamikusan épül fel JS-ből -->
         </div>
     </main>
 
-    <!-- NAGYÍTOTT LAPOZHATÓ MODAL (CAROUSEL + EXIF PANEL) -->
+    <!-- NAGYÍTOTT LAPOZHATÓ MODAL -->
     <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center p-4 lg:p-10">
         <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-3xl z-50 bg-cardbg/80 w-12 h-12 rounded-full flex items-center justify-center border border-gray-800">
             <i class="fa-solid fa-xmark"></i>
         </button>
 
         <div class="w-full max-w-6xl h-[85vh] bg-cardbg border border-gray-800 rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-3 shadow-2xl">
-            
-            <!-- Bal 2 oszlop: Kép és lapozó gombok -->
             <div class="lg:col-span-2 relative bg-black flex items-center justify-center p-4">
                 <button onclick="prevImage()" class="absolute left-4 z-20 bg-cardbg/80 hover:bg-accent text-white w-12 h-12 rounded-full flex items-center justify-center border border-gray-700 transition">
                     <i class="fa-solid fa-chevron-left"></i>
@@ -147,7 +87,6 @@
                 </div>
             </div>
 
-            <!-- Jobb 1 oszlop: EXIF Információk & Leírás -->
             <div class="p-8 flex flex-col justify-between space-y-6 overflow-y-auto border-t lg:border-t-0 lg:border-l border-gray-800">
                 <div class="space-y-4">
                     <span class="text-xs font-semibold text-accent uppercase tracking-widest">EXIF & Fotó adatok</span>
@@ -156,32 +95,17 @@
                 </div>
 
                 <div class="space-y-3 bg-darkbg p-5 rounded-2xl border border-gray-800 text-xs text-gray-300">
-                    <div class="flex justify-between py-1.5 border-b border-gray-800">
-                        <span class="text-gray-500">Kamera</span>
-                        <span class="font-semibold text-white">Panasonic Lumix DC-FZ82</span>
-                    </div>
-                    <div class="flex justify-between py-1.5 border-b border-gray-800">
-                        <span class="text-gray-500">Fókusztávolság</span>
-                        <span class="font-semibold text-white" id="exif-focal">120mm (Optikai Zoom)</span>
-                    </div>
-                    <div class="flex justify-between py-1.5 border-b border-gray-800">
-                        <span class="text-gray-500">Rekesz</span>
-                        <span class="font-semibold text-white" id="exif-aperture">f/4.0</span>
-                    </div>
-                    <div class="flex justify-between py-1.5 border-b border-gray-800">
-                        <span class="text-gray-500">Záridő</span>
-                        <span class="font-semibold text-white" id="exif-shutter">1/1000s</span>
-                    </div>
-                    <div class="flex justify-between py-1.5">
-                        <span class="text-gray-500">ISO Érzékenység</span>
-                        <span class="font-semibold text-white" id="exif-iso">ISO 100</span>
-                    </div>
+                    <div class="flex justify-between py-1.5 border-b border-gray-800"><span class="text-gray-500">Kamera</span><span class="font-semibold text-white">Panasonic Lumix DC-FZ82</span></div>
+                    <div class="flex justify-between py-1.5 border-b border-gray-800"><span class="text-gray-500">Fókusztávolság</span><span class="font-semibold text-white">120mm</span></div>
+                    <div class="flex justify-between py-1.5 border-b border-gray-800"><span class="text-gray-500">Rekesz</span><span class="font-semibold text-white">f/4.0</span></div>
+                    <div class="flex justify-between py-1.5 border-b border-gray-800"><span class="text-gray-500">Záridő</span><span class="font-semibold text-white">1/1000s</span></div>
+                    <div class="flex justify-between py-1.5"><span class="text-gray-500">ISO Érzékenység</span><span class="font-semibold text-white">ISO 100</span></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ERŐSEBB LÁBLÉC -->
+    <!-- LÁBLÉC -->
     <footer class="bg-cardbg border-t border-gray-800 text-sm text-gray-400 py-16">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
             <div class="space-y-3">
@@ -210,62 +134,122 @@
 
     <script src="js/main.js"></script>
     <script>
-        // Szűrési logika
-        function filterGallery(category) {
-            const items = document.querySelectorAll('.gallery-item');
-            const buttons = document.querySelectorAll('.filter-btn');
-
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-accent', 'text-white', 'shadow-lg');
-                btn.classList.add('bg-cardbg', 'text-gray-400', 'border', 'border-gray-800');
-            });
-            event.target.classList.remove('bg-cardbg', 'text-gray-400', 'border', 'border-gray-800');
-            event.target.classList.add('bg-accent', 'text-white', 'shadow-lg');
-
-            items.forEach(item => {
-                if (category === 'all' || item.classList.contains(category)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        // Példa adatbázis a tematikus sorozatokhoz (15-20 kép témánként)
         const topicsData = [
             {
+                category: "rally",
                 title: "Muhi RallyXtreme - Gyorsasági szakaszok",
-                desc: "Nyers akciófotók a hazai rallycross bajnokságról, por, kanyarok és szervizparki pillanatok.",
+                badge: "MOTORSPORT / 20-AS SOROZAT",
+                desc: "Nyers akciófotók a hazai rallycross bajnokságról, por, kanyarok és szervizparki pillanatok részletesen bemutatva.",
                 images: [
-                    "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1400&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1400&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1400&auto=format&fit=crop"
+                    "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop"
                 ]
             },
             {
+                category: "commercial",
                 title: "Prémium Használtautó Portfólió",
-                desc: "Külvilági profilok, belső terek, műszerfal részletek és felnik nagypontosságú hirdetési fotói.",
+                badge: "COMMERCIAL / 15-ÖS SOROZAT",
+                desc: "Külvilági profilok, belső terek, műszerfal részletek és felnik nagypontosságú hirdetési fotósorozata.",
                 images: [
-                    "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1400&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1400&auto=format&fit=crop"
+                    "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop"
                 ]
             },
             {
+                category: "rally",
                 title: "Viszló Rally Stage",
+                badge: "MOTORSPORT / 22-ES SOROZAT",
                 desc: "Erdős, technikás pályaszakaszok, izgalmas ívek és versenyhangulat a Panasonic Lumix lencséjén keresztül.",
                 images: [
-                    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1400&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1400&auto=format&fit=crop"
+                    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000&auto=format&fit=crop"
                 ]
             }
         ];
 
-        let currentTopicIndex = 0;
-        let currentImageIndex = 0;
+        // Melyik kártya hányadik slide-on áll
+        let cardStates = [0, 0, 0];
 
-        function openTopicModal(topicIdx) {
-            currentTopicIndex = topicIdx;
-            currentImageIndex = 0;
+        function renderGrid() {
+            const grid = document.getElementById('topics-grid');
+            grid.innerHTML = '';
+
+            topicsData.forEach((topic, topicIdx) => {
+                const currentSlide = cardStates[topicIdx]; // 0, 1, 2 = képek, 3 = PROMPT kártya
+
+                let mediaHTML = '';
+                if (currentSlide < 3) {
+                    mediaHTML = `<img src="${topic.images[currentSlide]}" class="w-full h-full object-cover transition duration-300">`;
+                } else {
+                    // 4. Slide PROMPT Kártya
+                    mediaHTML = `
+                        <div class="w-full h-full bg-gradient-to-br from-accent/30 via-darkbg to-cardbg flex flex-col items-center justify-center p-6 text-center space-y-3 cursor-pointer" onclick="openTopicModal(${topicIdx})">
+                            <i class="fa-solid fa-up-right-and-down-left-from-center text-accent text-3xl animate-bounce"></i>
+                            <h4 class="font-bold text-white text-base">Tekintsd meg a teljes galériát!</h4>
+                            <p class="text-xs text-gray-300">A teljes sorozat még több mint 15+ képet tartalmaz nagy felbontásban.</p>
+                            <span class="bg-accent text-white px-4 py-2 rounded-xl text-xs font-bold shadow-lg">Teljes Képernyő</span>
+                        </div>
+                    `;
+                }
+
+                // Pöttyök generálása (3 pötty a 3 képnek)
+                let dotsHTML = '';
+                for (let i = 0; i < 3; i++) {
+                    const activeClass = (i === currentSlide) ? 'bg-accent w-4' : 'bg-white/40 w-2';
+                    dotsHTML += `<span class="h-2 rounded-full transition-all ${activeClass}"></span>`;
+                }
+
+                const cardHTML = `
+                    <div class="gallery-item ${topic.category} bg-cardbg border border-gray-800 rounded-3xl overflow-hidden flex flex-col justify-between shadow-lg">
+                        <div class="relative aspect-[4/3] overflow-hidden group">
+                            ${mediaHTML}
+                            
+                            <!-- Nyilak kis méretben -->
+                            <button onclick="prevCardSlide(${topicIdx})" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-accent text-white w-8 h-8 rounded-full flex items-center justify-center z-20 text-xs">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button onclick="nextCardSlide(${topicIdx})" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-accent text-white w-8 h-8 rounded-full flex items-center justify-center z-20 text-xs">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+
+                            <!-- Pöttyök a kép alján -->
+                            <div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-full z-20">
+                                ${dotsHTML}
+                                <span class="text-[10px] text-gray-300 font-medium ml-1.5">+15 kép</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-2">
+                            <span class="text-xs font-semibold text-accent uppercase tracking-wider">${topic.badge}</span>
+                            <h3 class="text-xl font-bold text-white">${topic.title}</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed">${topic.desc}</p>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHTML;
+            });
+        }
+
+        function nextCardSlide(topicIdx) {
+            cardStates[topicIdx] = (cardStates[topicIdx] + 1) % 4; // 0, 1, 2, 3
+            renderGrid();
+        }
+
+        function prevCardSlide(topicIdx) {
+            cardStates[topicIdx] = (cardStates[topicIdx] - 1 + 4) % 4;
+            renderGrid();
+        }
+
+        // Modal kezeles
+        let currentModalTopic = 0;
+        let currentModalImgIdx = 0;
+
+        function openTopicModal(idx) {
+            currentModalTopic = idx;
+            currentModalImgIdx = 0;
             updateModalContent();
             document.getElementById('lightbox-modal').style.display = 'flex';
         }
@@ -275,24 +259,37 @@
         }
 
         function updateModalContent() {
-            const topic = topicsData[currentTopicIndex];
-            document.getElementById('modal-img').src = topic.images[currentImageIndex];
+            const topic = topicsData[currentModalTopic];
+            document.getElementById('modal-img').src = topic.images[currentModalImgIdx];
             document.getElementById('modal-title').textContent = topic.title;
             document.getElementById('modal-desc').textContent = topic.desc;
-            document.getElementById('image-counter').textContent = `${currentImageIndex + 1} / ${topic.images.length}`;
+            document.getElementById('image-counter').textContent = `${currentModalImgIdx + 1} / ${topic.images.length}`;
         }
 
         function nextImage() {
-            const topic = topicsData[currentTopicIndex];
-            currentImageIndex = (currentImageIndex + 1) % topic.images.length;
+            const topic = topicsData[currentModalTopic];
+            currentModalImgIdx = (currentModalImgIdx + 1) % topic.images.length;
             updateModalContent();
         }
 
         function prevImage() {
-            const topic = topicsData[currentTopicIndex];
-            currentImageIndex = (currentImageIndex - 1 + topic.images.length) % topic.images.length;
+            const topic = topicsData[currentModalTopic];
+            currentModalImgIdx = (currentModalImgIdx - 1 + topic.images.length) % topic.images.length;
             updateModalContent();
         }
+
+        function filterGallery(cat) {
+            // Sima kategória szűrés
+            document.querySelectorAll('.gallery-item').forEach(el => {
+                if (cat === 'all' || el.classList.contains(cat)) {
+                    el.style.display = 'flex';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+
+        window.onload = renderGrid;
     </script>
 </body>
 </html>
