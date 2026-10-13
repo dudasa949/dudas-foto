@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="hu" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Hirdetésfotózás | Dudás Ádám</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0a0a0c',
+                        cardbg: '#131318',
+                        accent: '#f97316',
+                        accenthover: '#ea580c',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Előtte-Utána csúszka egyedi stílusa */
+        .ba-container { position: relative; overflow: hidden; }
+        .ba-before { position: absolute; top: 0; left: 0; height: 100%; width: 50%; overflow: hidden; border-r: 2px solid #f97316; }
+        .ba-slider { position: absolute; top: 0; bottom: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; }
+    </style>
+</head>
+<body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
+
+    <!-- NAVIGÁCIÓ -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-darkbg/85 backdrop-blur-md border-b border-gray-800/80">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-xl font-extrabold tracking-wider uppercase flex items-center gap-2">
+                <i class="fa-solid fa-camera-retro text-accent"></i> DUDÁS ÁDÁM
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="index.html" class="nav-link text-gray-300 hover:text-accent transition">Főoldal</a>
+                <a href="galeria.html" class="nav-link text-gray-300 hover:text-accent transition">Galéria</a>
+                <a href="hirdetesfotozas.html" class="nav-link text-gray-300 hover:text-accent transition">Hirdetésfotózás</a>
+                <a href="rolam.html" class="nav-link text-gray-300 hover:text-accent transition">Rólam & CV</a>
+                <a href="kapcsolat.html" class="bg-accent hover:bg-accenthover text-white px-5 py-2.5 rounded-full font-semibold transition shadow-lg shadow-accent/20">Kapcsolat</a>
+            </nav>
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobile-nav" class="hidden md:hidden bg-cardbg border-b border-gray-800 px-6 py-4 space-y-3">
+            <a href="index.html" class="block text-gray-300 hover:text-accent font-medium py-2">Főoldal</a>
+            <a href="galeria.html" class="block text-gray-300 hover:text-accent font-medium py-2">Galéria</a>
+            <a href="hirdetesfotozas.html" class="block text-gray-300 hover:text-accent font-medium py-2">Hirdetésfotózás</a>
+            <a href="rolam.html" class="block text-gray-300 hover:text-accent font-medium py-2">Rólam & CV</a>
+            <a href="kapcsolat.html" class="block bg-accent text-white text-center py-2.5 rounded-xl font-semibold mt-2">Kapcsolat</a>
+        </div>
+    </header>
+
+    <!-- TARTALOM -->
+    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6 space-y-20">
+        
+        <!-- Fejléc -->
+        <div class="text-center max-w-3xl mx-auto space-y-4">
+            <span class="text-accent text-xs font-semibold uppercase tracking-widest">Értéknövelő Vizuális Megjelenés</span>
+            <h1 class="text-4xl font-extrabold tracking-tight">Használtautó Hirdetésfotózás</h1>
+            <p class="text-gray-400 font-light leading-relaxed">
+                Egy jó fotósorozat nemcsak felkelti a vevő figyelmét, hanem komolyságot és bizalmat sugároz. Add el az autódat gyorsabban és jobb áron!
+            </p>
+        </div>
+
+        <!-- Interaktív Előtte / Utána Demo -->
+        <div class="bg-cardbg border border-gray-800 p-8 rounded-3xl space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl font-bold">Lásd a különbséget!</h2>
+                <p class="text-sm text-gray-400">Húzd a csúszkát balra és jobbra: Átlagos telefonos fotó vs. Profi hirdetésfotó</p>
+            </div>
+
+            <div class="ba-container relative rounded-2xl overflow-hidden aspect-[16/9] max-w-4xl mx-auto border border-gray-700 select-none">
+                <!-- Utána (Profi kép) -->
+                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1200&auto=format&fit=crop" alt="Profi fotó" class="w-full h-full object-cover">
+                <span class="absolute bottom-4 right-4 bg-accent/90 text-white text-xs px-3 py-1 rounded-md font-semibold z-10">PROFI FOTÓ</span>
+
+                <!-- Előtte (Mobil/Kicsit elmosódott kép filterrel szimulálva) -->
+                <div id="ba-before" class="ba-before">
+                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1200&auto=format&fit=crop" alt="Telefonos fotó" class="w-full h-full object-cover filter brightness-75 contrast-75 blur-[1px]">
+                    <span class="absolute bottom-4 left-4 bg-black/80 text-gray-300 text-xs px-3 py-1 rounded-md font-semibold">ÁTLAGOS MOBILOS</span>
+                </div>
+
+                <!-- Csúszka Input -->
+                <input type="range" min="0" max="100" value="50" class="ba-slider z-20" oninput="moveSlider(this.value)">
+            </div>
+        </div>
+
+        <!-- Miben segít? Kártyák -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-cardbg p-8 rounded-2xl border border-gray-800 space-y-4">
+                <i class="fa-solid fa-camera text-accent text-3xl"></i>
+                <h3 class="text-xl font-bold">Teljes körű fotósorozat</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Minden lényeges szög: profilok, 3/4-es elülső-hátsó nézetek, felnik, motortér és belső tér részletei.
+                </p>
+            </div>
+            <div class="bg-cardbg p-8 rounded-2xl border border-gray-800 space-y-4">
+                <i class="fa-solid fa-wand-magic-sparkles text-accent text-3xl"></i>
+                <h3 class="text-xl font-bold">Digitális utómunka</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Színkorrekció, kontrasztbeállítás és visszatükröződések finomítása a természetes, de prémium hatásért.
+                </p>
+            </div>
+            <div class="bg-cardbg p-8 rounded-2xl border border-gray-800 space-y-4">
+                <i class="fa-solid fa-bolt text-accent text-3xl"></i>
+                <h3 class="text-xl font-bold">Gyors átadás</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    A kész, optimalizált digitális képeket 24-48 órán belül megkapod, azonnal hirdetésre kész formátumban.
+                </p>
+            </div>
+        </div>
+
+        <!-- CTA Banners -->
+        <div class="bg-gradient-to-r from-accent/20 via-cardbg to-cardbg border border-accent/30 p-10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-2 text-center md:text-left">
+                <h3 class="text-2xl font-bold text-white">Szeretnéd jobb áron eladni az autódat?</h3>
+                <p class="text-gray-400 text-sm">Kérj egyedi ajánlatot fotózásra még ma!</p>
+            </div>
+            <a href="kapcsolat.html" class="bg-accent hover:bg-accenthover text-white px-8 py-3.5 rounded-xl font-semibold transition whitespace-nowrap shadow-xl shadow-accent/20">
+                Ajánlatkérés
+            </a>
+        </div>
+
+    </main>
+
+    <!-- LÁBLÉC -->
+    <footer class="py-12 bg-cardbg/50 border-t border-gray-800 text-sm text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <p class="font-bold text-white">Dudás Ádám</p>
+                <p class="text-xs text-gray-500 mt-1">&copy; 2026 Minden jog fenntartva.</p>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#" class="protected-email hover:text-accent transition"></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition">
+                    <i class="fa-brands fa-instagram text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function moveSlider(val) {
+            document.getElementById('ba-before').style.width = val + '%';
+        }
+    </script>
+</body>
+</html>
