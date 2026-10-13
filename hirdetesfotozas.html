@@ -20,7 +20,7 @@
 </head>
 <body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
 
-    <!-- ERŐSEBB FEJLÉC -->
+    <!-- FEJLÉC -->
     <header class="fixed top-0 left-0 w-full z-50 bg-darkbg/90 backdrop-blur-xl border-b border-gray-800 shadow-2xl">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="text-xl font-extrabold tracking-wider uppercase flex items-center gap-3">
@@ -58,28 +58,33 @@
             </p>
         </div>
 
-        <!-- TÖKÉLETESÍTETT ELŐTTE/UTÁNA CSÚSZKA -->
+        <!-- MŰKÖDŐ ELŐTTE / UTÁNA SLIDER (Clip-Path alapon) -->
         <div class="bg-cardbg border border-gray-800 p-8 rounded-3xl space-y-6">
             <div class="text-center space-y-2">
                 <h2 class="text-2xl font-bold">Lásd a különbséget!</h2>
-                <p class="text-sm text-gray-400">Húzd a csúszkát: Átlagos mobilos kép vs. Profi hirdetésfotó</p>
+                <p class="text-sm text-gray-400">Húzd a csúszkát balra vagy jobbra: Átlagos mobilos kép vs. Profi hirdetésfotó</p>
             </div>
 
-            <div class="relative w-full max-w-4xl mx-auto aspect-[16/9] rounded-2xl overflow-hidden border border-gray-700 select-none shadow-2xl">
-                <div class="ba-wrapper" id="slider-container">
-                    <!-- Utána (Profi) -->
-                    <div class="ba-after-layer absolute inset-0">
-                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1400&auto=format&fit=crop" alt="Profi fotó">
-                        <span class="absolute bottom-4 right-4 bg-accent text-white text-xs px-3 py-1 rounded-md font-semibold z-20">PROFI FOTÓ</span>
-                    </div>
-                    <!-- Előtte (Mobil / Szűrt) -->
-                    <div class="ba-before-layer" id="ba-before">
-                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1400&auto=format&fit=crop" alt="Mobil fotó" class="filter brightness-75 contrast-75 saturate-50 blur-[0.5px]">
-                        <span class="absolute bottom-4 left-4 bg-black/80 text-gray-300 text-xs px-3 py-1 rounded-md font-semibold z-20">MOBILOS KÉP</span>
-                    </div>
-                    <!-- Vezérlő range -->
-                    <input type="range" min="0" max="100" value="50" class="ba-range-input" id="ba-range">
+            <div class="comparison-slider max-w-4xl mx-auto shadow-2xl">
+                <!-- Utána (Profi Kép) -->
+                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1400&auto=format&fit=crop" alt="Profi fotó" class="comparison-image">
+                <span class="absolute bottom-4 right-4 bg-accent text-white text-xs px-3 py-1.5 rounded-lg font-bold z-20 shadow-md">PROFI FOTÓ</span>
+
+                <!-- Előtte (Mobil Kép vágómaszkkal) -->
+                <div class="comparison-before" id="comparison-before">
+                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1400&auto=format&fit=crop" alt="Mobilos fotó" class="comparison-image filter brightness-75 contrast-75 saturate-50 blur-[0.5px]">
+                    <span class="absolute bottom-4 left-4 bg-black/80 text-gray-300 text-xs px-3 py-1.5 rounded-lg font-bold z-20 border border-gray-700">MOBILOS KÉP</span>
                 </div>
+
+                <!-- Húzó csík és fogantyú -->
+                <div class="comparison-handle" id="comparison-handle">
+                    <div class="comparison-handle-btn">
+                        <i class="fa-solid fa-arrows-left-right text-xs"></i>
+                    </div>
+                </div>
+
+                <!-- Invisible Range Input -->
+                <input type="range" min="0" max="100" value="50" class="comparison-range" id="comparison-range">
             </div>
         </div>
 
@@ -97,7 +102,7 @@
             <div class="bg-cardbg p-8 rounded-2xl border border-gray-800 space-y-4">
                 <i class="fa-solid fa-bolt text-accent text-3xl"></i>
                 <h3 class="text-xl font-bold">Gyors átadás</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">24-48 órán belül hirdetésre kész, optimalizált formátumban kaptod a képeket.</p>
+                <p class="text-gray-400 text-sm leading-relaxed">24-48 órán belül hirdetésre kész, optimalizált formátumban kapod a képeket.</p>
             </div>
         </div>
 
@@ -112,7 +117,7 @@
         </div>
     </main>
 
-    <!-- ERŐSEBB LÁBLÉC -->
+    <!-- LÁBLÉC -->
     <footer class="bg-cardbg border-t border-gray-800 text-sm text-gray-400 py-16">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
             <div class="space-y-3">
@@ -141,22 +146,15 @@
 
     <script src="js/main.js"></script>
     <script>
-        const range = document.getElementById('ba-range');
-        const beforeLayer = document.getElementById('ba-before');
-        const container = document.getElementById('slider-container');
+        const range = document.getElementById('comparison-range');
+        const beforeLayer = document.getElementById('comparison-before');
+        const handle = document.getElementById('comparison-handle');
 
         range.addEventListener('input', (e) => {
             const val = e.target.value;
-            beforeLayer.style.width = val + '%';
+            beforeLayer.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+            handle.style.left = `${val}%`;
         });
-
-        // Kép fix szélesség beállítás resize esetén
-        function adjustBeforeImage() {
-            const img = beforeLayer.querySelector('img');
-            img.style.width = container.offsetWidth + 'px';
-        }
-        window.addEventListener('resize', adjustBeforeImage);
-        window.addEventListener('load', adjustBeforeImage);
     </script>
 </body>
 </html>
