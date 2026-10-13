@@ -20,7 +20,7 @@
 </head>
 <body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
 
-    <!-- ERŐSEBB FEJLÉC -->
+    <!-- FEJLÉC -->
     <header class="fixed top-0 left-0 w-full z-50 bg-darkbg/90 backdrop-blur-xl border-b border-gray-800 shadow-2xl">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="text-xl font-extrabold tracking-wider uppercase flex items-center gap-3">
@@ -49,38 +49,75 @@
         </div>
     </header>
 
-    <!-- HERO SZEKCIÓ (Sarokba pozícionált dobozzal és váltakozó háttérrel) -->
+    <!-- HERO SZEKCIÓ (Keret/doboz nélkül, lassan mozgó háttérrel) -->
     <section class="relative h-screen w-full flex items-end pb-16 justify-start px-6 lg:px-16 overflow-hidden">
-        <!-- Váltakozó háttérkép -->
         <div class="absolute inset-0 z-0 overflow-hidden">
-            <img id="hero-bg" src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=2070&auto=format&fit=crop" alt="Hero háttér" class="w-full h-full object-cover opacity-40 animate-ken-burns transition-opacity duration-1000">
-            <div class="absolute inset-0 bg-gradient-to-t from-darkbg via-darkbg/40 to-transparent"></div>
+            <img id="hero-bg" src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=2070&auto=format&fit=crop" alt="Hero háttér" class="w-full h-full object-cover opacity-40 animate-hero-pan transition-opacity duration-1000">
+            <div class="absolute inset-0 bg-gradient-to-t from-darkbg via-darkbg/30 to-transparent"></div>
         </div>
         
-        <!-- Bal sarokba helyezett, áttetsző doboz -->
-        <div class="relative z-10 max-w-xl glass-card p-8 sm:p-10 rounded-3xl space-y-6 border border-gray-800 shadow-2xl animate-fade-in">
-            <span class="inline-block bg-accent/10 text-accent border border-accent/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase">
+        <!-- Doboz nélküli tartalom a bal alsó sarokban -->
+        <div class="relative z-10 max-w-xl space-y-6">
+            <span class="inline-block bg-accent/20 text-accent border border-accent/30 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase backdrop-blur-md">
                 Járműmérnök-hallgató & Vizuális Alkotó
             </span>
-            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight text-white drop-shadow-md">
                 Dinamika, Precizitás & <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-amber-500">Mérnöki Részletek</span>
             </h1>
-            <p class="text-sm sm:text-base text-gray-300 font-light leading-relaxed">
+            <p class="text-base sm:text-lg text-gray-300 font-light leading-relaxed drop-shadow">
                 A hazai rallyfutamok nyers energiájától a prémium autóhirdetések aprólékos, eladásösztönző részleteiig.
             </p>
             <div class="flex flex-col sm:flex-row items-center gap-4 pt-2">
-                <a href="galeria.html" class="w-full sm:w-auto text-center bg-accent hover:bg-accenthover text-white px-7 py-3 rounded-xl font-semibold transition shadow-xl shadow-accent/25">
+                <a href="galeria.html" class="w-full sm:w-auto text-center bg-accent hover:bg-accenthover text-white px-8 py-3.5 rounded-xl font-semibold transition shadow-xl shadow-accent/25">
                     Galéria Megtekintése
                 </a>
-                <a href="hirdetesfotozas.html" class="w-full sm:w-auto text-center bg-darkbg/80 hover:bg-gray-800 border border-gray-700 text-gray-200 px-7 py-3 rounded-xl font-semibold transition">
+                <a href="hirdetesfotozas.html" class="w-full sm:w-auto text-center bg-black/60 hover:bg-black/80 border border-gray-700 text-gray-200 px-8 py-3.5 rounded-xl font-semibold transition backdrop-blur-md">
                     Hirdetésfotózás
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- KIEMELT KATEGÓRIÁK -->
+    <!-- ÚJ BLOKK: A Hobbitól a Munkáig (Szenvedély & Jövőkép) -->
     <section class="py-24 max-w-7xl mx-auto px-6">
+        <div class="bg-cardbg border border-gray-800 rounded-3xl p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center shadow-2xl">
+            <div class="space-y-6">
+                <span class="text-accent text-xs font-semibold uppercase tracking-widest">Szenvedélyből Professzió</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-white tracking-tight">Egy hobbi, ami mérnöki precizitással válik hivatássá</h2>
+                <p class="text-gray-300 font-light leading-relaxed">
+                    A járművek világa nálam nem a fényképezőgép kattintásával kezdődött, hanem az autók és a motorsport iránti rajongással. Járműmérnök-hallgatóként teljesen más szemmel tekintek a gépekre: látom az íveket, az aerodinamikát és az apró mechanikai részleteket, amik egy-egy típust egyedivé tesznek.
+                </p>
+                <p class="text-gray-400 font-light leading-relaxed text-sm">
+                    Ami korábban a pálya széli rallyfotózással indult mint kikapcsolódás, az mára egy tudatos vizuális munkává fejlődött. A célom a jövőben, hogy a motorsport izgalmát és a minőségi használtautó-hirdetések értékteremtő fotózását szakmai szinten végezzem.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-darkbg p-6 rounded-2xl border border-gray-800 space-y-2">
+                    <i class="fa-solid fa-flag-checkered text-accent text-2xl"></i>
+                    <h3 class="font-bold text-white text-base">Motorsport</h3>
+                    <p class="text-xs text-gray-400">Pályaszéli akciók, por és tempó megörökítése.</p>
+                </div>
+                <div class="bg-darkbg p-6 rounded-2xl border border-gray-800 space-y-2">
+                    <i class="fa-solid fa-car text-accent text-2xl"></i>
+                    <h3 class="font-bold text-white text-base">Hirdetésfotózás</h3>
+                    <p class="text-xs text-gray-400">Értéknövelő, eladásra optimalizált képsorozatok.</p>
+                </div>
+                <div class="bg-darkbg p-6 rounded-2xl border border-gray-800 space-y-2">
+                    <i class="fa-solid fa-compass-drafting text-accent text-2xl"></i>
+                    <h3 class="font-bold text-white text-base">Mérnöki Szemlélet</h3>
+                    <p class="text-xs text-gray-400">Arányok, tiszta szögek és arculati figyelem.</p>
+                </div>
+                <div class="bg-darkbg p-6 rounded-2xl border border-gray-800 space-y-2">
+                    <i class="fa-solid fa-sliders text-accent text-2xl"></i>
+                    <h3 class="font-bold text-white text-base">Finom Utómunka</h3>
+                    <p class="text-xs text-gray-400">Természetes, mégis katalógus-minőségű színek.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KIEMELT KATEGÓRIÁK -->
+    <section class="pb-24 max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="group relative rounded-3xl overflow-hidden bg-cardbg border border-gray-800 p-8 flex flex-col justify-between min-h-[380px]">
                 <div class="absolute inset-0 z-0">
@@ -118,7 +155,7 @@
         </div>
     </section>
 
-    <!-- ERŐSEBB LÁBLÉC -->
+    <!-- LÁBLÉC -->
     <footer class="bg-cardbg border-t border-gray-800 text-sm text-gray-400 py-16">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
             <div class="space-y-3">
