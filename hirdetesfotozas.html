@@ -58,33 +58,33 @@
             </p>
         </div>
 
-        <!-- MŰKÖDŐ ELŐTTE / UTÁNA SLIDER (Clip-Path alapon) -->
+        <!-- HIBÁTLAN 16:9 ELŐTTE / UTÁNA CSÚSZKA -->
         <div class="bg-cardbg border border-gray-800 p-8 rounded-3xl space-y-6">
             <div class="text-center space-y-2">
                 <h2 class="text-2xl font-bold">Lásd a különbséget!</h2>
                 <p class="text-sm text-gray-400">Húzd a csúszkát balra vagy jobbra: Átlagos mobilos kép vs. Profi hirdetésfotó</p>
             </div>
 
-            <div class="comparison-slider max-w-4xl mx-auto shadow-2xl">
+            <div class="comparison-wrapper">
                 <!-- Utána (Profi Kép) -->
-                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1400&auto=format&fit=crop" alt="Profi fotó" class="comparison-image">
+                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1400&auto=format&fit=crop" alt="Profi fotó" class="comparison-img">
                 <span class="absolute bottom-4 right-4 bg-accent text-white text-xs px-3 py-1.5 rounded-lg font-bold z-20 shadow-md">PROFI FOTÓ</span>
 
                 <!-- Előtte (Mobil Kép vágómaszkkal) -->
                 <div class="comparison-before" id="comparison-before">
-                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1400&auto=format&fit=crop" alt="Mobilos fotó" class="comparison-image filter brightness-75 contrast-75 saturate-50 blur-[0.5px]">
+                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1400&auto=format&fit=crop" alt="Mobilos fotó" class="comparison-img filter brightness-75 contrast-75 saturate-50 blur-[0.5px]">
                     <span class="absolute bottom-4 left-4 bg-black/80 text-gray-300 text-xs px-3 py-1.5 rounded-lg font-bold z-20 border border-gray-700">MOBILOS KÉP</span>
                 </div>
 
                 <!-- Húzó csík és fogantyú -->
-                <div class="comparison-handle" id="comparison-handle">
-                    <div class="comparison-handle-btn">
+                <div class="comparison-divider" id="comparison-handle">
+                    <div class="comparison-handle">
                         <i class="fa-solid fa-arrows-left-right text-xs"></i>
                     </div>
                 </div>
 
-                <!-- Invisible Range Input -->
-                <input type="range" min="0" max="100" value="50" class="comparison-range" id="comparison-range">
+                <!-- Input Range -->
+                <input type="range" min="0" max="100" value="50" class="comparison-range-input" id="comparison-range">
             </div>
         </div>
 
@@ -145,16 +145,6 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script>
-        const range = document.getElementById('comparison-range');
-        const beforeLayer = document.getElementById('comparison-before');
-        const handle = document.getElementById('comparison-handle');
-
-        range.addEventListener('input', (e) => {
-            const val = e.target.value;
-            beforeLayer.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
-            handle.style.left = `${val}%`;
-        });
-    </script>
+    <script src="js/slider.js"></script>
 </body>
 </html>
