@@ -55,16 +55,16 @@
             <h1 class="text-4xl font-extrabold tracking-tight">Tematikus Portfólió</h1>
             <p class="text-gray-400 font-light">Lapozz bele a sorozatokba kis nézetben is, vagy nyisd meg őket nagyban a teljes élményért!</p>
             
+            <!-- Javított filter gombok, amelyek a helyes aktív állapotot adják át -->
             <div class="flex flex-wrap justify-center gap-2 pt-6">
-                <button onclick="filterGallery('all')" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-accent text-white transition shadow-lg shadow-accent/20">Összes</button>
-                <button onclick="filterGallery('rally')" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-cardbg border border-gray-800 text-gray-400 hover:bg-gray-800 transition">Rally / Motorsport</button>
-                <button onclick="filterGallery('commercial')" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-cardbg border border-gray-800 text-gray-400 hover:bg-gray-800 transition">Hirdetésfotózás</button>
+                <button onclick="filterGallery('all', this)" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-accent text-white transition shadow-lg shadow-accent/20">Összes</button>
+                <button onclick="filterGallery('rally', this)" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-cardbg border border-gray-800 text-gray-400 hover:bg-gray-800 transition">Rally / Motorsport</button>
+                <button onclick="filterGallery('commercial', this)" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-cardbg border border-gray-800 text-gray-400 hover:bg-gray-800 transition">Hirdetésfotózás</button>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="topics-grid">
-            <!-- Dinamikusan épül fel JS-ből -->
-        </div>
+        <!-- Ide épül be a kártyarács a gallery.js-ből -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="topics-grid"></div>
     </main>
 
     <!-- NAGYÍTOTT LAPOZHATÓ MODAL -->
@@ -133,163 +133,6 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script>
-        const topicsData = [
-            {
-                category: "rally",
-                title: "Muhi RallyXtreme - Gyorsasági szakaszok",
-                badge: "MOTORSPORT / 20-AS SOROZAT",
-                desc: "Nyers akciófotók a hazai rallycross bajnokságról, por, kanyarok és szervizparki pillanatok részletesen bemutatva.",
-                images: [
-                    "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1000&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop"
-                ]
-            },
-            {
-                category: "commercial",
-                title: "Prémium Használtautó Portfólió",
-                badge: "COMMERCIAL / 15-ÖS SOROZAT",
-                desc: "Külvilági profilok, belső terek, műszerfal részletek és felnik nagypontosságú hirdetési fotósorozata.",
-                images: [
-                    "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1000&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop"
-                ]
-            },
-            {
-                category: "rally",
-                title: "Viszló Rally Stage",
-                badge: "MOTORSPORT / 22-ES SOROZAT",
-                desc: "Erdős, technikás pályaszakaszok, izgalmas ívek és versenyhangulat a Panasonic Lumix lencséjén keresztül.",
-                images: [
-                    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1000&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000&auto=format&fit=crop"
-                ]
-            }
-        ];
-
-        // Melyik kártya hányadik slide-on áll
-        let cardStates = [0, 0, 0];
-
-        function renderGrid() {
-            const grid = document.getElementById('topics-grid');
-            grid.innerHTML = '';
-
-            topicsData.forEach((topic, topicIdx) => {
-                const currentSlide = cardStates[topicIdx]; // 0, 1, 2 = képek, 3 = PROMPT kártya
-
-                let mediaHTML = '';
-                if (currentSlide < 3) {
-                    mediaHTML = `<img src="${topic.images[currentSlide]}" class="w-full h-full object-cover transition duration-300">`;
-                } else {
-                    // 4. Slide PROMPT Kártya
-                    mediaHTML = `
-                        <div class="w-full h-full bg-gradient-to-br from-accent/30 via-darkbg to-cardbg flex flex-col items-center justify-center p-6 text-center space-y-3 cursor-pointer" onclick="openTopicModal(${topicIdx})">
-                            <i class="fa-solid fa-up-right-and-down-left-from-center text-accent text-3xl animate-bounce"></i>
-                            <h4 class="font-bold text-white text-base">Tekintsd meg a teljes galériát!</h4>
-                            <p class="text-xs text-gray-300">A teljes sorozat még több mint 15+ képet tartalmaz nagy felbontásban.</p>
-                            <span class="bg-accent text-white px-4 py-2 rounded-xl text-xs font-bold shadow-lg">Teljes Képernyő</span>
-                        </div>
-                    `;
-                }
-
-                // Pöttyök generálása (3 pötty a 3 képnek)
-                let dotsHTML = '';
-                for (let i = 0; i < 3; i++) {
-                    const activeClass = (i === currentSlide) ? 'bg-accent w-4' : 'bg-white/40 w-2';
-                    dotsHTML += `<span class="h-2 rounded-full transition-all ${activeClass}"></span>`;
-                }
-
-                const cardHTML = `
-                    <div class="gallery-item ${topic.category} bg-cardbg border border-gray-800 rounded-3xl overflow-hidden flex flex-col justify-between shadow-lg">
-                        <div class="relative aspect-[4/3] overflow-hidden group">
-                            ${mediaHTML}
-                            
-                            <!-- Nyilak kis méretben -->
-                            <button onclick="prevCardSlide(${topicIdx})" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-accent text-white w-8 h-8 rounded-full flex items-center justify-center z-20 text-xs">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </button>
-                            <button onclick="nextCardSlide(${topicIdx})" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-accent text-white w-8 h-8 rounded-full flex items-center justify-center z-20 text-xs">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </button>
-
-                            <!-- Pöttyök a kép alján -->
-                            <div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-full z-20">
-                                ${dotsHTML}
-                                <span class="text-[10px] text-gray-300 font-medium ml-1.5">+15 kép</span>
-                            </div>
-                        </div>
-
-                        <div class="p-6 space-y-2">
-                            <span class="text-xs font-semibold text-accent uppercase tracking-wider">${topic.badge}</span>
-                            <h3 class="text-xl font-bold text-white">${topic.title}</h3>
-                            <p class="text-xs text-gray-400 leading-relaxed">${topic.desc}</p>
-                        </div>
-                    </div>
-                `;
-                grid.innerHTML += cardHTML;
-            });
-        }
-
-        function nextCardSlide(topicIdx) {
-            cardStates[topicIdx] = (cardStates[topicIdx] + 1) % 4; // 0, 1, 2, 3
-            renderGrid();
-        }
-
-        function prevCardSlide(topicIdx) {
-            cardStates[topicIdx] = (cardStates[topicIdx] - 1 + 4) % 4;
-            renderGrid();
-        }
-
-        // Modal kezeles
-        let currentModalTopic = 0;
-        let currentModalImgIdx = 0;
-
-        function openTopicModal(idx) {
-            currentModalTopic = idx;
-            currentModalImgIdx = 0;
-            updateModalContent();
-            document.getElementById('lightbox-modal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('lightbox-modal').style.display = 'none';
-        }
-
-        function updateModalContent() {
-            const topic = topicsData[currentModalTopic];
-            document.getElementById('modal-img').src = topic.images[currentModalImgIdx];
-            document.getElementById('modal-title').textContent = topic.title;
-            document.getElementById('modal-desc').textContent = topic.desc;
-            document.getElementById('image-counter').textContent = `${currentModalImgIdx + 1} / ${topic.images.length}`;
-        }
-
-        function nextImage() {
-            const topic = topicsData[currentModalTopic];
-            currentModalImgIdx = (currentModalImgIdx + 1) % topic.images.length;
-            updateModalContent();
-        }
-
-        function prevImage() {
-            const topic = topicsData[currentModalTopic];
-            currentModalImgIdx = (currentModalImgIdx - 1 + topic.images.length) % topic.images.length;
-            updateModalContent();
-        }
-
-        function filterGallery(cat) {
-            // Sima kategória szűrés
-            document.querySelectorAll('.gallery-item').forEach(el => {
-                if (cat === 'all' || el.classList.contains(cat)) {
-                    el.style.display = 'flex';
-                } else {
-                    el.style.display = 'none';
-                }
-            });
-        }
-
-        window.onload = renderGrid;
-    </script>
+    <script src="js/gallery.js"></script>
 </body>
 </html>
