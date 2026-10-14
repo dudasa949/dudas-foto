@@ -14,35 +14,39 @@ body {
 ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #f97316; }
 
-/* Lassú mozgás és zoom a főoldali háttérképeknek */
-@keyframes heroPanZoom {
+/* Főoldali háttér lassan mozgó Ken Burns / Pan-Zoom animáció */
+@keyframes kenBurnsPan {
     0% { transform: scale(1) translate(0, 0); }
-    50% { transform: scale(1.1) translate(-1.5%, -1%); }
+    50% { transform: scale(1.08) translate(-2%, -1.5%); }
     100% { transform: scale(1) translate(0, 0); }
 }
 
-.animate-hero-pan {
-    animation: heroPanZoom 16s ease-in-out infinite alternate;
+.animate-ken-burns {
+    animation: kenBurnsPan 18s ease-in-out infinite alternate;
 }
 
-/* Működő, letisztult Előtte/Utána Slider CSS (Clip-path alapon) */
-.comparison-slider {
+/* --- TÖKÉLETESÍTETT ELŐTTE / UTÁNA SLIDER CSS --- */
+.comparison-wrapper {
     position: relative;
     width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
     aspect-ratio: 16 / 9;
-    overflow: hidden;
     border-radius: 1.5rem;
+    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     user-select: none;
 }
 
-.comparison-image {
+.comparison-img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    pointer-events: none;
 }
 
 .comparison-before {
@@ -55,25 +59,26 @@ body {
     z-index: 10;
 }
 
-.comparison-handle {
+.comparison-divider {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 50%;
-    width: 4px;
+    width: 3px;
     background-color: #f97316;
     z-index: 20;
     transform: translateX(-50%);
-    box-shadow: 0 0 12px rgba(249, 115, 22, 0.8);
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.8);
 }
 
-.comparison-handle-btn {
+.comparison-handle {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background-color: #f97316;
     color: white;
     border-radius: 50%;
@@ -81,9 +86,10 @@ body {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    pointer-events: none;
 }
 
-.comparison-range {
+.comparison-range-input {
     position: absolute;
     inset: 0;
     width: 100%;
