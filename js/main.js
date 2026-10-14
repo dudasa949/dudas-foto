@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initEmailProtection();
     setActiveNavLink();
-    initHeroSlider();
+    initHeroBackgroundSlider();
 });
 
-/* --- 1. Reszponzív Navigáció --- */
+/* --- Reszponzív Mobil Menü --- */
 function initNavigation() {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileNav = document.getElementById('mobile-nav');
@@ -16,6 +16,7 @@ function initNavigation() {
     }
 }
 
+/* --- Aktív menüpont jelölése --- */
 function setActiveNavLink() {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -26,7 +27,7 @@ function setActiveNavLink() {
     });
 }
 
-/* --- 2. Spam Elleni E-mail Védelem --- */
+/* --- Spam elleni e-mail obfuszkáció --- */
 function initEmailProtection() {
     const user = "dudas.adam";
     const domain = "gmail.com";
@@ -41,8 +42,8 @@ function initEmailProtection() {
     });
 }
 
-/* --- 3. Főoldali Háttér Képváltó / Ken Burns --- */
-function initHeroSlider() {
+/* --- Főoldali háttérkép váltó & zoom --- */
+function initHeroBackgroundSlider() {
     const heroBg = document.getElementById('hero-bg');
     if (!heroBg) return;
 
@@ -59,6 +60,6 @@ function initHeroSlider() {
         setTimeout(() => {
             heroBg.src = images[currentIndex];
             heroBg.style.opacity = '1';
-        }, 500);
-    }, 6000);
+        }, 800);
+    }, 7000);
 }
