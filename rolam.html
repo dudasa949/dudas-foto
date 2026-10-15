@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu" class="scroll-smooth">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,33 +10,30 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        darkbg: '#0a0a0c',
-                        cardbg: '#131318',
-                        accent: '#f97316',
-                        accenthover: '#ea580c',
-                    }
+                    colors: { darkbg: '#0a0a0c', cardbg: '#131318', accent: '#f97316', accenthover: '#ea580c' }
                 }
             }
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
 
-    <!-- NAVIGÁCIÓ -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-darkbg/85 backdrop-blur-md border-b border-gray-800/80">
+    <header class="fixed top-0 left-0 w-full z-50 bg-darkbg/90 backdrop-blur-xl border-b border-gray-800 shadow-2xl">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="text-xl font-extrabold tracking-wider uppercase flex items-center gap-2">
-                <i class="fa-solid fa-camera-retro text-accent"></i> DUDÁS ÁDÁM
+            <a href="index.html" class="text-xl font-extrabold tracking-wider uppercase flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+                    <i class="fa-solid fa-camera-retro"></i>
+                </div>
+                <span>Dudás Ádám</span>
             </a>
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <a href="index.html" class="nav-link text-gray-300 hover:text-accent transition">Főoldal</a>
                 <a href="galeria.html" class="nav-link text-gray-300 hover:text-accent transition">Galéria</a>
                 <a href="hirdetesfotozas.html" class="nav-link text-gray-300 hover:text-accent transition">Hirdetésfotózás</a>
                 <a href="rolam.html" class="nav-link text-gray-300 hover:text-accent transition">Rólam & CV</a>
-                <a href="kapcsolat.html" class="bg-accent hover:bg-accenthover text-white px-5 py-2.5 rounded-full font-semibold transition shadow-lg shadow-accent/20">Kapcsolat</a>
+                <a href="kapcsolat.html" class="bg-accent hover:bg-accenthover text-white px-6 py-2.5 rounded-full font-semibold transition shadow-lg shadow-accent/25">Kapcsolat</a>
             </nav>
             <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none">
                 <i class="fa-solid fa-bars"></i>
@@ -51,77 +48,79 @@
         </div>
     </header>
 
-    <!-- TARTALOM -->
-    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6 space-y-16">
-        
-        <!-- Bevezető -->
-        <div class="text-center max-w-3xl mx-auto space-y-4">
-            <span class="text-accent text-xs font-semibold uppercase tracking-widest">Mérnöki szemlélet a lencse mögött</span>
-            <h1 class="text-4xl font-extrabold tracking-tight">Rólam & Szakmai Háttér</h1>
-            <p class="text-gray-400 font-light leading-relaxed">
-                A gépek iránti tisztelet és a vizuális történetmesélés találkozása. Járműmérnök-hallgatóként precizitással és technikai alázattal tekintek minden egyes fotóprojekttekre.
-            </p>
+    <main class="pt-32 pb-24 max-w-5xl mx-auto px-6 space-y-16">
+        <div class="bg-cardbg border border-gray-800 p-8 lg:p-12 rounded-3xl grid grid-cols-1 md:grid-cols-3 gap-8 items-center shadow-2xl">
+            <div class="md:col-span-1 flex justify-center">
+                <div class="w-48 h-48 rounded-2xl bg-gradient-to-tr from-accent to-amber-500 p-1 shadow-xl">
+                    <div class="w-full h-full bg-darkbg rounded-2xl flex items-center justify-center text-accent text-5xl">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-2 space-y-4">
+                <span class="text-accent text-xs font-semibold uppercase tracking-widest">Szakmai Profil</span>
+                <h1 class="text-3xl font-extrabold text-white">Dudás Ádám</h1>
+                <p class="text-gray-300 font-light leading-relaxed">
+                    Járműmérnök-hallgató a Miskolci Egyetem Gépészmérnöki és Informatikai Karán (ME-GÉIK), valamint elhivatott autó- és motorsport-fotós. Célom a technikai részletek és a dinamika pontos visszaadása a vizuális művészetek eszközeivel.
+                </p>
+            </div>
         </div>
 
-        <!-- Fő grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            
-            <!-- Bal oszlop: Személyes leírás & Felszerelés -->
-            <div class="space-y-8">
-                <div class="bg-cardbg border border-gray-800 p-8 rounded-3xl space-y-6">
-                    <h2 class="text-2xl font-bold">Szenvedély & Alkotás</h2>
-                    <p class="text-gray-300 font-light leading-relaxed">
-                        A fotózás számomra nemcsak hobbi, hanem egy eszköz arra, hogy elkapjam a pillanat dinamikáját – legyen szó a hazai rallyfutamok nyers hangulatáról vagy egy autóhirdetéshez készült prémium vizuális anyagról.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-800">
-                        <div>
-                            <h4 class="text-xs text-accent font-semibold uppercase tracking-wider">Felszerelés</h4>
-                            <p class="text-sm text-gray-300 mt-1">Panasonic Lumix DC-FZ82</p>
-                        </div>
-                        <div>
-                            <h4 class="text-xs text-accent font-semibold uppercase tracking-wider">Specializáció</h4>
-                            <p class="text-sm text-gray-300 mt-1">Motorsport & Commercial</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Jobb oszlop: Tanulmányok / CV Timeline -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="bg-cardbg border border-gray-800 p-8 rounded-3xl space-y-6">
-                <h2 class="text-2xl font-bold">Szakmai Út & Tanulmányok</h2>
-                
-                <div class="relative pl-6 border-l border-accent space-y-8">
-                    <div>
+                <h2 class="text-xl font-bold text-white flex items-center gap-3">
+                    <i class="fa-solid fa-graduation-cap text-accent"></i> Tanulmányok
+                </h2>
+                <div class="space-y-4 text-sm text-gray-300">
+                    <div class="border-l-2 border-accent pl-4 space-y-1">
                         <span class="text-xs text-accent font-semibold">2026 – Jelenleg</span>
-                        <h3 class="text-lg font-bold text-white mt-1">Járműmérnök-hallgató</h3>
-                        <p class="text-sm text-gray-400 mt-1">Miskolci Egyetem, Gépészmérnöki és Informatikai Kar (ME-GÉIK).</p>
+                        <h3 class="font-bold text-white">Miskolci Egyetem (ME-GÉIK)</h3>
+                        <p class="text-gray-400">Járműmérnök alapképzés</p>
                     </div>
-                    <div>
-                        <span class="text-xs text-accent font-semibold">Aktív Projektek</span>
-                        <h3 class="text-lg font-bold text-white mt-1">Rally- & Hirdetésfotózás</h3>
-                        <p class="text-sm text-gray-400 mt-1">Rallyfutamok dokumentálása (pl. Muhi RallyXtreme, Viszló) és egyedi használtautó-fotózások.</p>
-                    </div>
-                    <div>
-                        <span class="text-xs text-accent font-semibold">Középiskola</span>
-                        <h3 class="text-lg font-bold text-white mt-1">Technikus Végzettség</h3>
-                        <p class="text-sm text-gray-400 mt-1">MSZC KKSZKI – szilárd műszaki és programozói alapok.</p>
+                    <div class="border-l-2 border-gray-700 pl-4 space-y-1">
+                        <span class="text-xs text-gray-500 font-semibold">Korábbi évek</span>
+                        <h3 class="font-bold text-white">MSZC KKSZKI</h3>
+                        <p class="text-gray-400">Technikus végzettség</p>
                     </div>
                 </div>
             </div>
 
+            <div class="bg-cardbg border border-gray-800 p-8 rounded-3xl space-y-6">
+                <h2 class="text-xl font-bold text-white flex items-center gap-3">
+                    <i class="fa-solid fa-camera text-accent"></i> Felszerelés & Eszközök
+                </h2>
+                <ul class="space-y-3 text-sm text-gray-300">
+                    <li class="flex items-center gap-3 bg-darkbg p-3 rounded-xl border border-gray-800">
+                        <i class="fa-solid fa-check text-accent"></i> Panasonic Lumix DC-FZ82 bridge kamera
+                    </li>
+                    <li class="flex items-center gap-3 bg-darkbg p-3 rounded-xl border border-gray-800">
+                        <i class="fa-solid fa-check text-accent"></i> Lenovo Yoga 7 (Krita digitális utómunka)
+                    </li>
+                    <li class="flex items-center gap-3 bg-darkbg p-3 rounded-xl border border-gray-800">
+                        <i class="fa-solid fa-check text-accent"></i> Egyedi tervezésű PC (RX 7800 XT, i5-12400F)
+                    </li>
+                </ul>
+            </div>
         </div>
     </main>
 
-    <!-- LÁBLÉC -->
-    <footer class="py-12 bg-cardbg/50 border-t border-gray-800 text-sm text-gray-400">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div>
-                <p class="font-bold text-white">Dudás Ádám</p>
-                <p class="text-xs text-gray-500 mt-1">&copy; 2026 Minden jog fenntartva.</p>
+    <footer class="bg-cardbg border-t border-gray-800 text-sm text-gray-400 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+            <div class="space-y-3">
+                <div class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-camera-retro text-accent"></i> Dudás Ádám
+                </div>
+                <p class="text-xs text-gray-500">Járműmérnök-hallgató & profi autó- és rallyfotós portfólió.</p>
             </div>
-            <div class="flex items-center gap-6">
-                <a href="#" class="protected-email hover:text-accent transition"></a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition">
+            <div class="flex justify-center gap-6 text-sm font-medium">
+                <a href="galeria.html" class="hover:text-accent transition">Galéria</a>
+                <a href="hirdetesfotozas.html" class="hover:text-accent transition">Hirdetésfotózás</a>
+                <a href="rolam.html" class="hover:text-accent transition">Rólam</a>
+                <a href="kapcsolat.html" class="hover:text-accent transition">Kapcsolat</a>
+            </div>
+            <div class="flex justify-md-end justify-center items-center gap-4">
+                <a href="#" class="protected-email bg-darkbg border border-gray-800 px-4 py-2 rounded-xl hover:border-accent transition text-xs text-gray-300"></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-darkbg border border-gray-800 flex items-center justify-center hover:text-accent hover:border-accent transition">
                     <i class="fa-brands fa-instagram text-lg"></i>
                 </a>
             </div>
