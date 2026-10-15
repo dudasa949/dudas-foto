@@ -15,7 +15,7 @@ body {
 
 /* Hero háttérkép: oldalirányú, szelíd pásztázás */
 #hero-bg {
-    opacity: 0.4;                               /* a halványítás itt van, nem a HTML-ben */
+    opacity: 0.9;                               /* a halványítás itt van, nem a HTML-ben */
     transition: opacity 0.9s ease-in-out;       /* fade ki/be */
     transform: scale(1.1) translateX(var(--pan-from, -3%));
     will-change: transform, opacity;
