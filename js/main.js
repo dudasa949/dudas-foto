@@ -50,7 +50,7 @@ function initHeroBackgroundSlider() {
     ];
 
     const FADE_MS = 900;   // egyeznie kell a CSS transition idejével (0.9s)
-    const PAN_AMOUNT = 3;  // ennyi % az elmozdulás, a scale(1.1) miatt max ~5% biztonságos
+    const PAN_AMOUNT = 1.5;  // ennyi % az elmozdulás, a scale(1.1) miatt max ~5% biztonságos
 
     let currentIndex = 0;
     let direction = 1;     // 1 = balról jobbra, -1 = jobbról balra
