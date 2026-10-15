@@ -49,22 +49,40 @@ function initHeroBackgroundSlider() {
         "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop"
     ];
 
+    const FADE_MS = 900;   // egyeznie kell a CSS transition idejével (0.9s)
+    const PAN_AMOUNT = 3;  // ennyi % az elmozdulás, a scale(1.1) miatt max ~5% biztonságos
+
     let currentIndex = 0;
-    const intervalTime = 7000;
+    let direction = 1;     // 1 = balról jobbra, -1 = jobbról balra
 
-    // Kezdeti animáció indítás
-    heroBg.classList.add('animate-ken-burns');
+    // Előtöltés, hogy váltáskor ne villanjon be üres háttér
+    images.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
 
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % images.length;
+    function startPan() {
+        heroBg.style.setProperty('--pan-from', `${-PAN_AMOUNT * direction}%`);
+        heroBg.style.setProperty('--pan-to', `${PAN_AMOUNT * direction}%`);
+
+        heroBg.classList.remove('hero-pan');
+        void heroBg.offsetWidth;   // reflow: így indul újra az animáció nulláról
+        heroBg.classList.add('hero-pan');
+
+        direction *= -1;           // következő kép az ellenkező irányba megy
+    }
+
+    // Amikor a mozgás lelassult és megállt: fade ki -> képcsere -> fade be + új mozgás
+    heroBg.addEventListener('animationend', () => {
         heroBg.style.opacity = '0';
-        heroBg.classList.remove('animate-ken-burns');
 
         setTimeout(() => {
+            currentIndex = (currentIndex + 1) % images.length;
             heroBg.src = images[currentIndex];
-            heroBg.style.opacity = '1';
-            void heroBg.offsetWidth; // DOM reflow a CSS animáció nullázásához
-            heroBg.classList.add('animate-ken-burns');
-        }, 600);
-    }, intervalTime);
+            heroBg.style.opacity = '';   // visszaáll a CSS-ben megadott 0.4-re
+            startPan();
+        }, FADE_MS);
+    });
+
+    startPan();
 }
