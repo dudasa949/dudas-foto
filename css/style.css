@@ -8,24 +8,23 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Egyedi görgetősáv */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #0a0a0c; }
 ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #f97316; }
 
-/* Főoldali háttér lassan mozgó Ken Burns / Pan-Zoom animáció */
-@keyframes kenBurnsPan {
+/* Új Ken Burns animáció: lassan indul, tetőzik, majd megállás előtt finoman lelassul */
+@keyframes kenBurnsCycle {
     0% { transform: scale(1) translate(0, 0); }
-    50% { transform: scale(1.08) translate(-2%, -1.5%); }
-    100% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.08) translate(-1.5%, -1%); }
+    100% { transform: scale(1.04) translate(1%, 0.5%); }
 }
 
 .animate-ken-burns {
-    animation: kenBurnsPan 18s ease-in-out infinite alternate;
+    animation: kenBurnsCycle 7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* --- TÖKÉLETESÍTETT ELŐTTE / UTÁNA SLIDER CSS --- */
+/* Előtte / Utána Slider */
 .comparison-wrapper {
     position: relative;
     width: 100%;
