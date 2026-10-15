@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroBackgroundSlider();
 });
 
-/* --- Reszponzív Mobil Menü --- */
 function initNavigation() {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileNav = document.getElementById('mobile-nav');
@@ -16,7 +15,6 @@ function initNavigation() {
     }
 }
 
-/* --- Aktív menüpont jelölése --- */
 function setActiveNavLink() {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -27,7 +25,6 @@ function setActiveNavLink() {
     });
 }
 
-/* --- Spam elleni e-mail obfuszkáció --- */
 function initEmailProtection() {
     const user = "dudas.adam";
     const domain = "gmail.com";
@@ -42,7 +39,6 @@ function initEmailProtection() {
     });
 }
 
-/* --- Főoldali háttérkép váltó & zoom --- */
 function initHeroBackgroundSlider() {
     const heroBg = document.getElementById('hero-bg');
     if (!heroBg) return;
@@ -54,12 +50,21 @@ function initHeroBackgroundSlider() {
     ];
 
     let currentIndex = 0;
+    const intervalTime = 7000;
+
+    // Kezdeti animáció indítás
+    heroBg.classList.add('animate-ken-burns');
+
     setInterval(() => {
         currentIndex = (currentIndex + 1) % images.length;
         heroBg.style.opacity = '0';
+        heroBg.classList.remove('animate-ken-burns');
+
         setTimeout(() => {
             heroBg.src = images[currentIndex];
             heroBg.style.opacity = '1';
-        }, 800);
-    }, 7000);
+            void heroBg.offsetWidth; // DOM reflow a CSS animáció nullázásához
+            heroBg.classList.add('animate-ken-burns');
+        }, 600);
+    }, intervalTime);
 }
