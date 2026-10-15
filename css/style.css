@@ -13,15 +13,22 @@ body {
 ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #f97316; }
 
-/* Új Ken Burns animáció: lassan indul, tetőzik, majd megállás előtt finoman lelassul */
-@keyframes kenBurnsCycle {
-    0% { transform: scale(1) translate(0, 0); }
-    50% { transform: scale(1.08) translate(-1.5%, -1%); }
-    100% { transform: scale(1.04) translate(1%, 0.5%); }
+/* Hero háttérkép: oldalirányú, szelíd pásztázás */
+#hero-bg {
+    opacity: 0.4;                               /* a halványítás itt van, nem a HTML-ben */
+    transition: opacity 0.9s ease-in-out;       /* fade ki/be */
+    transform: scale(1.1) translateX(var(--pan-from, -3%));
+    will-change: transform, opacity;
 }
 
-.animate-ken-burns {
-    animation: kenBurnsCycle 7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+@keyframes heroPan {
+    from { transform: scale(1.1) translateX(var(--pan-from, -3%)); }
+    to   { transform: scale(1.1) translateX(var(--pan-to, 3%)); }
+}
+
+.hero-pan {
+    /* easeInOutSine: állóról indul, állóra lassul */
+    animation: heroPan 8s cubic-bezier(0.45, 0, 0.55, 1) forwards;
 }
 
 /* Előtte / Utána Slider */
