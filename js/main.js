@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setActiveNavLink();
     initHeroBackgroundSlider();
     initContactForm();
+    initTopicFields();
 });
 
 function initNavigation() {
@@ -129,4 +130,26 @@ function initContactForm() {
             button.textContent = defaultLabel;
         }
     });
+}
+
+function initTopicFields() {
+    const topic = document.getElementById('topic');
+    if (!topic) return;
+
+    const groups = document.querySelectorAll('[data-topic-group]');
+
+    function update() {
+        //rally / car / other
+        const selected = topic.options[topic.selectedIndex].dataset.group;
+
+        groups.forEach(group => {
+            const show = group.dataset.topicGroup === selected;
+            group.classList.toggle('hidden', !show);
+            // a letiltott mezők nem kerülnek bele az elküldött üzenetbe
+            group.querySelectorAll('input').forEach(input => { input.disabled = !show; });
+        });
+    }
+
+    topic.addEventListener('change', update);   // minden választásváltáskor lefut
+    update();
 }
