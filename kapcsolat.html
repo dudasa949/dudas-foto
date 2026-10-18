@@ -67,7 +67,7 @@
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
                 <h3 class="font-bold text-white text-base">Helyszín</h3>
-                <p class="text-xs text-gray-400">Bőcs / Miskolc, Magyarország</p>
+                <p class="text-xs text-gray-400">Miskolc vonzáskörzete</p>
             </div>
 
             <div class="bg-cardbg border border-gray-800 p-8 rounded-3xl space-y-3 text-center md:text-left">
@@ -75,7 +75,7 @@
                     <i class="fa-brands fa-instagram"></i>
                 </div>
                 <h3 class="font-bold text-white text-base">Közösségi Média</h3>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-xs text-accent hover:underline block">Instagram Profil <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+                <a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" class="text-xs text-accent hover:underline block">Instagram Profil <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
             </div>
         </div>
 
@@ -102,16 +102,49 @@
             <label for="topic" class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Miről szeretnél írni?</label>
             <select id="topic" name="topic"
                 class="w-full bg-darkbg border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-accent transition">
-                <option>Használtautó-hirdetés fotózás</option>
-                <option>Rally / akciófotózás</option>
-                <option>Egyéb kérdés</option>
+                <option value="Rally-képet kérek (versenyzőként / navigátorként)" data-group="rally">Rally-képet kérek (versenyzőként / navigátorként)</option>
+                <option value="Használtautó-hirdetés fotózás" data-group="car">Használtautó-hirdetés fotózás</option>
+                <option value="Egyedi autófotózás" data-group="car">Egyedi autófotózás</option>
+                <option value="Egyéb kérdés" data-group="other">Egyéb kérdés</option>
             </select>
+        </div>
+
+        <!-- Extra mezők a rally opcióhoz -->
+        <div data-topic-group="rally" class="hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label for="race" class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Melyik futamról?</label>
+                    <input id="race" type="text" name="race" placeholder="Pl. a futam neve és éve"
+                        class="w-full bg-darkbg border border-gray-800 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-accent transition">
+                </div>
+                <div class="space-y-2">
+                    <label for="bib" class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Rajtszám (opcionális)</label>
+                    <input id="bib" type="text" name="bib" placeholder="Pl. 12"
+                        class="w-full bg-darkbg border border-gray-800 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-accent transition">
+                </div>
+            </div>
+        </div>
+
+        <!-- Extra mezők az autófotózás opciókhoz -->
+        <div data-topic-group="car" class="hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label for="car_model" class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Az autó típusa</label>
+                    <input id="car_model" type="text" name="car_model" placeholder="Pl. márka, modell, évjárat"
+                        class="w-full bg-darkbg border border-gray-800 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-accent transition">
+                </div>
+                <div class="space-y-2">
+                    <label for="preferred_time" class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Mikorra szeretnéd?</label>
+                    <input id="preferred_time" type="text" name="preferred_time" placeholder="Pl. a következő két hétben, hétvégén"
+                        class="w-full bg-darkbg border border-gray-800 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-accent transition">
+                </div>
+            </div>
         </div>
 
         <div class="space-y-2">
             <label for="message" class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Üzenet</label>
             <textarea id="message" name="message" rows="5" required
-                placeholder="Írd le röviden, miben segíthetek (pl. az autó típusa, a helyszín, a kívánt időpont)."
+                placeholder="Írd le részletesen, miben segíthetek. Nyugodtan fejtsd ki a gondolataidat."
                 class="w-full bg-darkbg border border-gray-800 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-accent transition"></textarea>
         </div>
 
