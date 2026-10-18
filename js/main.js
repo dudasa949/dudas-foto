@@ -26,7 +26,7 @@ function setActiveNavLink() {
 }
 
 function initEmailProtection() {
-    const user = "dudas.adam";
+    const user = "advisuals.contact";
     const domain = "gmail.com";
     document.querySelectorAll('.protected-email').forEach(container => {
         const fullEmail = `${user}@${domain}`;
@@ -45,8 +45,8 @@ function initHeroBackgroundSlider() {
 
     const images = [
         "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792319961/mrc26_3viszlo_1.jpg",
-        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792319548/mrc26_3viszlo_5.jpg",
-        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792319962/mrc26_3viszlo_3.jpg"
+        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792327313/mrc26_5muhi_6.jpg",
+        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792328895/mrc26_2kaza_6.jpg"
     ];
 
     const FADE_MS = 900;   // egyeznie kell a CSS transition idejével (0.9s)
