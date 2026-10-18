@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initEmailProtection();
     setActiveNavLink();
     initHeroBackgroundSlider();
+    initContactForm();
 });
 
 function initNavigation() {
@@ -85,4 +86,47 @@ function initHeroBackgroundSlider() {
     });
 
     startPan();
+}
+
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;   // ha az oldalon nincs űrlap, nem csinál semmit
+
+    const status = document.getElementById('form-status');
+    const button = document.getElementById('submit-btn');
+    const defaultLabel = button.textContent;
+
+    function showStatus(message, isError) {
+        status.textContent = message;
+        status.className = 'text-sm rounded-xl px-4 py-3 border ' + (isError
+            ? 'bg-red-500/10 border-red-500/30 text-red-300'
+            : 'bg-green-500/10 border-green-500/30 text-green-300');
+    }
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();          // megállítja az átirányítást a Formspree oldalára
+        button.disabled = true;
+        button.textContent = 'Küldés...';
+        status.className = 'hidden';
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                form.reset();
+                showStatus('Köszönöm az üzeneted! Hamarosan válaszolok.', false);
+            } else {
+                showStatus('Valami hiba történt a küldéskor. Próbáld újra, vagy írj közvetlenül az e-mail-címemre.', true);
+            }
+        } catch (error) {
+            showStatus('Nem sikerült elküldeni. Ellenőrizd az internetkapcsolatot, vagy írj közvetlenül az e-mail-címemre.', true);
+        } finally {
+            button.disabled = false;
+            button.textContent = defaultLabel;
+        }
+    });
 }
