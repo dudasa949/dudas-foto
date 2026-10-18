@@ -44,9 +44,9 @@ function initHeroBackgroundSlider() {
     if (!heroBg) return;
 
     const images = [
-        "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=2070&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2070&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop"
+        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792319961/mrc26_3viszlo_1.jpg",
+        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792319548/mrc26_3viszlo_5.jpg",
+        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792319962/mrc26_3viszlo_3.jpg"
     ];
 
     const FADE_MS = 900;   // egyeznie kell a CSS transition idejével (0.9s)
