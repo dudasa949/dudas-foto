@@ -44,9 +44,9 @@ function initHeroBackgroundSlider() {
     if (!heroBg) return;
 
     const images = [
-        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792319961/mrc26_3viszlo_1.jpg",
         "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792327313/mrc26_5muhi_6.jpg",
-        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792328895/mrc26_2kaza_6.jpg"
+        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792319961/mrc26_3viszlo_1.jpg",
+        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792328919/mrc26_2kaza_16.jpg"
     ];
 
     const FADE_MS = 900;   // egyeznie kell a CSS transition idejével (0.9s)
