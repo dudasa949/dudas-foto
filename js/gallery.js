@@ -1,166 +1,111 @@
-document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('topics-grid')) {
-        renderGalleryGrid('all');
-    }
-});
+// Galéria: albumok, szűrők és nagyított nézet. Az adatok a gallery-data.js-ből jönnek.
+(() => {
+    const G = window.GALLERY;
+    if (!G) return;
+    const root = document.getElementById('gallery');
+    const url = (tr, p) => `https://res.cloudinary.com/${G.cloud}/image/upload/${tr}/${p.v}/${p.f}`;
 
-const topicsData = [
-    {
-        category: "rally",
-        title: "Muhi RallyXtreme - Gyorsasági szakaszok",
-        badge: "MOTORSPORT / 20-AS SOROZAT",
-        desc: "Nyers akciófotók a hazai rallycross bajnokságról, por, kanyarok és szervizparki pillanatok részletesen bemutatva.",
-        images: [
-            "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop"
-        ]
-    },
-    {
-        category: "commercial",
-        title: "Prémium Használtautó Portfólió",
-        badge: "COMMERCIAL / 15-ÖS SOROZAT",
-        desc: "Külvilági profilok, belső terek, műszerfal részletek és felnik nagypontosságú hirdetési fotósorozata.",
-        images: [
-            "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop"
-        ]
-    },
-    {
-        category: "rally",
-        title: "Viszló Rally Stage",
-        badge: "MOTORSPORT / 22-ES SOROZAT",
-        desc: "Erdős, technikás pályaszakaszok, izgalmas ívek és versenyhangulat a Panasonic Lumix lencséjén keresztül.",
-        images: [
-            "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000&auto=format&fit=crop"
-        ]
-    }
-];
-
-let cardStates = [0, 0, 0];
-let currentFilter = 'all';
-
-function renderGalleryGrid(filterCategory) {
-    currentFilter = filterCategory;
-    const grid = document.getElementById('topics-grid');
-    if (!grid) return;
-    grid.innerHTML = '';
-
-    topicsData.forEach((topic, topicIdx) => {
-        if (filterCategory !== 'all' && topic.category !== filterCategory) return;
-
-        const currentSlide = cardStates[topicIdx];
-        let mediaHTML = '';
-
-        if (currentSlide < 3) {
-            mediaHTML = `<img src="${topic.images[currentSlide]}" class="w-full h-full object-cover transition-opacity duration-300">`;
-        } else {
-            mediaHTML = `
-                <div class="w-full h-full bg-gradient-to-br from-accent/30 via-darkbg to-cardbg flex flex-col items-center justify-center p-6 text-center space-y-3 cursor-pointer" onclick="openTopicModal(${topicIdx})">
-                    <i class="fa-solid fa-up-right-and-down-left-from-center text-accent text-3xl animate-bounce"></i>
-                    <h4 class="font-bold text-white text-base">Tekintsd meg a teljes galériát!</h4>
-                    <p class="text-xs text-gray-300">A teljes sorozat még több mint 15+ képet tartalmaz nagy felbontásban.</p>
-                    <span class="bg-accent text-white px-4 py-2 rounded-xl text-xs font-bold shadow-lg">Megnyitás</span>
-                </div>
-            `;
-        }
-
-        let dotsHTML = '';
-        for (let i = 0; i < 3; i++) {
-            const activeClass = (i === currentSlide) ? 'bg-accent w-4' : 'bg-white/40 w-2';
-            dotsHTML += `<span class="h-2 rounded-full transition-all ${activeClass}"></span>`;
-        }
-
-        const cardHTML = `
-            <div class="gallery-item bg-cardbg border border-gray-800 rounded-3xl overflow-hidden flex flex-col justify-between shadow-xl cursor-pointer group/card hover:border-accent/50 transition" onclick="openTopicModal(${topicIdx})">
-                <!-- Kép konténer (megállítjuk a buborékolást, hogy a nyilak ne nyissák meg a modalt) -->
-                <div class="relative w-full aspect-[4/3] overflow-hidden group bg-black flex-shrink-0" onclick="event.stopPropagation();">
-                    ${mediaHTML}
-                    
-                    <button onclick="prevCardSlide(${topicIdx}, event)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-accent text-white w-8 h-8 rounded-full flex items-center justify-center z-20 text-xs transition">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <button onclick="nextCardSlide(${topicIdx}, event)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-accent text-white w-8 h-8 rounded-full flex items-center justify-center z-20 text-xs transition">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-
-                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-full z-20 shadow-md">
-                        ${dotsHTML}
-                        <span class="text-[10px] text-gray-300 font-medium ml-1.5">+15 kép</span>
-                    </div>
-                </div>
-
-                <!-- Szöveges rész -->
-                <div class="p-6 flex flex-col flex-grow justify-between space-y-2">
-                    <div>
-                        <span class="text-xs font-semibold text-accent uppercase tracking-wider block mb-1">${topic.badge}</span>
-                        <h3 class="text-xl font-bold text-white group-hover/card:text-accent transition">${topic.title}</h3>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">${topic.desc}</p>
-                </div>
-            </div>
-        `;
-        grid.innerHTML += cardHTML;
+    // Minden kép egy listában: a = album, i = sorszám az albumban, w/h = méret (ha ismert)
+    const all = [];
+    G.albums.forEach(a => a.images.forEach((im, i) => all.push({ a, i, v: im[0], f: im[1], w: im[2], h: im[3] })));
+    const kind = p => (p.h > p.w ? 'tall' : 'wide');
+    let albumFilter = 'all', orient = 'all', visible = [], cur = 0;
+    const probe = p => new Promise(done => {
+        const t = new Image();
+        t.onload = () => { p.w = t.naturalWidth; p.h = t.naturalHeight; done(); };
+        t.onerror = () => { p.w = 3; p.h = 2; done(); };
+        t.src = url('f_auto,q_auto,w_48', p);
     });
-}
 
-function nextCardSlide(topicIdx, event) {
-    event.stopPropagation();
-    cardStates[topicIdx] = (cardStates[topicIdx] + 1) % 4;
-    renderGalleryGrid(currentFilter);
-}
-
-function prevCardSlide(topicIdx, event) {
-    event.stopPropagation();
-    cardStates[topicIdx] = (cardStates[topicIdx] - 1 + 4) % 4;
-    renderGalleryGrid(currentFilter);
-}
-
-function filterGallery(category, clickedBtn) {
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('bg-accent', 'text-white', 'shadow-lg');
-        btn.classList.add('bg-cardbg', 'border', 'border-gray-800', 'text-gray-400');
-    });
-    if (clickedBtn) {
-        clickedBtn.classList.remove('bg-cardbg', 'border', 'border-gray-800', 'text-gray-400');
-        clickedBtn.classList.add('bg-accent', 'text-white', 'shadow-lg');
+    function chips(box, items, current, onPick) {
+        box.innerHTML = '';
+        items.forEach(([value, label]) => {
+            const b = document.createElement('button');
+            const on = value === current;
+            b.className = 'px-4 py-2 rounded-full text-sm font-medium border transition ' +
+                (on ? 'bg-accent border-accent text-white' : 'border-white/15 text-gray-300 hover:border-white/40');
+            b.textContent = label;
+            b.onclick = () => onPick(value);
+            box.appendChild(b);
+        });
     }
-    renderGalleryGrid(category);
-}
 
-let currentModalTopic = 0;
-let currentModalImgIdx = 0;
+    function render() {
+        visible = all.filter(p => (albumFilter === 'all' || p.a.id === albumFilter) && (orient === 'all' || kind(p) === orient));
+        chips(document.getElementById('album-chips'),
+            [['all', 'Minden album'], ...G.albums.map(a => [a.id, `${a.round}. forduló · ${a.place}`])],
+            albumFilter, v => { albumFilter = v; render(); });
+        chips(document.getElementById('orient-chips'),
+            [['all', 'Minden kép'], ['wide', 'Fekvő'], ['tall', 'Álló']],
+            orient, v => { orient = v; render(); });
+        document.getElementById('gallery-count').textContent = `${visible.length} kép`;
 
-function openTopicModal(idx) {
-    currentModalTopic = idx;
-    currentModalImgIdx = 0;
-    updateModalContent();
-    document.getElementById('lightbox-modal').style.display = 'flex';
-}
+        root.innerHTML = '';
+        G.albums.forEach(a => {
+            const items = visible.filter(p => p.a === a);
+            if (!items.length) return;
+            const sec = document.createElement('section');
+            sec.className = 'opacity-0 translate-y-4 transition duration-700';
+            sec.innerHTML = `<div class="flex items-end justify-between gap-4 mb-5">
+                <div><h2 class="text-2xl sm:text-3xl font-bold tracking-tight">${a.title}</h2><p class="text-gray-400">${a.place}</p></div>
+                <p class="text-sm text-gray-400">${items.length} kép</p></div>
+                <div class="columns-2 md:columns-3 gap-3"></div>`;
+            items.forEach(p => {
+                const b = document.createElement('button');
+                b.className = 'group block w-full mb-3 break-inside-avoid overflow-hidden rounded-xl bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent';
+                b.style.aspectRatio = `${p.w} / ${p.h}`;
+                b.setAttribute('aria-label', `${a.title}, ${a.place}: ${p.i + 1}. kép nagyítása`);
+                b.innerHTML = `<img src="${url('f_auto,q_auto,w_700', p)}" loading="lazy" alt="${a.title} – ${a.place}, ${p.i + 1}. kép"
+                    class="w-full h-full object-cover opacity-0 transition duration-500 group-hover:scale-105">`;
+                b.firstChild.onload = e => e.target.classList.remove('opacity-0');
+                b.onclick = () => open(visible.indexOf(p));
+                sec.lastElementChild.appendChild(b);
+            });
+            root.appendChild(sec);
+            seen.observe(sec);
+        });
+        if (!visible.length) root.innerHTML = '<p class="text-gray-400">Ebben a szűrésben nincs kép.</p>';
+    }
 
-function closeModal() {
-    document.getElementById('lightbox-modal').style.display = 'none';
-}
+    // Belépő animáció görgetéskor
+    const seen = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.remove('opacity-0', 'translate-y-4'); seen.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -8% 0px' });
 
-function updateModalContent() {
-    const topic = topicsData[currentModalTopic];
-    document.getElementById('modal-img').src = topic.images[currentModalImgIdx];
-    document.getElementById('modal-title').textContent = topic.title;
-    document.getElementById('modal-desc').textContent = topic.desc;
-    document.getElementById('image-counter').textContent = `${currentModalImgIdx + 1} / ${topic.images.length}`;
-}
+    // Nagyított nézet
+    const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img');
+    function show(i) {
+        cur = (i + visible.length) % visible.length;
+        const p = visible[cur];
+        lbImg.style.opacity = 0;
+        lbImg.onload = () => (lbImg.style.opacity = 1);
+        lbImg.src = url('f_auto,q_auto,w_2400', p);
+        lbImg.alt = `${p.a.title} – ${p.a.place}, ${p.i + 1}. kép`;
+        document.getElementById('lb-title').textContent = p.a.title;
+        document.getElementById('lb-meta').textContent = `${p.a.place} · ${cur + 1} / ${visible.length}`;
+        document.getElementById('lb-ask').href = `kapcsolat.html?tema=rally&futam=${encodeURIComponent(p.a.title + ' – ' + p.a.place)}&kep=${encodeURIComponent(p.f)}`;
+        [cur + 1, cur - 1].forEach(n => { const q = visible[(n + visible.length) % visible.length]; new Image().src = url('f_auto,q_auto,w_2400', q); });
+    }
+    function open(i) { lb.classList.remove('hidden'); document.body.style.overflow = 'hidden'; show(i); }
+    function close() { lb.classList.add('hidden'); document.body.style.overflow = ''; }
+    document.getElementById('lb-close').onclick = close;
+    document.getElementById('lb-prev').onclick = () => show(cur - 1);
+    document.getElementById('lb-next').onclick = () => show(cur + 1);
+    lb.addEventListener('click', e => { if (e.target === lb || e.target.id === 'lb-wrap') close(); });
+    document.addEventListener('keydown', e => {
+        if (lb.classList.contains('hidden')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(cur - 1);
+        if (e.key === 'ArrowRight') show(cur + 1);
+    });
+    let x0 = null;
+    lb.addEventListener('touchstart', e => (x0 = e.touches[0].clientX), { passive: true });
+    lb.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - x0;
+        if (x0 !== null && Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+        x0 = null;
+    });
 
-function nextImage() {
-    const topic = topicsData[currentModalTopic];
-    currentModalImgIdx = (currentModalImgIdx + 1) % topic.images.length;
-    updateModalContent();
-}
-
-function prevImage() {
-    const topic = topicsData[currentModalTopic];
-    currentModalImgIdx = (currentModalImgIdx - 1 + topic.images.length) % topic.images.length;
-    updateModalContent();
-}
+    root.innerHTML = '<p class="text-gray-400">Képek betöltése…</p>';
+    Promise.all(all.filter(p => !p.w).map(probe)).then(render);
+})();
