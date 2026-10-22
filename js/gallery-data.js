@@ -1,4 +1,4 @@
-//ne kézzel szerkeszd!
+//Ne kézzel szerkeszd!
 window.GALLERY = {
   cloud: "n5bkfxuh",
   albums: [
