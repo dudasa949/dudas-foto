@@ -3,133 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>AD Visuals - Galéria</title>
+    <meta name="description" content="Rallyfotók a versenyekről, ahol ott voltam: albumok fekvő és álló képekkel, nagyítható nézettel.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { darkbg: '#0a0a0c', cardbg: '#131318', accent: '#f97316', accenthover: '#ea580c' }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { colors: { darkbg: '#0a0a0c', cardbg: '#131318', accent: '#f97316', accenthover: '#ea580c' } } } }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/x-icon" sizes="64x64" href="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792336551/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792336551/favicon.ico">
 </head>
 <body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
 
-    <!-- FEJLÉC -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-darkbg/90 backdrop-blur-xl border-b border-gray-800 shadow-2xl">
+    <header class="fixed top-0 inset-x-0 z-50 bg-black/30 backdrop-blur-xl border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center" aria-label="AD Visuals – Galéria">
-                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals – @adudas.949" class="h-11 w-auto">
+            <a href="index.html" class="flex items-center" aria-label="AD Visuals – főoldal">
+                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals" class="h-11 w-auto">
             </a>
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <a href="index.html" class="nav-link text-gray-300 hover:text-accent transition">Főoldal</a>
                 <a href="galeria.html" class="nav-link text-gray-300 hover:text-accent transition">Galéria</a>
                 <a href="hirdetesfotozas.html" class="nav-link text-gray-300 hover:text-accent transition">Hirdetésfotózás</a>
-                <a href="rolam.html" class="nav-link text-gray-300 hover:text-accent transition">Rólam & CV</a>
+                <a href="rolam.html" class="nav-link text-gray-300 hover:text-accent transition">Rólam</a>
                 <a href="kapcsolat.html" class="bg-accent hover:bg-accenthover text-white px-6 py-2.5 rounded-full font-semibold transition shadow-lg shadow-accent/25">Kapcsolat</a>
             </nav>
-            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none">
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none" aria-label="Menü">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
-        <div id="mobile-nav" class="hidden md:hidden bg-cardbg border-b border-gray-800 px-6 py-4 space-y-3">
-            <a href="index.html" class="block text-gray-300 hover:text-accent font-medium py-2">Főoldal</a>
-            <a href="galeria.html" class="block text-gray-300 hover:text-accent font-medium py-2">Galéria</a>
-            <a href="hirdetesfotozas.html" class="block text-gray-300 hover:text-accent font-medium py-2">Hirdetésfotózás</a>
-            <a href="rolam.html" class="block text-gray-300 hover:text-accent font-medium py-2">Rólam & CV</a>
+        <div id="mobile-nav" class="hidden md:hidden bg-black/60 backdrop-blur-xl border-t border-white/10 px-6 py-4 space-y-3">
+            <a href="index.html" class="block text-gray-200 hover:text-accent font-medium py-2">Főoldal</a>
+            <a href="galeria.html" class="block text-gray-200 hover:text-accent font-medium py-2">Galéria</a>
+            <a href="hirdetesfotozas.html" class="block text-gray-200 hover:text-accent font-medium py-2">Hirdetésfotózás</a>
+            <a href="rolam.html" class="block text-gray-200 hover:text-accent font-medium py-2">Rólam</a>
             <a href="kapcsolat.html" class="block bg-accent text-white text-center py-2.5 rounded-xl font-semibold mt-2">Kapcsolat</a>
         </div>
     </header>
 
-    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6 space-y-12">
-        <div class="text-center max-w-2xl mx-auto space-y-4">
-            <span class="text-accent text-xs font-semibold uppercase tracking-widest">Vizuális Archívum</span>
-            <h1 class="text-4xl font-extrabold tracking-tight">Tematikus Portfólió</h1>
-            <p class="text-gray-400 font-light">Lapozz bele a sorozatokba kis nézetben is, vagy nyisd meg őket nagyban a teljes élményért!</p>
-            
-            <!-- Javított filter gombok, amelyek a helyes aktív állapotot adják át -->
-            <div class="flex flex-wrap justify-center gap-2 pt-6">
-                <button onclick="filterGallery('all', this)" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-accent text-white transition shadow-lg shadow-accent/20">Összes</button>
-                <button onclick="filterGallery('rally', this)" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-cardbg border border-gray-800 text-gray-400 hover:bg-gray-800 transition">Rally / Motorsport</button>
-                <button onclick="filterGallery('commercial', this)" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium bg-cardbg border border-gray-800 text-gray-400 hover:bg-gray-800 transition">Hirdetésfotózás</button>
-            </div>
+    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6">
+        <div class="max-w-2xl">
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">Galéria</h1>
+            <p class="mt-4 text-lg text-gray-300 font-light">Képek azokról rallyversenyekről, amelyeken ott voltam.</p>
         </div>
 
-        <!-- Ide épül be a kártyarács a gallery.js-ből -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="topics-grid"></div>
+        <div class="mt-10 flex flex-wrap items-center justify-between gap-4">
+            <div id="album-chips" class="flex flex-wrap gap-2"></div>
+            <div id="orient-chips" class="flex gap-2"></div>
+        </div>
+        <p id="gallery-count" class="mt-5 text-sm text-gray-400"></p>
+        <div id="gallery" class="mt-8 space-y-16" aria-live="polite"></div>
     </main>
 
-    <!-- NAGYÍTOTT LAPOZHATÓ MODAL -->
-    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center p-4 lg:p-10">
-        <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-3xl z-50 bg-cardbg/80 w-12 h-12 rounded-full flex items-center justify-center border border-gray-800">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-
-        <div class="w-full max-w-6xl h-[85vh] bg-cardbg border border-gray-800 rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-3 shadow-2xl">
-            <div class="lg:col-span-2 relative bg-black flex items-center justify-center p-4">
-                <button onclick="prevImage()" class="absolute left-4 z-20 bg-cardbg/80 hover:bg-accent text-white w-12 h-12 rounded-full flex items-center justify-center border border-gray-700 transition">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <img id="modal-img" src="" alt="Nagyított kép" class="max-h-full max-w-full object-contain">
-                <button onclick="nextImage()" class="absolute right-4 z-20 bg-cardbg/80 hover:bg-accent text-white w-12 h-12 rounded-full flex items-center justify-center border border-gray-700 transition">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 px-4 py-1.5 rounded-full text-xs text-gray-300 font-medium" id="image-counter">
-                    1 / 20
-                </div>
+    <footer class="border-t border-white/10 text-sm text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals" class="h-7 w-auto">
+                <span>© 2026 Dudás Ádám</span>
             </div>
+            <nav class="flex items-center gap-6">
+                <a href="gyik.html" class="hover:text-accent transition">GYIK</a>
+                <a href="#" class="protected-email hover:text-accent transition"></a>
+                <a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-accent transition"><i class="fa-brands fa-instagram text-lg"></i></a>
+            </nav>
+        </div>
+    </footer>
 
-            <div class="p-8 flex flex-col justify-between space-y-6 overflow-y-auto border-t lg:border-t-0 lg:border-l border-gray-800">
-                <div class="space-y-4">
-                    <span class="text-xs font-semibold text-accent uppercase tracking-widest">EXIF & Fotó adatok</span>
-                    <h3 id="modal-title" class="text-2xl font-bold text-white">Cím</h3>
-                    <p id="modal-desc" class="text-sm text-gray-400 leading-relaxed">Leírás</p>
+    <!-- Nagyított nézet -->
+    <div id="lb" class="fixed inset-0 z-[100] hidden bg-black/95" role="dialog" aria-modal="true" aria-label="Képnézegető">
+        <button id="lb-close" aria-label="Bezárás" class="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-accent transition"><i class="fa-solid fa-xmark"></i></button>
+        <button id="lb-prev" aria-label="Előző kép" class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-accent transition"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="lb-next" aria-label="Következő kép" class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-accent transition"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="h-full flex flex-col items-center justify-center px-4 sm:px-20 py-16">
+            <img id="lb-img" alt="" class="max-h-[76vh] max-w-full object-contain rounded-lg transition-opacity duration-300">
+            <div class="mt-5 w-full max-w-3xl flex items-center justify-between gap-4">
+                <div>
+                    <p id="lb-title" class="font-semibold text-white"></p>
+                    <p id="lb-meta" class="text-sm text-gray-400"></p>
                 </div>
-
-                <div class="space-y-3 bg-darkbg p-5 rounded-2xl border border-gray-800 text-xs text-gray-300">
-                    <div class="flex justify-between py-1.5 border-b border-gray-800"><span class="text-gray-500">Kamera</span><span class="font-semibold text-white">Panasonic Lumix DC-FZ82</span></div>
-                    <div class="flex justify-between py-1.5 border-b border-gray-800"><span class="text-gray-500">Fókusztávolság</span><span class="font-semibold text-white">120mm</span></div>
-                    <div class="flex justify-between py-1.5 border-b border-gray-800"><span class="text-gray-500">Rekesz</span><span class="font-semibold text-white">f/4.0</span></div>
-                    <div class="flex justify-between py-1.5 border-b border-gray-800"><span class="text-gray-500">Záridő</span><span class="font-semibold text-white">1/1000s</span></div>
-                    <div class="flex justify-between py-1.5"><span class="text-gray-500">ISO Érzékenység</span><span class="font-semibold text-white">ISO 100</span></div>
-                </div>
+                <a id="lb-ask" href="kapcsolat.html" class="shrink-0 rounded-full bg-accent hover:bg-accenthover transition px-5 py-2.5 text-sm font-semibold text-white">Kérem ezt a képet</a>
             </div>
         </div>
     </div>
 
-    <!-- LÁBLÉC -->
-    <footer class="bg-cardbg border-t border-gray-800 text-sm text-gray-400 py-16">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
-            <div class="space-y-3">
-                <div class="text-lg font-bold text-white flex items-center gap-2">
-                    <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals – @adudas.949" class="h-9 w-auto">                </div>
-                <p class="text-xs text-gray-500">Járműmérnök-hallgató & profi autó- és rallyfotós portfólió.</p>
-            </div>
-            <div class="flex justify-center gap-6 text-sm font-medium">
-                <a href="galeria.html" class="hover:text-accent transition">Galéria</a>
-                <a href="hirdetesfotozas.html" class="hover:text-accent transition">Hirdetésfotózás</a>
-                <a href="rolam.html" class="hover:text-accent transition">Rólam</a>
-                <a href="kapcsolat.html" class="hover:text-accent transition">Kapcsolat</a>
-            </div>
-            <div class="flex justify-md-end justify-center items-center gap-4">
-                <a href="#" class="protected-email bg-darkbg border border-gray-800 px-4 py-2 rounded-xl hover:border-accent transition text-xs text-gray-300"></a>
-                <a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-darkbg border border-gray-800 flex items-center justify-center hover:text-accent hover:border-accent transition">
-                    <i class="fa-brands fa-instagram text-lg"></i>
-                </a>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 pt-8 mt-12 border-t border-gray-800/60 text-center text-xs text-gray-600">
-            &copy; 2026 Dudás Ádám. Minden jog fenntartva. GitHub Pages alapokon.
-        </div>
-    </footer>
-
     <script src="js/main.js"></script>
-    <script src="js/gallery.js"></script>
+    <script src="js/gallery-data.js"></script>
+    <script>
+    (() => {
+        const G = window.GALLERY;
+        if (!G) return;
+        const root = document.getElementById('gallery');
+        const url = (tr, p) => `https://res.cloudinary.com/${G.cloud}/image/upload/${tr}/${p.v}/${p.f}`;
+
+        // Minden kép egy listában: a = album, i = sorszám az albumban, w/h = méret (ha ismert)
+        const all = [];
+        G.albums.forEach(a => a.images.forEach((im, i) => all.push({ a, i, v: im[0], f: im[1], w: im[2], h: im[3] })));
+        const kind = p => (p.h > p.w ? 'tall' : 'wide');
+        let albumFilter = 'all', orient = 'all', visible = [], cur = 0;
+
+        const probe = p => new Promise(done => {
+            const t = new Image();
+            t.onload = () => { p.w = t.naturalWidth; p.h = t.naturalHeight; done(); };
+            t.onerror = () => { p.w = 3; p.h = 2; done(); };
+            t.src = url('f_auto,q_auto,w_48', p);
+        });
+
+        function chips(box, items, current, onPick) {
+            box.innerHTML = '';
+            items.forEach(([value, label]) => {
+                const b = document.createElement('button');
+                const on = value === current;
+                b.className = 'px-4 py-2 rounded-full text-sm font-medium border transition ' +
+                    (on ? 'bg-accent border-accent text-white' : 'border-white/15 text-gray-300 hover:border-white/40');
+                b.textContent = label;
+                b.onclick = () => onPick(value);
+                box.appendChild(b);
+            });
+        }
+
+        function render() {
+            visible = all.filter(p => (albumFilter === 'all' || p.a.id === albumFilter) && (orient === 'all' || kind(p) === orient));
+            chips(document.getElementById('album-chips'),
+                [['all', 'Minden album'], ...G.albums.map(a => [a.id, `${a.round}. forduló · ${a.place}`])],
+                albumFilter, v => { albumFilter = v; render(); });
+            chips(document.getElementById('orient-chips'),
+                [['all', 'Minden kép'], ['wide', 'Fekvő'], ['tall', 'Álló']],
+                orient, v => { orient = v; render(); });
+            document.getElementById('gallery-count').textContent = `${visible.length} kép`;
+
+            root.innerHTML = '';
+            G.albums.forEach(a => {
+                const items = visible.filter(p => p.a === a);
+                if (!items.length) return;
+                const sec = document.createElement('section');
+                sec.className = 'opacity-0 translate-y-4 transition duration-700';
+                sec.innerHTML = `<div class="flex items-end justify-between gap-4 mb-5">
+                    <div><h2 class="text-2xl sm:text-3xl font-bold tracking-tight">${a.title}</h2><p class="text-gray-400">${a.place}</p></div>
+                    <p class="text-sm text-gray-400">${items.length} kép</p></div>
+                    <div class="columns-2 md:columns-3 gap-3"></div>`;
+                items.forEach(p => {
+                    const b = document.createElement('button');
+                    b.className = 'group block w-full mb-3 break-inside-avoid overflow-hidden rounded-xl bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent';
+                    b.style.aspectRatio = `${p.w} / ${p.h}`;
+                    b.setAttribute('aria-label', `${a.title}, ${a.place}: ${p.i + 1}. kép nagyítása`);
+                    b.innerHTML = `<img src="${url('f_auto,q_auto,w_700', p)}" loading="lazy" alt="${a.title} – ${a.place}, ${p.i + 1}. kép"
+                        class="w-full h-full object-cover opacity-0 transition duration-500 group-hover:scale-105">`;
+                    b.firstChild.onload = e => e.target.classList.remove('opacity-0');
+                    b.onclick = () => open(visible.indexOf(p));
+                    sec.lastElementChild.appendChild(b);
+                });
+                root.appendChild(sec);
+                seen.observe(sec);
+            });
+            if (!visible.length) root.innerHTML = '<p class="text-gray-400">Ebben a szűrésben nincs kép.</p>';
+        }
+
+        // Belépő animáció görgetéskor
+        const seen = new IntersectionObserver(entries => entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.remove('opacity-0', 'translate-y-4'); seen.unobserve(e.target); }
+        }), { rootMargin: '0px 0px -8% 0px' });
+
+        // Nagyított nézet
+        const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img');
+        function show(i) {
+            cur = (i + visible.length) % visible.length;
+            const p = visible[cur];
+            lbImg.style.opacity = 0;
+            lbImg.onload = () => (lbImg.style.opacity = 1);
+            lbImg.src = url('f_auto,q_auto,w_2400', p);
+            lbImg.alt = `${p.a.title} – ${p.a.place}, ${p.i + 1}. kép`;
+            document.getElementById('lb-title').textContent = p.a.title;
+            document.getElementById('lb-meta').textContent = `${p.a.place} · ${cur + 1} / ${visible.length}`;
+            document.getElementById('lb-ask').href = `kapcsolat.html?tema=rally&futam=${encodeURIComponent(p.a.title + ' – ' + p.a.place)}&kep=${encodeURIComponent(p.f)}`;
+            [cur + 1, cur - 1].forEach(n => { const q = visible[(n + visible.length) % visible.length]; new Image().src = url('f_auto,q_auto,w_2400', q); });
+        }
+        function open(i) { lb.classList.remove('hidden'); document.body.style.overflow = 'hidden'; show(i); }
+        function close() { lb.classList.add('hidden'); document.body.style.overflow = ''; }
+        document.getElementById('lb-close').onclick = close;
+        document.getElementById('lb-prev').onclick = () => show(cur - 1);
+        document.getElementById('lb-next').onclick = () => show(cur + 1);
+        lb.addEventListener('click', e => { if (e.target === lb || e.target.parentElement === lb) close(); });
+        document.addEventListener('keydown', e => {
+            if (lb.classList.contains('hidden')) return;
+            if (e.key === 'Escape') close();
+            if (e.key === 'ArrowLeft') show(cur - 1);
+            if (e.key === 'ArrowRight') show(cur + 1);
+        });
+        let x0 = null;
+        lb.addEventListener('touchstart', e => (x0 = e.touches[0].clientX), { passive: true });
+        lb.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - x0;
+            if (x0 !== null && Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+            x0 = null;
+        });
+
+        root.innerHTML = '<p class="text-gray-400">Képek betöltése…</p>';
+        Promise.all(all.filter(p => !p.w).map(probe)).then(render);
+    })();
+    </script>
 </body>
 </html>
