@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD Visuals - Galéria</title>
-    <meta name="description" content="Rallyfotók a versenyekről, ahol ott voltam: albumok fekvő és álló képekkel, nagyítható nézettel.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>AD Visuals – Galéria</title>
+    <meta name="description" content="Rallyfotók különböző versenyekről, átlátható albumokba rendezve.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: { colors: { darkbg: '#0a0a0c', cardbg: '#131318', accent: '#f97316', accenthover: '#ea580c' } } } }
@@ -15,72 +16,111 @@
 </head>
 <body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
 
-    <header class="fixed top-0 inset-x-0 z-50 bg-black/30 backdrop-blur-xl border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center" aria-label="AD Visuals – főoldal">
+    <header class="site-header fixed top-0 inset-x-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 header-inner h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center site-logo" aria-label="AD Visuals – főoldal">
                 <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals" class="h-11 w-auto">
             </a>
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="index.html" class="nav-link text-gray-300 hover:text-accent transition">Főoldal</a>
-                <a href="galeria.html" class="nav-link text-gray-300 hover:text-accent transition">Galéria</a>
-                <a href="hirdetesfotozas.html" class="nav-link text-gray-300 hover:text-accent transition">Hirdetésfotózás</a>
-                <a href="rolam.html" class="nav-link text-gray-300 hover:text-accent transition">Rólam</a>
-                <a href="kapcsolat.html" class="bg-accent hover:bg-accenthover text-white px-6 py-2.5 rounded-full font-semibold transition shadow-lg shadow-accent/25">Kapcsolat</a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium site-desktop-nav" aria-label="Fő navigáció">
+                <a href="index.html" class="nav-link">Főoldal</a>
+                <a href="galeria.html" class="nav-link">Galéria</a>
+                <a href="hirdetesfotozas.html" class="nav-link">Hirdetésfotózás</a>
+                <a href="rolam.html" class="nav-link">Rólam</a>
+                <a href="kapcsolat.html" class="nav-cta">Kapcsolat</a>
             </nav>
-            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none" aria-label="Menü">
-                <i class="fa-solid fa-bars"></i>
+            <button id="mobile-menu-btn" class="mobile-menu-btn md:hidden" type="button" aria-label="Menü megnyitása" aria-expanded="false" aria-controls="mobile-nav">
+                <span class="menu-icon" aria-hidden="true"><span></span><span></span></span>
             </button>
         </div>
-        <div id="mobile-nav" class="hidden md:hidden bg-black/60 backdrop-blur-xl border-t border-white/10 px-6 py-4 space-y-3">
-            <a href="index.html" class="block text-gray-200 hover:text-accent font-medium py-2">Főoldal</a>
-            <a href="galeria.html" class="block text-gray-200 hover:text-accent font-medium py-2">Galéria</a>
-            <a href="hirdetesfotozas.html" class="block text-gray-200 hover:text-accent font-medium py-2">Hirdetésfotózás</a>
-            <a href="rolam.html" class="block text-gray-200 hover:text-accent font-medium py-2">Rólam</a>
-            <a href="kapcsolat.html" class="block bg-accent text-white text-center py-2.5 rounded-xl font-semibold mt-2">Kapcsolat</a>
-        </div>
+        <nav id="mobile-nav" class="mobile-nav md:hidden" aria-label="Mobil navigáció" aria-hidden="true">
+            <a href="index.html">Főoldal</a>
+            <a href="galeria.html">Galéria</a>
+            <a href="hirdetesfotozas.html">Hirdetésfotózás</a>
+            <a href="rolam.html">Rólam</a>
+            <a href="kapcsolat.html" class="mobile-nav-cta">Kapcsolat</a>
+        </nav>
     </header>
 
-    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6">
-        <div class="max-w-2xl">
+    <main class="pt-32 pb-20 max-w-7xl mx-auto px-6">
+        <div class="max-w-3xl">
             <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">Galéria</h1>
-            <p class="mt-4 text-lg text-gray-300 font-light">Képek azokról rallyversenyekről, amelyeken ott voltam.</p>
+            <p class="mt-4 text-lg text-gray-300 font-light">Képek a versenyekről, amelyeken ott voltam.</p>
         </div>
 
-        <div class="mt-10 flex flex-wrap items-center justify-between gap-4">
-            <div id="album-chips" class="flex flex-wrap gap-2"></div>
-            <div id="orient-chips" class="flex gap-2"></div>
+        <section class="gallery-filter-panel mt-9" aria-label="Galéria szűrése">
+            <div class="gallery-filter-grid">
+                <div class="gallery-filter-field">
+                    <label for="filter-series">Versenysorozat</label>
+                    <select id="filter-series" class="gallery-select">
+                        <option value="all">Minden sorozat</option>
+                    </select>
+                </div>
+                <div class="gallery-filter-field">
+                    <label for="filter-year">Év</label>
+                    <select id="filter-year" class="gallery-select">
+                        <option value="all">Minden év</option>
+                    </select>
+                </div>
+                <div class="gallery-filter-field gallery-filter-album">
+                    <label for="filter-album">Album</label>
+                    <select id="filter-album" class="gallery-select">
+                        <option value="all">Minden album</option>
+                    </select>
+                </div>
+                <button id="filter-reset" class="gallery-reset" type="button"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i><span>Szűrők törlése</span></button>
+            </div>
+            <div class="gallery-filter-bottom">
+                <p id="gallery-count" aria-live="polite">Albumok betöltése…</p>
+                <p id="gallery-filter-note" class="gallery-filter-note"></p>
+            </div>
+        </section>
+
+        <div id="gallery" class="mt-10 space-y-16" aria-live="polite">
+            <div class="gallery-start-loading"><span class="gallery-spinner" aria-hidden="true"></span><span>Fotók betöltése…</span></div>
         </div>
-        <p id="gallery-count" class="mt-5 text-sm text-gray-400"></p>
-        <div id="gallery" class="mt-8 space-y-16" aria-live="polite"></div>
     </main>
 
-    <footer class="border-t border-white/10 text-sm text-gray-400">
+    <footer class="site-footer border-t border-white/10 text-sm text-gray-400">
         <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-4">
-                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals" class="h-7 w-auto">
+                <a href="index.html" aria-label="AD Visuals – főoldal"><img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals" class="h-7 w-auto"></a>
                 <span>© 2026 Dudás Ádám</span>
             </div>
-            <nav class="flex items-center gap-6">
-                <a href="gyik.html" class="hover:text-accent transition">GYIK</a>
-                <a href="#" class="protected-email hover:text-accent transition"></a>
-                <a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-accent transition"><i class="fa-brands fa-instagram text-lg"></i></a>
+            <nav class="flex items-center justify-center gap-5 sm:gap-6" aria-label="Lábléc navigáció">
+                <a href="gyik.html" class="footer-link">GYIK</a>
+                <a href="kapcsolat.html" class="footer-link">Kapcsolat</a>
+                <a href="mailto:advisuals.contact@gmail.com" class="footer-link protected-email"></a>
+                <a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-link footer-instagram"><i class="fa-brands fa-instagram text-lg"></i></a>
             </nav>
         </div>
     </footer>
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Vissza az oldal tetejére" title="Vissza a tetejére">
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </button>
 
-    <!-- Nagyított nézet -->
-    <div id="lb" class="fixed inset-0 z-[100] hidden bg-black/95" role="dialog" aria-modal="true" aria-label="Képnézegető">
-        <button id="lb-close" aria-label="Bezárás" class="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-accent transition"><i class="fa-solid fa-xmark"></i></button>
-        <button id="lb-prev" aria-label="Előző kép" class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-accent transition"><i class="fa-solid fa-chevron-left"></i></button>
-        <button id="lb-next" aria-label="Következő kép" class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-accent transition"><i class="fa-solid fa-chevron-right"></i></button>
-        <div class="h-full flex flex-col items-center justify-center px-4 sm:px-20 py-16">
-            <img id="lb-img" alt="" class="max-h-[76vh] max-w-full object-contain rounded-lg transition-opacity duration-300">
-            <div class="mt-5 w-full max-w-3xl flex items-center justify-between gap-4">
-                <div>
-                    <p id="lb-title" class="font-semibold text-white"></p>
-                    <p id="lb-meta" class="text-sm text-gray-400"></p>
+    <!-- Képnézegető: stabil méretű képtérrel, betöltésjelzéssel és nagyítással -->
+    <div id="lb" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Képnézegető" aria-hidden="true">
+        <button id="lb-close" aria-label="Képnézegető bezárása" class="lb-close" type="button"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        <button id="lb-prev" aria-label="Előző kép" class="lb-arrow lb-arrow-prev" type="button"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <button id="lb-next" aria-label="Következő kép" class="lb-arrow lb-arrow-next" type="button"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+
+        <div class="lb-content">
+            <div id="lb-stage" class="lb-stage" aria-label="Fotó. Kattintással nagyítható, nagyítás után húzással mozgatható.">
+                <div id="lb-loading" class="lb-loading" role="status"><span class="lb-spinner" aria-hidden="true"></span><span>Kép betöltése…</span></div>
+                <div id="lb-error" class="lb-error hidden" role="alert"><i class="fa-regular fa-image" aria-hidden="true"></i><span>A fotót most nem sikerült betölteni.</span><button id="lb-retry" type="button">Újrapróbálom</button></div>
+                <img id="lb-img" alt="" draggable="false" decoding="async">
+                <span id="lb-zoom-hint" class="lb-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i> Kattintás a nagyításhoz</span>
+            </div>
+            <div class="lb-bottom-bar">
+                <div class="lb-caption">
+                    <p id="lb-title" class="lb-title"></p>
+                    <p id="lb-meta" class="lb-meta"></p>
+                    <p id="lb-date" class="lb-date"></p>
                 </div>
-                <a id="lb-ask" href="kapcsolat.html" class="shrink-0 rounded-full bg-accent hover:bg-accenthover transition px-5 py-2.5 text-sm font-semibold text-white">Kérem ezt a képet</a>
+                <div class="lb-actions">
+                    <p id="lb-count" class="lb-count"></p>
+                    <a id="lb-ask" href="kapcsolat.html" class="lb-ask">Kérem ezt a képet <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
             </div>
         </div>
     </div>
@@ -88,5 +128,5 @@
     <script src="js/main.js"></script>
     <script src="js/gallery-data.js"></script>
     <script src="js/gallery.js"></script>
-    </body>
+</body>
 </html>
