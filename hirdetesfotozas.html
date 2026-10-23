@@ -4,145 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <title>AD Visuals - Hirdetésfotózás</title>
+    <title>AD Visuals - Autó- és hirdetésfotózás</title>
+    <meta name="description" content="Használtautó-hirdetések és autófotózás Miskolc környékén: 12, 20 vagy 30 képes csomagok, őszinte, barátságos induló árakkal.">
+    <script src="js/boot.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { darkbg: '#0a0a0c', cardbg: '#131318', accent: '#f97316', accenthover: '#ea580c' }
-                }
-            }
-        }
-    </script>
+    <script src="js/tailwind-config.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/pages.css">
     <link rel="icon" type="image/x-icon" sizes="64x64" href="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792336551/favicon.ico">
 </head>
 <body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
 
     <!-- FEJLÉC -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-darkbg/90 backdrop-blur-xl border-b border-gray-800 shadow-2xl">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center" aria-label="AD Visuals – Hirdetésfotózás">
-                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals – @adudas.949" class="h-11 w-auto">
+    <header class="site-header fixed top-0 inset-x-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 header-inner h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center site-logo" aria-label="AD Visuals – főoldal">
+                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals" class="h-11 w-auto">
             </a>
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="index.html" class="nav-link text-gray-300 hover:text-accent transition">Főoldal</a>
-                <a href="galeria.html" class="nav-link text-gray-300 hover:text-accent transition">Galéria</a>
-                <a href="hirdetesfotozas.html" class="nav-link text-gray-300 hover:text-accent transition">Hirdetésfotózás</a>
-                <a href="rolam.html" class="nav-link text-gray-300 hover:text-accent transition">Rólam & CV</a>
-                <a href="kapcsolat.html" class="bg-accent hover:bg-accenthover text-white px-6 py-2.5 rounded-full font-semibold transition shadow-lg shadow-accent/25">Kapcsolat</a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium site-desktop-nav" aria-label="Fő navigáció">
+                <a href="index.html" class="nav-link">Főoldal</a>
+                <a href="galeria.html" class="nav-link">Galéria</a>
+                <a href="hirdetesfotozas.html" class="nav-link">Hirdetésfotózás</a>
+                <a href="rolam.html" class="nav-link">Rólam</a>
+                <a href="kapcsolat.html" class="nav-cta">Kapcsolat</a>
             </nav>
-            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none">
-                <i class="fa-solid fa-bars"></i>
+            <button id="mobile-menu-btn" class="mobile-menu-btn md:hidden" type="button" aria-label="Menü megnyitása" aria-expanded="false" aria-controls="mobile-nav">
+                <span class="menu-icon" aria-hidden="true"><span></span><span></span></span>
             </button>
         </div>
-        <div id="mobile-nav" class="hidden md:hidden bg-cardbg border-b border-gray-800 px-6 py-4 space-y-3">
-            <a href="index.html" class="block text-gray-300 hover:text-accent font-medium py-2">Főoldal</a>
-            <a href="galeria.html" class="block text-gray-300 hover:text-accent font-medium py-2">Galéria</a>
-            <a href="hirdetesfotozas.html" class="block text-gray-300 hover:text-accent font-medium py-2">Hirdetésfotózás</a>
-            <a href="rolam.html" class="block text-gray-300 hover:text-accent font-medium py-2">Rólam & CV</a>
-            <a href="kapcsolat.html" class="block bg-accent text-white text-center py-2.5 rounded-xl font-semibold mt-2">Kapcsolat</a>
-        </div>
+        <nav id="mobile-nav" class="mobile-nav md:hidden" aria-label="Mobil navigáció" aria-hidden="true">
+            <a href="index.html">Főoldal</a>
+            <a href="galeria.html">Galéria</a>
+            <a href="hirdetesfotozas.html">Hirdetésfotózás</a>
+            <a href="rolam.html">Rólam</a>
+            <a href="kapcsolat.html" class="mobile-nav-cta">Kapcsolat</a>
+        </nav>
     </header>
 
-    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6 space-y-20">
-        <div class="text-center max-w-3xl mx-auto space-y-4">
-            <span class="text-accent text-xs font-semibold uppercase tracking-widest">Értéknövelő Vizuális Megjelenés</span>
-            <h1 class="text-4xl font-extrabold tracking-tight">Használtautó Hirdetésfotózás</h1>
-            <p class="text-gray-400 font-light leading-relaxed">
-                Add el az autódat gyorsabban és jobb áron prémium minőségű, tiszta és részletgazdag fotósorozattal.
-            </p>
-        </div>
+    <main>
+        <section class="pt-36 pb-16 max-w-7xl mx-auto px-6">
+            <p class="reveal inline-block rounded-full border border-accent/40 bg-accent/10 text-accent px-4 py-1.5 text-sm font-semibold">Új szolgáltatás · portfólióépítő időszak</p>
+            <h1 class="reveal hero-title mt-5 text-4xl sm:text-6xl font-extrabold text-white max-w-3xl" style="--d:80ms">Autófotózás és hirdetésképek</h1>
+            <p class="reveal mt-5 text-lg sm:text-xl text-gray-300 font-light max-w-2xl" style="--d:140ms">A jó képek sokat számítanak, amikor egy autót el akarsz adni, vagy egyszerűen szépen látnád a sajátodat. Ez nálam még új terület, de motivált vagyok és sok odafigyeléssel dolgozom.</p>
+        </section>
 
-        <!-- HIBÁTLAN 16:9 ELŐTTE / UTÁNA CSÚSZKA -->
-        <div class="bg-cardbg border border-gray-800 p-8 rounded-3xl space-y-6">
-            <div class="text-center space-y-2">
-                <h2 class="text-2xl font-bold">Lásd a különbséget!</h2>
-                <p class="text-sm text-gray-400">Húzd a csúszkát balra vagy jobbra: Átlagos mobilos kép vs. Profi hirdetésfotó</p>
-            </div>
-
-            <div class="comparison-wrapper">
-                <!-- Utána (Profi Kép) -->
-                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1400&auto=format&fit=crop" alt="Profi fotó" class="comparison-img">
-                <span class="absolute bottom-4 right-4 bg-accent text-white text-xs px-3 py-1.5 rounded-lg font-bold z-20 shadow-md">PROFI FOTÓ</span>
-
-                <!-- Előtte (Mobil Kép vágómaszkkal) -->
-                <div class="comparison-before" id="comparison-before">
-                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1400&auto=format&fit=crop" alt="Mobilos fotó" class="comparison-img filter brightness-75 contrast-75 saturate-50 blur-[0.5px]">
-                    <span class="absolute bottom-4 left-4 bg-black/80 text-gray-300 text-xs px-3 py-1.5 rounded-lg font-bold z-20 border border-gray-700">MOBILOS KÉP</span>
-                </div>
-
-                <!-- Húzó csík és fogantyú -->
-                <div class="comparison-divider" id="comparison-handle">
-                    <div class="comparison-handle">
-                        <i class="fa-solid fa-arrows-left-right text-xs"></i>
+        <section class="pb-24 max-w-6xl mx-auto px-6">
+            <div class="reveal" data-compare>
+                <div class="cmp-wrap">
+                    <button type="button" class="cmp-arrow cmp-prev" aria-label="Előző szempont"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="cmp-stage">
+                    <div class="cmp-slide is-active" data-title="Képkészítés" data-text="A jó kép a nézőponttal, a háttérrel és a kivágással kezdődik: az autó formái így jól olvashatók." style="--pos:50%">
+                        <img class="cmp-after" src="https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto,w_1600/v1792343171/1060277-2.jpg" alt="Autó fotózva, a minta helyőrző" loading="lazy">
+                        <div class="cmp-before"><div class="cmp-empty"><i class="fa-solid fa-mobile-screen"></i><p>Ide kerül az átlagos telefonos kép</p></div></div>
+                        <span class="cmp-tag left-4">Előtte</span><span class="cmp-tag right-4">Utána</span>
+                        <div class="cmp-line"></div><div class="cmp-knob"><i class="fa-solid fa-arrows-left-right"></i></div>
+                        <input type="range" min="0" max="100" value="50" aria-label="Előtte és utána kép összehasonlítása">
                     </div>
+                    <div class="cmp-slide" data-title="Utómunka" data-text="A fény és a szín finom korrekciója visszahozza a hangulatot anélkül, hogy a kép túlzóvá válna." style="--pos:50%">
+                        <img class="cmp-after" src="https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto,w_1600/v1792330720/1160385.jpg" alt="Autó szerkesztve, a minta helyőrző" loading="lazy">
+                        <div class="cmp-before"><div class="cmp-empty"><i class="fa-solid fa-wand-magic-sparkles"></i><p>Ide kerül az eredeti, szerkesztetlen kép</p></div></div>
+                        <span class="cmp-tag left-4">Előtte</span><span class="cmp-tag right-4">Utána</span>
+                        <div class="cmp-line"></div><div class="cmp-knob"><i class="fa-solid fa-arrows-left-right"></i></div>
+                        <input type="range" min="0" max="100" value="50" aria-label="Előtte és utána kép összehasonlítása">
+                    </div>
+                    </div>
+                    <button type="button" class="cmp-arrow cmp-next" aria-label="Következő szempont"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
+                <div class="mt-6 text-center max-w-2xl mx-auto">
+                    <h2 class="text-2xl font-bold" data-cmp-title></h2>
+                    <p class="mt-2 text-gray-400" data-cmp-text></p>
+                    <div class="cmp-dots mt-4 flex justify-center gap-2"></div>
+                </div>
+            </div>
+        </section>
 
-                <!-- Input Range -->
-                <input type="range" min="0" max="100" value="50" class="comparison-range-input" id="comparison-range">
+        <section class="pb-24 max-w-7xl mx-auto px-6">
+            <h2 class="reveal text-3xl sm:text-4xl font-extrabold tracking-tight">Hirdetési csomagok</h2>
+            <p class="reveal mt-3 text-gray-300 font-light max-w-2xl">Külső profilok, a kötelező belső képek, részprofilok, extrák és részletek. A 12 kép a használtautó.hu elvárható minimuma.</p>
+            <div class="mt-10 grid md:grid-cols-3 gap-6">
+                <div class="reveal rounded-3xl border border-white/10 bg-cardbg p-8" style="--d:0ms">
+                    <p class="text-5xl font-extrabold">12<span class="text-xl font-semibold text-gray-400"> kép</span></p>
+                    <p class="mt-3 text-gray-300">Az alapok: minden, ami egy jó hirdetéshez kell.</p>
+                    <p class="mt-5 text-accent font-semibold">Ár: ajánlat alapján</p>
+                </div>
+                <div class="reveal rounded-3xl border border-white/10 bg-cardbg p-8" style="--d:100ms">
+                    <p class="text-5xl font-extrabold">20<span class="text-xl font-semibold text-gray-400"> kép</span></p>
+                    <p class="mt-3 text-gray-300">Több szög, több részlet, bővebb hirdetés.</p>
+                    <p class="mt-5 text-accent font-semibold">Ár: ajánlat alapján</p>
+                </div>
+                <div class="reveal rounded-3xl border border-white/10 bg-cardbg p-8" style="--d:200ms">
+                    <p class="text-5xl font-extrabold">30<span class="text-xl font-semibold text-gray-400"> kép</span></p>
+                    <p class="mt-3 text-gray-300">A teljes bemutatás: minden részlet és apróság.</p>
+                    <p class="mt-5 text-accent font-semibold">Ár: ajánlat alapján</p>
+                </div>
             </div>
-        </div>
+            <div class="reveal mt-6 rounded-3xl border border-white/10 bg-cardbg p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div><h3 class="text-2xl font-bold">Egyedi autófotózás</h3><p class="mt-2 text-gray-300 max-w-2xl">Ha az autód igényes képeken szeretnéd látni: több kép, több helyszín. Előre összeállított csomagok vagy teljesen egyedi kérés, az ár ettől függ.</p></div>
+                <a href="kapcsolat.html?tema=autofoto" class="shrink-0 text-center border border-white/20 hover:bg-white/10 px-6 py-3 rounded-xl font-semibold transition">Érdeklődöm</a>
+            </div>
+            <p class="reveal mt-6 text-sm text-gray-400">Az utómunka különdíjas. Az árakat az űrlapon beküldött információk alapján egyeztetjük.</p>
+        </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-cardbg p-8 rounded-2xl border border-gray-800 space-y-4">
-                <i class="fa-solid fa-camera text-accent text-3xl"></i>
-                <h3 class="text-xl font-bold">Teljes körű sorozat</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Minden lényeges szög, enteriőr, felnik és motortér bemutatása.</p>
+        <section class="pb-24 max-w-7xl mx-auto px-6">
+            <h2 class="reveal text-3xl sm:text-4xl font-extrabold tracking-tight">Így megy</h2>
+            <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="reveal step"><span class="step-n">1</span><h3 class="text-xl font-bold mt-4">Ajánlatkérés</h3><p class="mt-2 text-gray-400">Megírod, milyen autóról van szó, hol van, mikorra szeretnéd, és még mit érdemes tudni.</p></div>
+                <div class="reveal step" style="--d:100ms"><span class="step-n">2</span><h3 class="text-xl font-bold mt-4">Időpont</h3><p class="mt-2 text-gray-400">Egyeztetünk egy mindkettőnknek megfelelő időpontot és helyszínt.</p></div>
+                <div class="reveal step" style="--d:200ms"><span class="step-n">3</span><h3 class="text-xl font-bold mt-4">Fotózás</h3><p class="mt-2 text-gray-400">Körbefotózzuk az autódat, megkeressük a legjobb oldalát és szögét.</p></div>
+                <div class="reveal step" style="--d:300ms"><span class="step-n">4</span><h3 class="text-xl font-bold mt-4">Átadás</h3><p class="mt-2 text-gray-400">Néhány munkanapon belül, Google Drive-linken, amely korlátozott ideig él.</p></div>
             </div>
-            <div class="bg-cardbg p-8 rounded-2xl border border-gray-800 space-y-4">
-                <i class="fa-solid fa-wand-magic-sparkles text-accent text-3xl"></i>
-                <h3 class="text-xl font-bold">Igényes utómunka</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">Színkorrekció és fényelés a tökéletes, autós katalógus hangulatért.</p>
-            </div>
-            <div class="bg-cardbg p-8 rounded-2xl border border-gray-800 space-y-4">
-                <i class="fa-solid fa-bolt text-accent text-3xl"></i>
-                <h3 class="text-xl font-bold">Gyors átadás</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">24-48 órán belül hirdetésre kész, optimalizált formátumban kapod a képeket.</p>
-            </div>
-        </div>
+        </section>
 
-        <div class="bg-gradient-to-r from-accent/20 via-cardbg to-cardbg border border-accent/30 p-10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="space-y-2 text-center md:text-left">
-                <h3 class="text-2xl font-bold text-white">Szeretnéd gyorsabban eladni az autódat?</h3>
-                <p class="text-gray-400 text-sm">Kérj egyedi ajánlatot fotózásra még ma!</p>
+        <section class="pb-24 max-w-7xl mx-auto px-6">
+            <div class="reveal rounded-3xl border border-white/10 bg-cardbg p-8 sm:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+                <div class="max-w-xl">
+                    <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">Kérj ajánlatot</h2>
+                    <p class="mt-3 text-gray-300 font-light">Kérdésed van? Nézd meg a <a href="gyik.html" class="text-accent hover:underline">gyakori kérdéseket</a>, vagy írj nekem közvetlenül.</p>
+                </div>
+                <a href="kapcsolat.html?tema=hirdetes" class="shrink-0 text-center bg-accent hover:bg-accenthover text-white px-8 py-3.5 rounded-xl font-semibold transition shadow-xl shadow-accent/25">Ajánlatkérés</a>
             </div>
-            <a href="kapcsolat.html" class="bg-accent hover:bg-accenthover text-white px-8 py-3.5 rounded-xl font-semibold transition whitespace-nowrap shadow-xl shadow-accent/20">
-                Ajánlatkérés
-            </a>
-        </div>
+        </section>
     </main>
 
     <!-- LÁBLÉC -->
-    <footer class="bg-cardbg border-t border-gray-800 text-sm text-gray-400 py-16">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
-            <div class="space-y-3">
-                <div class="text-lg font-bold text-white flex items-center gap-2">
-                    <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals – @adudas.949" class="h-9 w-auto">
-                </div>
-                <p class="text-xs text-gray-500">Járműmérnök-hallgató & profi autó- és rallyfotós portfólió.</p>
+    <footer class="site-footer border-t border-white/10 text-sm text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <a href="index.html" aria-label="AD Visuals – főoldal"><img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals" class="h-7 w-auto"></a>
+                <span>© 2026 Dudás Ádám</span>
             </div>
-            <div class="flex justify-center gap-6 text-sm font-medium">
-                <a href="galeria.html" class="hover:text-accent transition">Galéria</a>
-                <a href="hirdetesfotozas.html" class="hover:text-accent transition">Hirdetésfotózás</a>
-                <a href="rolam.html" class="hover:text-accent transition">Rólam</a>
-                <a href="kapcsolat.html" class="hover:text-accent transition">Kapcsolat</a>
-            </div>
-            <div class="flex justify-md-end justify-center items-center gap-4">
-                <a href="#" class="protected-email bg-darkbg border border-gray-800 px-4 py-2 rounded-xl hover:border-accent transition text-xs text-gray-300"></a>
-                <a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-darkbg border border-gray-800 flex items-center justify-center hover:text-accent hover:border-accent transition">
-                    <i class="fa-brands fa-instagram text-lg"></i>
-                </a>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 pt-8 mt-12 border-t border-gray-800/60 text-center text-xs text-gray-600">
-            &copy; 2026 Dudás Ádám. Minden jog fenntartva. GitHub Pages alapokon.
+            <nav class="flex items-center justify-center gap-5 sm:gap-6" aria-label="Lábléc navigáció">
+                <a href="gyik.html" class="footer-link">GYIK</a>
+                <a href="kapcsolat.html" class="footer-link">Kapcsolat</a>
+                <a href="mailto:advisuals.contact@gmail.com" class="footer-link protected-email"></a>
+                <a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-link footer-instagram"><i class="fa-brands fa-instagram text-lg"></i></a>
+            </nav>
         </div>
     </footer>
 
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Vissza az oldal tetejére" title="Vissza a tetejére">
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <script src="js/reveal.js"></script>
+    <script src="js/ba-slider.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/slider.js"></script>
 </body>
 </html>
