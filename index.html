@@ -5,178 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>AD Visuals - Autófotózás</title>
+    <meta name="description" content="Rallyfotók a pálya széléről. Nézd meg a futamok képeit, és kérd el a sajátodat.">
+    <script src="js/boot.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { darkbg: '#0a0a0c', cardbg: '#131318', accent: '#f97316', accenthover: '#ea580c' }
-                }
-            }
-        }
-    </script>
+    <script src="js/tailwind-config.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
     <link rel="icon" type="image/x-icon" sizes="64x64" href="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792336551/favicon.ico">
 </head>
 <body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
 
     <!-- FEJLÉC -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-darkbg/90 backdrop-blur-xl border-b border-gray-800 shadow-2xl">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center" aria-label="AD Visuals – Főoldal">
-                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals – @adudas.949" class="h-11 w-auto">
+    <header class="site-header fixed top-0 inset-x-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 header-inner h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center site-logo" aria-label="AD Visuals – főoldal">
+                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals" class="h-11 w-auto">
             </a>
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="index.html" class="nav-link text-gray-300 hover:text-accent transition">Főoldal</a>
-                <a href="galeria.html" class="nav-link text-gray-300 hover:text-accent transition">Galéria</a>
-                <a href="hirdetesfotozas.html" class="nav-link text-gray-300 hover:text-accent transition">Hirdetésfotózás</a>
-                <a href="rolam.html" class="nav-link text-gray-300 hover:text-accent transition">Rólam & CV</a>
-                <a href="kapcsolat.html" class="bg-accent hover:bg-accenthover text-white px-6 py-2.5 rounded-full font-semibold transition shadow-lg shadow-accent/25">Kapcsolat</a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium site-desktop-nav" aria-label="Fő navigáció">
+                <a href="index.html" class="nav-link">Főoldal</a>
+                <a href="galeria.html" class="nav-link">Galéria</a>
+                <a href="hirdetesfotozas.html" class="nav-link">Hirdetésfotózás</a>
+                <a href="rolam.html" class="nav-link">Rólam</a>
+                <a href="kapcsolat.html" class="nav-cta">Kapcsolat</a>
             </nav>
-            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none">
-                <i class="fa-solid fa-bars"></i>
+            <button id="mobile-menu-btn" class="mobile-menu-btn md:hidden" type="button" aria-label="Menü megnyitása" aria-expanded="false" aria-controls="mobile-nav">
+                <span class="menu-icon" aria-hidden="true"><span></span><span></span></span>
             </button>
         </div>
-        <div id="mobile-nav" class="hidden md:hidden bg-cardbg border-b border-gray-800 px-6 py-4 space-y-3">
-            <a href="index.html" class="block text-gray-300 hover:text-accent font-medium py-2">Főoldal</a>
-            <a href="galeria.html" class="block text-gray-300 hover:text-accent font-medium py-2">Galéria</a>
-            <a href="hirdetesfotozas.html" class="block text-gray-300 hover:text-accent font-medium py-2">Hirdetésfotózás</a>
-            <a href="rolam.html" class="block text-gray-300 hover:text-accent font-medium py-2">Rólam & CV</a>
-            <a href="kapcsolat.html" class="block bg-accent text-white text-center py-2.5 rounded-xl font-semibold mt-2">Kapcsolat</a>
-        </div>
+        <nav id="mobile-nav" class="mobile-nav md:hidden" aria-label="Mobil navigáció" aria-hidden="true">
+            <a href="index.html">Főoldal</a>
+            <a href="galeria.html">Galéria</a>
+            <a href="hirdetesfotozas.html">Hirdetésfotózás</a>
+            <a href="rolam.html">Rólam</a>
+            <a href="kapcsolat.html" class="mobile-nav-cta">Kapcsolat</a>
+        </nav>
     </header>
 
-    <!-- HERO SZEKCIÓ -->
-    <section class="relative h-screen w-full flex items-end pb-16 justify-start px-6 lg:px-16 overflow-hidden">
-        <div class="absolute inset-0 z-0 overflow-hidden">
-            <img id="hero-bg" src="https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792327313/mrc26_5muhi_6.jpg" alt="MRC 2026 5. forduló - Muhi - Marek Špavelko (Ford Fiesta Rally3)" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-darkbg via-darkbg/30 to-transparent"></div>
-        </div>
-        
-        <div class="relative z-10 max-w-xl space-y-6">
-            <span class="inline-block bg-accent/20 text-accent border border-accent/30 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase backdrop-blur-md">
-                Járműmérnök-hallgató & Vizuális Alkotó
-            </span>
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight text-white drop-shadow-md">
-                Dinamika, Precizitás & <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-amber-500">Mérnöki Részletek</span>
-            </h1>
-            <p class="text-base sm:text-lg text-gray-300 font-light leading-relaxed drop-shadow">
-                A hazai rallyfutamok nyers energiájától a prémium autóhirdetések aprólékos, eladásösztönző részleteiig.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center gap-4 pt-2">
-                <a href="galeria.html" class="w-full sm:w-auto text-center bg-accent hover:bg-accenthover text-white px-8 py-3.5 rounded-xl font-semibold transition shadow-xl shadow-accent/25">
-                    Galéria Megtekintése
-                </a>
-                <a href="hirdetesfotozas.html" class="w-full sm:w-auto text-center bg-black/60 hover:bg-black/80 border border-gray-700 text-gray-200 px-8 py-3.5 rounded-xl font-semibold transition backdrop-blur-md">
-                    Hirdetésfotózás
-                </a>
+    <main>
+        <!-- HERO -->
+        <section class="hero relative w-full flex items-end pb-20 px-6 lg:px-16 overflow-hidden">
+            <div class="absolute inset-0 z-0 overflow-hidden">
+                <img id="hero-bg" src="https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto,w_2000/v1792327313/mrc26_5muhi_6.jpg" alt="MRC 2026 5. forduló – Muhi" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-darkbg via-darkbg/30 to-transparent"></div>
             </div>
-        </div>
-    </section>
+            <div class="relative z-10 max-w-2xl space-y-6">
+                <p class="reveal text-accent font-semibold">Rallyfotózás · Autófotózás</p>
+                <h1 class="reveal hero-title text-5xl sm:text-7xl font-extrabold leading-[1.05] text-white" style="--d:80ms">Pillanatok a pálya széléről.</h1>
+                <p class="reveal text-lg sm:text-xl text-gray-200 font-light leading-relaxed" style="--d:160ms">Rallyversenyeken fotózok, és szívesen mutatom meg az autókat is a legjobb oldalukról.</p>
+                <div class="reveal flex flex-col sm:flex-row gap-4 pt-2" style="--d:240ms">
+                    <a href="galeria.html" class="text-center bg-accent hover:bg-accenthover text-white px-8 py-3.5 rounded-xl font-semibold transition shadow-xl shadow-accent/25">Galéria megtekintése</a>
+                    <a href="kapcsolat.html" class="text-center bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white px-8 py-3.5 rounded-xl font-semibold transition">Kérd el a képeidet</a>
+                </div>
+            </div>
+            <div class="scroll-cue" aria-hidden="true"><span class="mouse"></span><span>Görgess tovább</span></div>
+        </section>
 
-    <!-- HOBBI & SZENVEDÉLY BLOKK -->
-    <section class="py-24 max-w-7xl mx-auto px-6">
-        <div class="bg-cardbg border border-gray-800 rounded-3xl p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center shadow-2xl">
-            <div class="space-y-6">
-                <span class="text-accent text-xs font-semibold uppercase tracking-widest">Szenvedélyből Professzió</span>
-                <h2 class="text-3xl lg:text-4xl font-bold text-white tracking-tight">Egy hobbi, ami mérnöki precizitással válik hivatássá</h2>
-                <p class="text-gray-300 font-light leading-relaxed">
-                    A járművek világa nálam nem a fényképezőgép kattintásával kezdődött, hanem az autók és a motorsport iránti rajongással. Járműmérnök-hallgatóként teljesen más szemmel tekintek a gépekre: látom az íveket, az aerodinamikát és az apró mechanikai részleteket, amik egy-egy típust egyedivé tesznek.
-                </p>
-                <p class="text-gray-400 font-light leading-relaxed text-sm">
-                    Ami korábban a pálya széli rallyfotózással indult mint kikapcsolódás, az mára egy tudatos vizuális munkává fejlődött. A célom a jövőben, hogy a motorsport izgalmát és a minőségi használtautó-hirdetések értékteremtő fotózását szakmai szinten végezzem.
-                </p>
+        <!-- RÓLAM RÖVIDEN -->
+        <section class="py-24 max-w-7xl mx-auto px-6 grid lg:grid-cols-5 gap-12 items-center">
+            <div class="lg:col-span-3 space-y-5">
+                <h2 class="reveal text-3xl sm:text-5xl font-extrabold tracking-tight">Szia, Ádám vagyok.</h2>
+                <p class="reveal text-lg text-gray-300 font-light leading-relaxed" style="--d:80ms">Egész kiskorom óta fotózom szórakozásból, és a képek nézegetése már akkor is megfogott. Most azt szeretném, hogy az én képeim is megfogják a nézőt. A rally nekem sok szempontból a legnagyobb játszótér: szögekkel kísérletezni, elkapni a pillanatot, amikor az autó betáncol a kanyarba.</p>
+                <a href="rolam.html" class="reveal inline-flex items-center gap-2 text-accent font-semibold hover:gap-3 transition-all" style="--d:160ms">Többet rólam <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="bg-darkbg p-6 rounded-2xl border border-gray-800 space-y-2">
-                    <i class="fa-solid fa-flag-checkered text-accent text-2xl"></i>
-                    <h3 class="font-bold text-white text-base">Motorsport</h3>
-                    <p class="text-xs text-gray-400">Pályaszéli akciók, por és tempó megörökítése.</p>
-                </div>
-                <div class="bg-darkbg p-6 rounded-2xl border border-gray-800 space-y-2">
-                    <i class="fa-solid fa-car text-accent text-2xl"></i>
-                    <h3 class="font-bold text-white text-base">Hirdetésfotózás</h3>
-                    <p class="text-xs text-gray-400">Értéknövelő, eladásra optimalizált képsorozatok.</p>
-                </div>
-                <div class="bg-darkbg p-6 rounded-2xl border border-gray-800 space-y-2">
-                    <i class="fa-solid fa-compass-drafting text-accent text-2xl"></i>
-                    <h3 class="font-bold text-white text-base">Mérnöki Szemlélet</h3>
-                    <p class="text-xs text-gray-400">Arányok, tiszta szögek és arculati figyelem.</p>
-                </div>
-                <div class="bg-darkbg p-6 rounded-2xl border border-gray-800 space-y-2">
-                    <i class="fa-solid fa-sliders text-accent text-2xl"></i>
-                    <h3 class="font-bold text-white text-base">Finom Utómunka</h3>
-                    <p class="text-xs text-gray-400">Természetes, mégis katalógus-minőségű színek.</p>
-                </div>
+            <div class="lg:col-span-2 grid grid-cols-3 lg:grid-cols-1 gap-4">
+                <div class="reveal border-l-2 border-accent pl-5"><p class="text-4xl font-extrabold">2024</p><p class="text-gray-400">óta fotózom a gépemmel</p></div>
+                <div class="reveal border-l-2 border-accent pl-5" style="--d:100ms"><p class="text-4xl font-extrabold">25 000</p><p class="text-gray-400">exponálás eddig</p></div>
+                <div class="reveal border-l-2 border-accent pl-5" style="--d:200ms"><p class="text-4xl font-extrabold"><span data-count="photos">–</span></p><p class="text-gray-400">kép a galériában, <span data-count="albums">–</span> futamról</p></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- KIEMELT KATEGÓRIÁK -->
-    <section class="pb-24 max-w-7xl mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="group relative rounded-3xl overflow-hidden bg-cardbg border border-gray-800 p-8 flex flex-col justify-between min-h-[380px]">
-                <div class="absolute inset-0 z-0">
-                    <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792328923/mrc26_2kaza_18.jpg" alt="Rally" class="w-full h-full object-cover opacity-30 group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-cardbg/90 via-cardbg/20 to-40"></div>
-                </div>
-                <div class="relative z-10 space-y-3">
-                    <span class="text-accent text-xs font-semibold uppercase tracking-widest">Motorsport</span>
-                    <h2 class="text-2xl font-bold text-white">Rally & Akciófotózás</h2>
-                    <p class="text-gray-400 text-sm leading-relaxed">Kanyarvételek, por, szervizparki hangulat és az igazi versenyélmény megörökítése.</p>
-                </div>
-                <div class="relative z-10 pt-6">
-                    <a href="galeria.html" class="inline-flex items-center gap-2 text-accent font-semibold text-sm hover:gap-3 transition-all">
-                        Rally Fotók Megtekintése <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
+        <!-- LEGUTÓBBI FUTAMOK -->
+        <section class="pb-24 max-w-7xl mx-auto px-6">
+            <div class="flex items-end justify-between gap-4 mb-8">
+                <h2 class="reveal text-3xl sm:text-4xl font-extrabold tracking-tight">Legutóbbi futamok</h2>
+                <a href="galeria.html" class="reveal text-accent font-semibold hidden sm:inline-flex items-center gap-2 hover:gap-3 transition-all">Az összes kép <i class="fa-solid fa-arrow-right"></i></a>
             </div>
+            <div id="latest-albums" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+        </section>
 
-            <div class="group relative rounded-3xl overflow-hidden bg-cardbg border border-gray-800 p-8 flex flex-col justify-between min-h-[380px]">
-                <div class="absolute inset-0 z-0">
-                    <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792343171/1060277-2.jpg" alt="Hirdetésfotózás" class="w-full h-full object-cover opacity-30 group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-cardbg/90 via-cardbg/20 to-40"></div>
+        <!-- KÉT TERÜLET -->
+        <section class="pb-24 max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-6">
+            <a href="galeria.html" class="area-card reveal group">
+                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto,w_1200,c_fill,ar_4:3,g_auto/v1792328923/mrc26_2kaza_18.jpg" alt="Rallyautó egy kanyarban" loading="lazy">
+                <p class="text-accent font-semibold mb-2">Amit most csinálok</p>
+                <h2 class="text-3xl font-bold text-white">Rally és akciófotózás</h2>
+                <p class="mt-3 text-gray-300">Kanyarok, por és pályaszéli hangulat. Versenyzőként vagy navigátorként kérheted a rólad készült képeket.</p>
+            </a>
+            <a href="hirdetesfotozas.html" class="area-card reveal group" style="--d:120ms">
+                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto,w_1200,c_fill,ar_4:3,g_auto/v1792343171/1060277-2.jpg" alt="Autó fotózás közben" loading="lazy">
+                <p class="text-accent font-semibold mb-2">Új szolgáltatás</p>
+                <h2 class="text-3xl font-bold text-white">Autófotózás és hirdetésképek</h2>
+                <p class="mt-3 text-gray-300">Használtautó-hirdetésekhez és autórajongóknak. Most építem a portfóliót, ezért az induló időszakban barátságos áron dolgozom.</p>
+            </a>
+        </section>
+
+        <!-- VERSENYZŐKNEK -->
+        <section class="pb-24 max-w-7xl mx-auto px-6">
+            <div class="reveal rounded-3xl border border-white/10 bg-cardbg p-8 sm:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+                <div class="max-w-xl">
+                    <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">Versenyző vagy, vagy rajta van az autód az egyik képen?</h2>
+                    <p class="mt-3 text-gray-300 font-light">Írd meg, melyik futamról van szó, megnézem, milyen képek készültek az autódról, és megállapodunk.</p>
                 </div>
-                <div class="relative z-10 space-y-3">
-                    <span class="text-accent text-xs font-semibold uppercase tracking-widest">Új szolgáltatás</span>
-                    <h2 class="text-2xl font-bold text-white">Használtautó-hirdetés Fotózás</h2>
-                    <p class="text-gray-400 text-sm leading-relaxed">Segítek, hogy a hirdetésed képei az autód legjobb oldalát mutassák meg.</p>
-                </div>
-                <div class="relative z-10 pt-6">
-                    <a href="hirdetesfotozas.html" class="inline-flex items-center gap-2 text-accent font-semibold text-sm hover:gap-3 transition-all">
-                        Csomagok & Részletek <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
+                <a href="kapcsolat.html" class="shrink-0 text-center bg-accent hover:bg-accenthover text-white px-8 py-3.5 rounded-xl font-semibold transition shadow-xl shadow-accent/25">Kérem a képeimet</a>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- LÁBLÉC -->
-    <footer class="bg-cardbg border-t border-gray-800 text-sm text-gray-400 py-16">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
-            <div class="space-y-3">
-                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals – @adudas.949" class="h-9 w-auto">
-                <p class="text-xs text-gray-500">Járműmérnök-hallgató & autó- és rallyfotós portfólió.</p>
+    <footer class="site-footer border-t border-white/10 text-sm text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <a href="index.html" aria-label="AD Visuals – főoldal"><img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals" class="h-7 w-auto"></a>
+                <span>© 2026 Dudás Ádám</span>
             </div>
-            <div class="flex justify-center gap-6 text-sm font-medium">
-                <a href="galeria.html" class="hover:text-accent transition">Galéria</a>
-                <a href="hirdetesfotozas.html" class="hover:text-accent transition">Hirdetésfotózás</a>
-                <a href="rolam.html" class="hover:text-accent transition">Rólam</a>
-                <a href="kapcsolat.html" class="hover:text-accent transition">Kapcsolat</a>
-            </div>
-            <div class="flex justify-md-end justify-center items-center gap-4">
-                <a href="#" class="protected-email bg-darkbg border border-gray-800 px-4 py-2 rounded-xl hover:border-accent transition text-xs text-gray-300"></a>
-                <a href="https://www.instagram.com/adudas.949/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-darkbg border border-gray-800 flex items-center justify-center hover:text-accent hover:border-accent transition">
-                    <i class="fa-brands fa-instagram text-lg"></i>
-                </a>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 pt-8 mt-12 border-t border-gray-800/60 text-center text-xs text-gray-600">
-            &copy; 2026 Dudás Ádám. Minden jog fenntartva. GitHub Pages alapokon.
+            <nav class="flex items-center justify-center gap-5 sm:gap-6" aria-label="Lábléc navigáció">
+                <a href="gyik.html" class="footer-link">GYIK</a>
+                <a href="kapcsolat.html" class="footer-link">Kapcsolat</a>
+                <a href="mailto:advisuals.contact@gmail.com" class="footer-link protected-email"></a>
+                <a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-link footer-instagram"><i class="fa-brands fa-instagram text-lg"></i></a>
+            </nav>
         </div>
     </footer>
 
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Vissza az oldal tetejére" title="Vissza a tetejére">
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <script src="js/gallery-data.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
 </body>
 </html>
