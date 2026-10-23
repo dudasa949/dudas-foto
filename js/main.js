@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
+    initSiteChrome();
     initEmailProtection();
     setActiveNavLink();
     initHeroBackgroundSlider();
@@ -8,18 +9,59 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initNavigation() {
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileNav = document.getElementById('mobile-nav');
-    if (mobileMenuBtn && mobileNav) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileNav.classList.toggle('hidden');
-        });
-    }
+    const button = document.getElementById('mobile-menu-btn');
+    const nav = document.getElementById('mobile-nav');
+    if (!button || !nav) return;
+
+    let closeTimer = null;
+    const openMenu = () => {
+        if (closeTimer) window.clearTimeout(closeTimer);
+        nav.classList.remove('hidden');
+        requestAnimationFrame(() => nav.classList.add('is-open'));
+        button.classList.add('is-open');
+        button.setAttribute('aria-expanded', 'true');
+        button.setAttribute('aria-label', 'Menü bezárása');
+        nav.setAttribute('aria-hidden', 'false');
+    };
+    const closeMenu = () => {
+        nav.classList.remove('is-open');
+        button.classList.remove('is-open');
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-label', 'Menü megnyitása');
+        nav.setAttribute('aria-hidden', 'true');
+        closeTimer = window.setTimeout(() => {
+            if (!nav.classList.contains('is-open')) nav.classList.add('hidden');
+        }, 300);
+    };
+
+    button.addEventListener('click', () => {
+        if (button.getAttribute('aria-expanded') === 'true') closeMenu();
+        else openMenu();
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') closeMenu(); });
+    window.addEventListener('resize', () => { if (window.innerWidth >= 768 && button.getAttribute('aria-expanded') === 'true') closeMenu(); });
+}
+
+function initSiteChrome() {
+    const header = document.querySelector('.site-header');
+    const backToTop = document.getElementById('back-to-top');
+    const footer = document.querySelector('.site-footer');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const update = () => {
+        const scrolled = window.scrollY > 24;
+        if (header) header.classList.toggle('is-scrolled', scrolled);
+        if (backToTop) backToTop.classList.toggle('is-visible', window.scrollY > 420);
+        if (backToTop && footer) backToTop.style.setProperty('--lift', Math.max(0, window.innerHeight - footer.getBoundingClientRect().top) + 'px');
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+    if (backToTop) backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' }));
 }
 
 function setActiveNavLink() {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-link').forEach(link => {
+    document.querySelectorAll('.site-desktop-nav .nav-link').forEach(link => {
         if (link.getAttribute('href') === currentPath) {
             link.classList.add('text-accent', 'font-bold');
             link.classList.remove('text-gray-300');
@@ -46,46 +88,61 @@ function initHeroBackgroundSlider() {
     if (!heroBg) return;
 
     const images = [
-        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792327313/mrc26_5muhi_6.jpg",
-        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792319961/mrc26_3viszlo_1.jpg",
-        "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792327305/mrc26_5muhi_1.jpg"
+        { src: "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792327313/mrc26_5muhi_6.jpg", alt: "MRC 2026 5. forduló – Muhi" },
+        { src: "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792319961/mrc26_3viszlo_1.jpg", alt: "MRC 2026 3. forduló – Viszló-Hidvégardó" },
+        { src: "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792327305/mrc26_5muhi_1.jpg", alt: "MRC 2026 5. forduló – Muhi" }
     ];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || images.length < 2) return;
 
-    const FADE_MS = 900;   // egyeznie kell a CSS transition idejével (0.9s)
-    const PAN_AMOUNT = 1.5;  // ennyi % az elmozdulás, a scale(1.1) miatt max ~5% biztonságos
+    const fadeMs = 700;
+    let index = 0;
+    let direction = -1; // első kép balra, majd jobbra, folyamatosan váltva
+    let swapping = false;
 
-    let currentIndex = 0;
-    let direction = 1;     // 1 = balról jobbra, -1 = jobbról balra
-
-    // Előtöltés, hogy váltáskor ne villanjon be üres háttér
-    images.forEach(src => {
-        const img = new Image();
-        img.src = src;
+    images.forEach(item => {
+        const preload = new Image();
+        preload.decoding = 'async';
+        preload.src = item.src;
     });
 
     function startPan() {
-        heroBg.style.setProperty('--pan-from', `${-PAN_AMOUNT * direction}%`);
-        heroBg.style.setProperty('--pan-to', `${PAN_AMOUNT * direction}%`);
-
+        const from = direction < 0 ? '1.6%' : '-1.6%';
+        const to = direction < 0 ? '-1.6%' : '1.6%';
+        heroBg.style.setProperty('--pan-from', from);
+        heroBg.style.setProperty('--pan-to', to);
         heroBg.classList.remove('hero-pan');
-        void heroBg.offsetWidth;   // reflow: így indul újra az animáció nulláról
+        void heroBg.offsetWidth;
         heroBg.classList.add('hero-pan');
-
-        direction *= -1;           // következő kép az ellenkező irányba megy
     }
 
-    // Amikor a mozgás lelassult és megállt: fade ki -> képcsere -> fade be + új mozgás
-    heroBg.addEventListener('animationend', () => {
+    function moveToNext() {
+        if (swapping) return;
+        swapping = true;
         heroBg.style.opacity = '0';
+        window.setTimeout(() => {
+            index = (index + 1) % images.length;
+            const item = images[index];
+            const preload = new Image();
+            preload.decoding = 'async';
+            const apply = () => {
+                heroBg.classList.remove('hero-pan');
+                heroBg.src = item.src;
+                heroBg.alt = item.alt;
+                heroBg.style.opacity = '.92';
+                direction *= -1;
+                swapping = false;
+                startPan();
+            };
+            preload.onload = apply;
+            preload.onerror = apply;
+            preload.src = item.src;
+        }, fadeMs);
+    }
 
-        setTimeout(() => {
-            currentIndex = (currentIndex + 1) % images.length;
-            heroBg.src = images[currentIndex];
-            heroBg.style.opacity = '';   // visszaáll a CSS-ben megadott 0.4-re
-            startPan();
-        }, FADE_MS);
+    heroBg.addEventListener('animationend', event => {
+        if (event.animationName === 'heroPan') moveToNext();
     });
-
     startPan();
 }
 

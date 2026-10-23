@@ -1,8 +1,8 @@
-//Ne kézzel szerkeszd!
+// Album-metaadatok és fotólisták. Új album hozzáadásakor a szűrők és képszámok automatikusan frissülnek.
 window.GALLERY = {
   cloud: "n5bkfxuh",
   albums: [
-    {"id": "mrc26_6ladbesenyo", "title": "MRC 2026 · 6. forduló", "place": "Ládbesenyő-Abod", "round": 6, "images": [
+    {"id": "mrc26_6ladbesenyo", "title": "MRC 2026 · 6. forduló", "place": "Ládbesenyő-Abod", "round": 6, "series": "MRC", "year": 2026, "dateStart": "2026-10-11", "dateEnd": "2026-10-11", "images": [
       ["v1792651798", "mrc26_6ladbesenyo_1.jpg"],
       ["v1792651800", "mrc26_6ladbesenyo_2.jpg"],
       ["v1792651800", "mrc26_6ladbesenyo_3.jpg"],
@@ -34,7 +34,7 @@ window.GALLERY = {
       ["v1792651829", "mrc26_6ladbesenyo_29.jpg"],
       ["v1792651830", "mrc26_6ladbesenyo_30.jpg"]
     ]},
-    {"id": "mrc26_5muhi", "title": "MRC 2026 · 5. forduló", "place": "Muhi-tó", "round": 5, "images": [
+    {"id": "mrc26_5muhi", "title": "MRC 2026 · 5. forduló", "place": "Muhi-tó", "round": 5, "series": "MRC", "year": 2026, "dateStart": "2026-09-12", "dateEnd": "2026-09-12", "images": [
       ["v1792327305", "mrc26_5muhi_1.jpg"],
       ["v1792327307", "mrc26_5muhi_2.jpg"],
       ["v1792327307", "mrc26_5muhi_3.jpg"],
@@ -49,14 +49,14 @@ window.GALLERY = {
       ["v1792327324", "mrc26_5muhi_12.jpg"],
       ["v1792327326", "mrc26_5muhi_13.jpg"]
     ]},
-    {"id": "mrc26_3viszlo", "title": "MRC 2026 · 3. forduló", "place": "Viszló-Hidvégardó", "round": 3, "images": [
+    {"id": "mrc26_3viszlo", "title": "MRC 2026 · 3. forduló", "place": "Viszló-Hidvégardó", "round": 3, "series": "MRC", "year": 2026, "dateStart": "2026-06-13", "dateEnd": "2026-06-14", "images": [
       ["v1792319961", "mrc26_3viszlo_1.jpg"],
       ["v1792319961", "mrc26_3viszlo_2.jpg"],
       ["v1792319962", "mrc26_3viszlo_3.jpg"],
       ["v1792319963", "mrc26_3viszlo_4.jpg"],
       ["v1792319548", "mrc26_3viszlo_5.jpg"]
     ]},
-    {"id": "mrc26_2kaza", "title": "MRC 2026 · 2. forduló", "place": "Sajókaza-Felsőnyárád", "round": 2, "images": [
+    {"id": "mrc26_2kaza", "title": "MRC 2026 · 2. forduló", "place": "Sajókaza-Felsőnyárád", "round": 2, "series": "MRC", "year": 2026, "dateStart": "2026-05-16", "dateEnd": "2026-05-17", "images": [
       ["v1792328857", "mrc26_2kaza_1.jpg"],
       ["v1792328859", "mrc26_2kaza_2.jpg"],
       ["v1792328860", "mrc26_2kaza_3.jpg"],
