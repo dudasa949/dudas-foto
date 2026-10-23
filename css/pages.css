@@ -1,0 +1,37 @@
+/* Rólam és Hirdetésfotózás */
+.about-hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
+.about-bg { position: absolute; inset: 0; z-index: -1; }
+.about-bg img { position: absolute; right: 0; top: 0; width: 58%; height: 100%; object-fit: cover; object-position: center 35%;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 55%); mask-image: linear-gradient(to right, transparent 0, #000 55%);
+    animation: aboutIn 2s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes aboutIn { from { opacity: 0; transform: scale(1.06); } to { opacity: .95; transform: none; } }
+@media (max-width: 767px) {
+    .about-hero { align-items: flex-end; }
+    .about-bg img { width: 100%; opacity: .55;
+        -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 30%, transparent 92%); mask-image: linear-gradient(to bottom, #000 0, #000 30%, transparent 92%); }
+}
+.about-point { border-top: 2px solid #f97316; padding-top: 1.25rem; }
+
+/* Előtte / utána: egy nagy mező, nyilakkal lapozható szempontokkal */
+.cmp-wrap { position: relative; }
+.cmp-stage { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 1.5rem; background: #131318; border: 1px solid rgba(255,255,255,.1); }
+.cmp-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transform: translateX(24px); transition: opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1), visibility .5s; }
+.cmp-slide.is-active { opacity: 1; visibility: visible; transform: none; }
+.cmp-after, .cmp-before { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cmp-after { object-fit: cover; }
+.cmp-before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); background: linear-gradient(135deg, #1b1b22, #101014); display: flex; align-items: center; justify-content: center; text-align: center; color: #9ca3af; }
+.cmp-empty i { font-size: 2rem; color: #f97316; margin-bottom: .75rem; }
+.cmp-tag { position: absolute; top: 1rem; background: rgba(0,0,0,.55); backdrop-filter: blur(8px); padding: .35rem .8rem; border-radius: 999px; font-size: .85rem; font-weight: 600; }
+.cmp-line { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 3px; margin-left: -1.5px; background: #f97316; pointer-events: none; }
+.cmp-knob { position: absolute; top: 50%; left: var(--pos); width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; background: #f97316; display: flex; align-items: center; justify-content: center; pointer-events: none; box-shadow: 0 6px 20px rgba(0,0,0,.5); }
+.cmp-slide input[type=range] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+.cmp-arrow { position: absolute; top: 50%; z-index: 5; width: 46px; height: 46px; margin-top: -23px; border-radius: 50%; background: rgba(19,19,24,.8); border: 1px solid rgba(255,255,255,.2); backdrop-filter: blur(10px); transition: background .2s; }
+.cmp-arrow:hover { background: #f97316; }
+.cmp-prev { left: -1.4rem; } .cmp-next { right: -1.4rem; }
+@media (max-width: 767px) { .cmp-stage { aspect-ratio: 4 / 3; } .cmp-prev { left: .5rem; } .cmp-next { right: .5rem; } .cmp-arrow { top: calc(50% - 1rem); } }
+.cmp-dots button { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.25); transition: background .2s, transform .2s; }
+.cmp-dots button.is-on { background: #f97316; transform: scale(1.25); }
+
+/* Lépések */
+.step-n { display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 50%; background: rgba(249,115,22,.15); color: #f97316; font-weight: 800; font-size: 1.15rem; }
+@media (prefers-reduced-motion: reduce) { .about-bg img { animation: none; } .cmp-slide { transition: none; transform: none; } }

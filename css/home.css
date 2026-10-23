@@ -1,0 +1,33 @@
+/* Főoldal – csak az index.html használja */
+.hero { min-height: 100svh; }
+.hero-title { letter-spacing: -.02em; text-wrap: balance; }
+
+/* Belépő animáció görgetéskor */
+html.js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); }
+html.js .reveal.is-in { opacity: 1; transform: none; }
+
+/* "Görgess tovább" – görgetéskor eltűnik, érintőképernyőn nincs */
+.scroll-cue { position: absolute; right: 2rem; bottom: 2rem; z-index: 10; display: flex; align-items: center; gap: .75rem; color: #d1d5db; font-size: .875rem; transition: opacity .4s ease, transform .4s ease; }
+.scroll-cue.is-hidden { opacity: 0; transform: translateY(10px); pointer-events: none; }
+.scroll-cue .mouse { width: 22px; height: 36px; border: 2px solid rgba(255,255,255,.6); border-radius: 12px; position: relative; }
+.scroll-cue .mouse::after { content: ""; position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: #f97316; animation: wheel 1.6s ease-in-out infinite; }
+@keyframes wheel { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(10px); } }
+@media (hover: none), (max-width: 767px) { .scroll-cue { display: none; } }
+
+/* Futam-kártyák */
+.album-card { position: relative; display: block; overflow: hidden; border-radius: 1.25rem; aspect-ratio: 4 / 3; background: #131318; }
+.album-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+.album-card:hover img { transform: scale(1.06); }
+.album-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,12,.88), rgba(10,10,12,0) 55%); }
+.album-card .meta { position: absolute; left: 1.25rem; right: 1.25rem; bottom: 1.1rem; z-index: 1; }
+
+/* Két terület */
+.area-card { position: relative; overflow: hidden; border-radius: 1.5rem; min-height: 360px; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; isolation: isolate; }
+.area-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+.area-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(10,10,12,.92) 8%, rgba(10,10,12,.45) 55%, rgba(10,10,12,.15)); }
+.area-card:hover > img { transform: scale(1.05); }
+
+@media (prefers-reduced-motion: reduce) {
+    html.js .reveal { opacity: 1; transform: none; transition: none; }
+    .scroll-cue .mouse::after, .album-card img, .area-card > img { animation: none; transition: none; }
+}
