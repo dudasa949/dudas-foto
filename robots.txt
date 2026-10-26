@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dudasa949.github.io/dudas-foto/sitemap.xml
