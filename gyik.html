@@ -6,18 +6,22 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>AD Visuals - GYIK</title>
     <meta name="description" content="Válaszok a leggyakoribb kérdésekre: hol fotózom, hogyan kérhetsz ajánlatot, és hogyan készítsd fel az autót a hirdetésfotózásra.">
+    <link rel="canonical" href="https://dudasa949.github.io/dudas-foto/gyik.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AD Visuals">
+    <meta property="og:locale" content="hu_HU">
+    <meta property="og:title" content="AD Visuals - GYIK">
+    <meta property="og:description" content="Válaszok a leggyakoribb kérdésekre: hol fotózom, hogyan kérhetsz ajánlatot, és hogyan készítsd fel az autót a hirdetésfotózásra.">
+    <meta property="og:url" content="https://dudasa949.github.io/dudas-foto/gyik.html">
+    <meta property="og:image" content="https://res.cloudinary.com/n5bkfxuh/image/upload/c_fill,w_1200,h_630,g_auto,f_jpg,q_auto/v1792327313/mrc26_5muhi_6.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <script src="js/boot.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { darkbg: '#0a0a0c', cardbg: '#131318', accent: '#f97316', accenthover: '#ea580c' }
-                }
-            }
-        }
-    </script>
+    <script src="js/tailwind-config.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/pages.css">
     <link rel="icon" type="image/x-icon" sizes="64x64" href="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792336551/favicon.ico">
 </head>
 <body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
@@ -47,32 +51,28 @@
         </nav>
     </header>
 
-    <main class="pt-32 pb-24 max-w-3xl mx-auto px-6 space-y-12">
-        <div class="text-center max-w-2xl mx-auto space-y-4">
-            <span class="text-accent text-xs font-semibold uppercase tracking-widest">GYIK</span>
-            <h1 class="text-4xl font-extrabold tracking-tight">Gyakori kérdések</h1>
-            <p class="text-gray-400 font-light">Itt megtalálod a leggyakrabban felmerülő kérdésekre a válaszokat. Ha mégsem, írj bátran.</p>
+    <main class="pt-36 pb-24 max-w-3xl mx-auto px-6">
+        <div class="max-w-2xl">
+            <h1 class="reveal hero-title text-4xl sm:text-6xl font-extrabold tracking-tight">Gyakori kérdések</h1>
+            <p class="reveal mt-4 text-lg text-gray-300 font-light" style="--d:80ms">Itt megtalálod a leggyakrabban felmerülő kérdésekre a válaszokat. Ha mégsem, írj bátran.</p>
         </div>
-
-        <div class="space-y-4">
-
-    <details class="group bg-cardbg border border-gray-800 rounded-2xl p-6 open:border-accent/40 transition">
-        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-semibold text-white">
-            <span>Milyen jellegű fotózással foglalkozol?</span>
-            <i class="fa-solid fa-chevron-down text-accent text-xs transition-transform group-open:rotate-180"></i>
-        </summary>
-        <p class="mt-4 text-sm text-gray-400 leading-relaxed">
+        <div class="reveal relative mt-10" style="--d:140ms">
+            <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true"></i>
+            <input id="faq-search" type="search" class="faq-search" placeholder="Keresés a kérdések között" aria-label="Keresés a kérdések között" autocomplete="off">
+        </div>
+        <div id="faq-list" class="mt-6 space-y-3">
+            <details class="faq-item reveal">
+                <summary><span>Milyen jellegű fotózással foglalkozol?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+<p>
             Elsősorban rallyfotózással: pályaszéli akciók, por, tempó és versenyhangulat. Emellett szeretnék autófotózással is foglalkozni, használtautó-hirdetésekhez és olyan tulajdonosoknak, akik szeretnék szép képeken látni az autójukat. Ez utóbbi nálam még új terület, és a fotózás számomra elsősorban hobbi, az egyetem mellett csinálom. Ezért az induló időszakban barátságos árakon és sok odafigyeléssel dolgozom.
         </p>
-    </details>
-
-    <details class="group bg-cardbg border border-gray-800 rounded-2xl p-6 open:border-accent/40 transition">
-        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-semibold text-white">
-            <span>Hogyan kaphatok képet rallyversenyzőként vagy navigátorként?</span>
-            <i class="fa-solid fa-chevron-down text-accent text-xs transition-transform group-open:rotate-180"></i>
-        </summary>
-        <div class="mt-4 space-y-3 text-sm text-gray-400 leading-relaxed">
-            <p>
+                </div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span>Hogyan kaphatok képet rallyversenyzőként vagy navigátorként?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+<p>
                 Töltsd ki a <a href="kapcsolat.html" class="text-accent hover:underline">Kapcsolat oldal</a> űrlapját, és válaszd a „Rally-képet kérek" opciót. Írd meg, melyik futamról van szó, és ha tudod, a rajtszámot is.
             </p>
             <p>
@@ -81,111 +81,89 @@
             <p>
                 A futamokról, ahol jelen voltam, a <a href="galeria.html" class="text-accent hover:underline">Galériában</a> megnézhetsz egy válogatást a legjobb pillanatokból.
             </p>
-        </div>
-    </details>
-
-    <details class="group bg-cardbg border border-gray-800 rounded-2xl p-6 open:border-accent/40 transition">
-        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-semibold text-white">
-            <span>Hogyan kérhetek ajánlatot autófotózásra?</span>
-            <i class="fa-solid fa-chevron-down text-accent text-xs transition-transform group-open:rotate-180"></i>
-        </summary>
-        <p class="mt-4 text-sm text-gray-400 leading-relaxed">
+                </div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span>Hogyan kérhetek ajánlatot autófotózásra?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+<p>
             Töltsd ki a <a href="kapcsolat.html" class="text-accent hover:underline">Kapcsolat oldal</a> űrlapját, és nyugodtan fejtsd ki részletesen, mire gondolsz: milyen autóról van szó, eladáshoz vagy saját élményhez kell a fotózás, hol van az autó, mikorra szeretnéd, és körülbelül hány képet képzelsz el. Minél több információt kapok, annál pontosabb ajánlatot tudok adni.
         </p>
-    </details>
-
-    <details class="group bg-cardbg border border-gray-800 rounded-2xl p-6 open:border-accent/40 transition">
-        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-semibold text-white">
-            <span>Milyen csomagok vannak, és mennyibe kerülnek?</span>
-            <i class="fa-solid fa-chevron-down text-accent text-xs transition-transform group-open:rotate-180"></i>
-        </summary>
-        <div class="mt-4 space-y-3 text-sm text-gray-400 leading-relaxed">
-            <p>
-                <strong class="text-gray-200">Hirdetésfotózás:</strong> az alap csomag 12 képet tartalmaz, ez a hahun az elvárható minimum, véleményem szerint. Ebbe tartoznak a külső profilképek, a kötelező belső képek, a részprofilok, az extrák és a részletek. Nagyobb csomagban 20 vagy akár 30 kép is kérhető, ennek magasabb az ára.
+                </div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span>Milyen csomagok vannak, és mennyibe kerülnek?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+<p>
+                <strong>Hirdetésfotózás:</strong> az alap csomag 12 képet tartalmaz, ez a hahun az elvárható minimum, véleményem szerint. Ebbe tartoznak a külső profilképek, a kötelező belső képek, a részprofilok, az extrák és a részletek. Nagyobb csomagban 20 vagy akár 30 kép is kérhető, ennek magasabb az ára.
             </p>
             <p>
-                <strong class="text-gray-200">Egyedi autófotózás:</strong> artisztikusabb és nagyobb számú képpel készül. Itt előre összeállított csomagokból választhatsz, de egyedi igényekre is szabok, az ár több tényezőtől függ.
+                <strong>Egyedi autófotózás:</strong> artisztikusabb és nagyobb számú képpel készül. Itt előre összeállított csomagokból választhatsz, de egyedi igényekre is szabok, az ár több tényezőtől függ.
             </p>
             <p>
                 Az utómunka külön díjas. Az árak még alakulnak, ezért egyelőre az űrlapon beküldött információk alapján adok ajánlatot, és mindenről lehet egyeztetni.
             </p>
-        </div>
-    </details>
-
-    <details class="group bg-cardbg border border-gray-800 rounded-2xl p-6 open:border-accent/40 transition">
-        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-semibold text-white">
-            <span>Hol fotózol?</span>
-            <i class="fa-solid fa-chevron-down text-accent text-xs transition-transform group-open:rotate-180"></i>
-        </summary>
-        <p class="mt-4 text-sm text-gray-400 leading-relaxed">
+                </div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span>Hol fotózol?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+<p>
             Miskolcon és vonzáskörzetében. Távolabbi helyszín esetén írj nekem, de egyelőre főleg a környéken tudok dolgozni. Ez később bővülhet.
         </p>
-    </details>
-
-    <details class="group bg-cardbg border border-gray-800 rounded-2xl p-6 open:border-accent/40 transition">
-        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-semibold text-white">
-            <span>Mennyi idő alatt készülnek el a képek?</span>
-            <i class="fa-solid fa-chevron-down text-accent text-xs transition-transform group-open:rotate-180"></i>
-        </summary>
-        <p class="mt-4 text-sm text-gray-400 leading-relaxed">
+                </div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span>Mennyi idő alatt készülnek el a képek?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+<p>
             Csomagtól függően 1–3 munkanapon belül. Egyetemi hallgatóként nem tudok a fotózás napján kész képeket ígérni, és félkész munkát nem adok át. Ha sok a megrendelés, vagy sűrű a tanulmányi időszak, tovább is tarthat, de a határidőm legfeljebb egy hétben maximalizálom. Ha csúszás várható, előre jelzem.
         </p>
-    </details>
-
-    <details class="group bg-cardbg border border-gray-800 rounded-2xl p-6 open:border-accent/40 transition">
-        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-semibold text-white">
-            <span>Hogyan kapom meg a képeket?</span>
-            <i class="fa-solid fa-chevron-down text-accent text-xs transition-transform group-open:rotate-180"></i>
-        </summary>
-        <p class="mt-4 text-sm text-gray-400 leading-relaxed">
+                </div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span>Hogyan kapom meg a képeket?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+<p>
             Google Drive-mappában, privát letöltési linken keresztül. A link korlátozott ideig él, ezért érdemes a képeket időben letöltened. Egyelőre teljesen digitálisan dolgozom, kinyomtatható fotócsomagokat a későbbiekben szeretnék kínálni.
         </p>
-    </details>
-
-    <details class="group bg-cardbg border border-gray-800 rounded-2xl p-6 open:border-accent/40 transition">
-        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-semibold text-white">
-            <span>Hogyan készítsem fel az autót a fotózásra?</span>
-            <i class="fa-solid fa-chevron-down text-accent text-xs transition-transform group-open:rotate-180"></i>
-        </summary>
-        <p class="mt-4 text-sm text-gray-400 leading-relaxed">
+                </div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span>Hogyan készítsem fel az autót a fotózásra?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+<p>
             Kérlek, tiszta autóval érkezz, ez mindkettőnk érdeke. Egy autómosás erősen ajánlott kívül, belül pedig érdemes kiporszívózni és kivenni a személyes tárgyakat (iratok, képek stb.), mert ezek nem maradhatnak a képeken. Nem vadonatúj állapotot várok, csak rendezett, kulturált, vállalható állapotot, ami különösen hirdetésfotózásnál számít: egy gondozott autót sokkal könnyebb eladni. Az autó állapotáért a tulajdonos felel. Ha az autó kifejezetten koszos, a fotózást nem tudom vállalni, ekkor tárgytalan.
         </p>
-    </details>
-
-    <details class="group bg-cardbg border border-gray-800 rounded-2xl p-6 open:border-accent/40 transition">
-        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-semibold text-white">
-            <span>Mi történik, ha rossz az idő, vagy közbejön valami?</span>
-            <i class="fa-solid fa-chevron-down text-accent text-xs transition-transform group-open:rotate-180"></i>
-        </summary>
-        <p class="mt-4 text-sm text-gray-400 leading-relaxed">
+                </div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span>Mi történik, ha rossz az idő, vagy közbejön valami?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+<p>
             Semmi gond: elhalasztjuk a fotózást, és egyeztetünk egy új, mindkettőnknek megfelelő időpontot.
         </p>
-    </details>
-
-    <details class="group bg-cardbg border border-gray-800 rounded-2xl p-6 open:border-accent/40 transition">
-        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-semibold text-white">
-            <span>Mire használhatom a képeket?</span>
-            <i class="fa-solid fa-chevron-down text-accent text-xs transition-transform group-open:rotate-180"></i>
-        </summary>
-        <div class="mt-4 space-y-3 text-sm text-gray-400 leading-relaxed">
-            <p>
-                <strong class="text-gray-200">Hirdetési csomag:</strong> a képek kizárólag az adott autó eladását célzó hirdetésekben használhatók (pl. Használtautó.hu, Facebook Marketplace, Jófogás). A képeken egy alig észrevehető vízjel szerepel.
+                </div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span>Mire használhatom a képeket?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+<p>
+                <strong>Hirdetési csomag:</strong> a képek kizárólag az adott autó eladását célzó hirdetésekben használhatók (pl. Használtautó.hu, Facebook Marketplace, Jófogás). A képeken egy alig észrevehető vízjel szerepel.
             </p>
             <p>
-                <strong class="text-gray-200">Egyedi autófotózás:</strong> a képeket vízjellel kapod meg, hasonlóan a rallyfotóimhoz. Kérésre a kiválasztott képeket vízjel nélkül is megkaphatod, főként közösségi médián kívüli felhasználásra.
+                <strong>Egyedi autófotózás:</strong> a képeket vízjellel kapod meg, hasonlóan a rallyfotóimhoz. Kérésre a kiválasztott képeket vízjel nélkül is megkaphatod, főként közösségi médián kívüli felhasználásra.
             </p>
             <p>
-                <strong class="text-gray-200">Közösségi média:</strong> kérlek, tüntesd fel a fotóst (@adudas.949) a posztokban és a megosztásokban.
+                <strong>Közösségi média:</strong> kérlek, tüntesd fel a fotóst (@adudas.949) a posztokban és a megosztásokban.
             </p>
+                </div>
+            </details>
         </div>
-    </details>
-
-</div>
-
-        <div class="bg-cardbg border border-gray-800 p-8 rounded-3xl text-center space-y-4">
-            <h2 class="text-xl font-bold text-white">Nem találtad meg a válaszod?</h2>
-            <p class="text-sm text-gray-400">Írj nekem, és igyekszem minél hamarabb válaszolni.</p>
-            <a href="kapcsolat.html" class="inline-block bg-accent hover:bg-accenthover text-white px-8 py-3.5 rounded-xl font-semibold transition shadow-lg shadow-accent/25">Kapcsolat</a>
+        <p id="faq-empty" class="mt-6 text-gray-400" hidden>Nincs találat. Írj nekem, és válaszolok!</p>
+        <div class="reveal mt-14 rounded-3xl border border-white/10 bg-cardbg p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+            <div><h2 class="text-2xl font-bold text-white">Nem találtad meg a válaszod?</h2><p class="mt-2 text-gray-400">Írj nekem, és igyekszem minél hamarabb válaszolni.</p></div>
+            <a href="kapcsolat.html" class="shrink-0 text-center bg-accent hover:bg-accenthover text-white px-8 py-3.5 rounded-xl font-semibold transition shadow-xl shadow-accent/25">Kapcsolat</a>
         </div>
     </main>
 
@@ -202,11 +180,18 @@
                 <a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-link footer-instagram"><i class="fa-brands fa-instagram text-lg"></i></a>
             </nav>
         </div>
+        <div class="max-w-7xl mx-auto px-6 pb-6 flex flex-wrap justify-center sm:justify-end gap-x-5 gap-y-1 text-xs text-gray-400">
+            <a href="impresszum.html" class="footer-link">Impresszum</a>
+            <a href="adatkezeles.html" class="footer-link">Adatkezelés</a>
+            <a href="aszf.html" class="footer-link">ÁSZF</a>
+        </div>
     </footer>
 
     <button id="back-to-top" class="back-to-top" type="button" aria-label="Vissza az oldal tetejére" title="Vissza a tetejére">
         <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
     </button>
+    <script src="js/reveal.js"></script>
+    <script src="js/faq.js"></script>
 
     <script src="js/main.js"></script>
 </body>
