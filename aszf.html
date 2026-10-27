@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD Visuals - ÁSZF</title>
+    <meta name="robots" content="noindex">
+    <script src="js/boot.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792336551/favicon.ico">
+</head>
+<body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
+
+    <!-- FEJLÉC -->
+    <header class="site-header fixed top-0 inset-x-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 header-inner h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center site-logo" aria-label="AD Visuals – főoldal">
+                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals" class="h-11 w-auto">
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium site-desktop-nav" aria-label="Fő navigáció">
+                <a href="index.html" class="nav-link">Főoldal</a>
+                <a href="galeria.html" class="nav-link">Galéria</a>
+                <a href="hirdetesfotozas.html" class="nav-link">Hirdetésfotózás</a>
+                <a href="rolam.html" class="nav-link">Rólam</a>
+                <a href="kapcsolat.html" class="nav-cta">Kapcsolat</a>
+            </nav>
+            <button id="mobile-menu-btn" class="mobile-menu-btn md:hidden" type="button" aria-label="Menü megnyitása" aria-expanded="false" aria-controls="mobile-nav">
+                <span class="menu-icon" aria-hidden="true"><span></span><span></span></span>
+            </button>
+        </div>
+        <nav id="mobile-nav" class="mobile-nav md:hidden" aria-label="Mobil navigáció" aria-hidden="true">
+            <a href="index.html">Főoldal</a>
+            <a href="galeria.html">Galéria</a>
+            <a href="hirdetesfotozas.html">Hirdetésfotózás</a>
+            <a href="rolam.html">Rólam</a>
+            <a href="kapcsolat.html" class="mobile-nav-cta">Kapcsolat</a>
+        </nav>
+    </header>
+
+    <main class="pt-44 pb-32 max-w-3xl mx-auto px-6 min-h-[70vh]">
+        <h1 class="reveal text-4xl sm:text-6xl font-extrabold tracking-tight">ÁSZF</h1>
+        <p class="reveal mt-5 text-lg text-gray-300 font-light" style="--d:80ms">Ez az oldal még készül.</p>
+        <a href="index.html" class="reveal mt-8 inline-flex items-center gap-2 text-accent font-semibold hover:gap-3 transition-all" style="--d:160ms"><i class="fa-solid fa-arrow-left"></i> Vissza a főoldalra</a>
+    </main>
+
+    <!-- LÁBLÉC -->
+    <footer class="site-footer border-t border-white/10 text-sm text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <a href="index.html" aria-label="AD Visuals – főoldal"><img src="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792321768/logo.png" alt="AD Visuals" class="h-7 w-auto"></a>
+                <span>© 2026 Dudás Ádám</span>
+            </div>
+            <nav class="flex items-center justify-center gap-5 sm:gap-6" aria-label="Lábléc navigáció">
+                <a href="gyik.html" class="footer-link">GYIK</a>
+                <a href="kapcsolat.html" class="footer-link">Kapcsolat</a>
+                <a href="mailto:advisuals.contact@gmail.com" class="footer-link protected-email"></a>
+                <a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-link footer-instagram"><i class="fa-brands fa-instagram text-lg"></i></a>
+            </nav>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 pb-6 flex flex-wrap justify-center sm:justify-end gap-x-5 gap-y-1 text-xs text-gray-400">
+            <a href="impresszum.html" class="footer-link">Impresszum</a>
+            <a href="adatkezeles.html" class="footer-link">Adatkezelés</a>
+            <a href="aszf.html" class="footer-link">ÁSZF</a>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Vissza az oldal tetejére" title="Vissza a tetejére">
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <script src="js/reveal.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
