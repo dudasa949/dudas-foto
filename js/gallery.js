@@ -156,7 +156,14 @@
             const total = document.createElement('p');
             total.className = 'gallery-album-count';
             total.textContent = `${albumPhotos.length} fotó`;
-            heading.append(titleWrap, total);
+            const collapsedSet = root.collapsedAlbums || (root.collapsedAlbums = new Set());
+            const side = document.createElement('div');
+            side.className = 'gallery-album-side';
+            const toggle = document.createElement('button');
+            toggle.type = 'button';
+            toggle.className = 'gallery-album-toggle';
+            side.append(toggle, total);
+            heading.append(titleWrap, side);
 
             const grid = document.createElement('div');
             grid.className = 'gallery-masonry';
@@ -194,7 +201,25 @@
                 button.addEventListener('click', () => openLightbox(p));
                 grid.appendChild(button);
             });
-            section.append(heading, grid);
+            const collapse = document.createElement('div');
+            collapse.className = 'gallery-collapse';
+            const inner = document.createElement('div');
+            inner.className = 'gallery-collapse-inner';
+            inner.id = `album-${album.id}`;
+            inner.appendChild(grid);
+            collapse.appendChild(inner);
+            const setCollapsed = state => {
+                section.classList.toggle('is-collapsed', state);
+                inner.inert = state;
+                toggle.setAttribute('aria-expanded', String(!state));
+                toggle.setAttribute('aria-controls', inner.id);
+                toggle.innerHTML = '<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>';
+                toggle.setAttribute('aria-label', state ? 'Album kinyitása' : 'Album összecsukása');
+                if (state) collapsedSet.add(album.id); else collapsedSet.delete(album.id);
+            };
+            toggle.addEventListener('click', () => setCollapsed(!section.classList.contains('is-collapsed')));
+            setCollapsed(collapsedSet.has(album.id));
+            section.append(heading, collapse);
             root.appendChild(section);
             if ('IntersectionObserver' in window) revealObserver.observe(section);
             else section.classList.add('is-visible');
