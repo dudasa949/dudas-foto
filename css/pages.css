@@ -1,14 +1,28 @@
 /* Rólam és Hirdetésfotózás */
 .about-hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
+.about-copy { padding: 7rem 0 4rem; }
 .about-bg { position: absolute; inset: 0; z-index: -1; }
-.about-bg img { position: absolute; right: 0; top: 0; width: 58%; height: 100%; object-fit: cover; object-position: center 35%;
-    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 55%); mask-image: linear-gradient(to right, transparent 0, #000 55%);
-    animation: aboutIn 2s cubic-bezier(.2,.7,.2,1) both; }
-@keyframes aboutIn { from { opacity: 0; transform: scale(1.06); } to { opacity: .95; transform: none; } }
+.about-bg::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; background: linear-gradient(to top, #0a0a0c, rgba(10,10,12,0)); pointer-events: none; }
+.about-img { position: absolute; right: 0; top: 0; width: 58%; height: 100%; object-fit: cover; object-position: center 35%; opacity: 0; transition: opacity 1s ease;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 55%); mask-image: linear-gradient(to right, transparent 0, #000 55%); }
+.about-img { transform: scale(1.1) translateX(3%); }
+.about-img.is-on { opacity: .95; animation: aboutIn 1.2s ease-out backwards, aboutPan 20s cubic-bezier(.35, 0, .25, 1) forwards; }
+.about-img[data-bg="en"] { object-position: center 20%; filter: brightness(.82); }
+@keyframes aboutIn { from { opacity: 0; } to { opacity: .95; } }
+@keyframes aboutPan { from { transform: scale(1.1) translateX(-3%); } to { transform: scale(1.1) translateX(3%); } }
+.about-tabs { display: inline-flex; padding: .25rem; border-radius: 999px; background: rgba(255,255,255,.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.12); }
+.about-tabs button { padding: .5rem 1.1rem; border-radius: 999px; font-weight: 600; color: #d1d5db; transition: background .25s, color .25s; }
+.about-tabs button[aria-selected="true"] { background: #f97316; color: #fff; }
+.about-panel.is-on { animation: panelIn .5s cubic-bezier(.2,.7,.2,1); }
+@keyframes panelIn { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
 @media (max-width: 767px) {
-    .about-hero { align-items: flex-end; }
-    .about-bg img { width: 100%; opacity: .55;
-        -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 30%, transparent 92%); mask-image: linear-gradient(to bottom, #000 0, #000 30%, transparent 92%); }
+    /* Telefonon a kép fent, a szöveg alatta: a fotó jól látszik, a szöveg olvasható */
+    .about-hero { display: block; min-height: 0; padding-top: 0; }
+    .about-bg { position: relative; z-index: 0; height: 68svh; margin: 0 -1.5rem; }
+    .about-bg::after { height: 45%; }
+    .about-img { width: 100%; object-position: center 30%;
+        -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 98%); mask-image: linear-gradient(to bottom, #000 45%, transparent 98%); }
+    .about-copy { position: relative; margin-top: -9rem; padding: 0 0 3rem; }
 }
 .about-point { border-top: 2px solid #f97316; padding-top: 1.25rem; }
 
@@ -34,4 +48,19 @@
 
 /* Lépések */
 .step-n { display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; border-radius: 50%; background: rgba(249,115,22,.15); color: #f97316; font-weight: 800; font-size: 1.15rem; }
-@media (prefers-reduced-motion: reduce) { .about-bg img { animation: none; } .cmp-slide { transition: none; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .about-img, .about-panel.is-on { animation: none; transition: none; } .cmp-slide { transition: none; transform: none; } }
+
+/* GYIK */
+.faq-search { width: 100%; padding: .95rem 1.2rem .95rem 3rem; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); color: #fff; transition: border-color .2s; }
+.faq-search:focus { outline: none; border-color: #f97316; }
+.faq-item { border: 1px solid rgba(255,255,255,.1); border-radius: 1.1rem; background: #131318; transition: border-color .25s; }
+.faq-item[open] { border-color: rgba(249,115,22,.45); }
+.faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.15rem 1.4rem; cursor: pointer; list-style: none; font-weight: 600; color: #fff; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary i { color: #f97316; font-size: .8rem; transition: transform .35s; }
+.faq-item[open] summary i { transform: rotate(180deg); }
+.faq-body { padding: 0 1.4rem 1.3rem; animation: faqIn .4s cubic-bezier(.2,.7,.2,1); }
+.faq-body p { margin-top: .75rem; color: #9ca3af; line-height: 1.75; }
+.faq-body strong { color: #e5e7eb; }
+@keyframes faqIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .faq-body { animation: none; } }
