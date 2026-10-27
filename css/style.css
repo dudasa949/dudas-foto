@@ -30,80 +30,6 @@ body {
     animation: heroPan 7s cubic-bezier(.45, 0, .55, 1) forwards;
 }
 
-/* Előtte / Utána Slider */
-.comparison-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    aspect-ratio: 16 / 9;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    user-select: none;
-}
-
-.comparison-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-}
-
-.comparison-before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
-    z-index: 10;
-}
-
-.comparison-divider {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 3px;
-    background-color: #f97316;
-    z-index: 20;
-    transform: translateX(-50%);
-    pointer-events: none;
-    box-shadow: 0 0 10px rgba(249, 115, 22, 0.8);
-}
-
-.comparison-handle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 44px;
-    height: 44px;
-    background-color: #f97316;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    pointer-events: none;
-}
-
-.comparison-range-input {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: ew-resize;
-    z-index: 30;
-}
-
 /* ----- Közös fejléc és navigáció ----- */
 html { scroll-behavior: smooth; }
 .site-header {
@@ -512,3 +438,14 @@ body.lightbox-open { overflow: hidden; }
     .gallery-reveal { opacity: 1; transform: none; }
 }
 
+
+/* Összecsukható albumok */
+.gallery-album-side { display: flex; flex-direction: column; align-items: flex-end; gap: 1rem; }
+.gallery-album-toggle { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; color: #fff; border-radius: 50%; transition: background .2s; }
+.gallery-album-toggle:hover { background: rgba(255,255,255,.08); }
+.gallery-album-toggle i { font-size: 1.05rem; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+.gallery-album-section.is-collapsed .gallery-album-toggle i { transform: rotate(180deg); }
+.gallery-collapse { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .45s cubic-bezier(.2,.7,.2,1), opacity .3s ease; }
+.gallery-collapse-inner { overflow: hidden; min-height: 0; }
+.gallery-album-section.is-collapsed .gallery-collapse { grid-template-rows: 0fr; opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .gallery-collapse, .gallery-album-toggle i { transition: none; } }
