@@ -6,6 +6,15 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>AD Visuals - Rólam</title>
     <meta name="description" content="Dudás Ádám vagyok, rally- és autófotós Miskolc környékén. Így kezdődött, és így fotózom.">
+    <link rel="canonical" href="https://dudasa949.github.io/dudas-foto/rolam.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AD Visuals">
+    <meta property="og:locale" content="hu_HU">
+    <meta property="og:title" content="AD Visuals - Rólam">
+    <meta property="og:description" content="Dudás Ádám vagyok, rally- és autófotós Miskolc környékén. Így kezdődött, és így fotózom.">
+    <meta property="og:url" content="https://dudasa949.github.io/dudas-foto/rolam.html">
+    <meta property="og:image" content="https://res.cloudinary.com/n5bkfxuh/image/upload/c_fill,w_1200,h_630,g_auto,f_jpg,q_auto/v1792327313/mrc26_5muhi_6.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <script src="js/boot.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind-config.js"></script>
@@ -46,18 +55,27 @@
     <main>
         <section class="about-hero px-6 lg:px-16">
             <div class="about-bg" aria-hidden="true">
-                <img src="https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto,w_1400/v1792654898/A1F87B0B-D0DD-445B-B9E7-BAFC8F713369.jpg" alt="">
+                <img class="about-img is-on" data-bg="foto" src="https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto,w_1400/v1792654898/A1F87B0B-D0DD-445B-B9E7-BAFC8F713369.jpg" alt="">
+                <img class="about-img" data-bg="en" src="https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto,w_1400/v1792348985/portrait-2.png" alt="" loading="lazy">
             </div>
-            <div class="relative max-w-xl space-y-5 pt-28 pb-16">
+            <div class="about-copy relative max-w-xl space-y-5">
                 <p class="reveal text-accent font-semibold">Rólam</p>
                 <h1 class="reveal hero-title text-5xl sm:text-7xl font-extrabold text-white" style="--d:80ms">Dudás Ádám</h1>
-                <p class="reveal text-xl text-gray-200" style="--d:140ms">Rally- és autófotós, Miskolc és környékén.</p>
-                <div class="reveal space-y-4 text-lg text-gray-300 font-light leading-relaxed" style="--d:200ms">
+                <div class="about-tabs reveal" role="tablist" aria-label="Bemutatkozás" style="--d:140ms">
+                    <button type="button" role="tab" id="tab-foto" aria-selected="true" aria-controls="panel-foto" data-tab="foto">Fotósként</button>
+                    <button type="button" role="tab" id="tab-en" aria-selected="false" aria-controls="panel-en" tabindex="-1" data-tab="en">Személyesen</button>
+                </div>
+                <div id="panel-foto" role="tabpanel" aria-labelledby="tab-foto" data-panel="foto" class="about-panel is-on space-y-4 text-lg text-gray-200 font-light leading-relaxed">
+                    <p class="text-xl text-white font-normal">Rally- és autófotós, Miskolc és környéke.</p>
                     <p>Kiskorom óta fotózom szórakozásból, és a képeket nézegetni is mindig szerettem. Most azt szeretném, hogy az én képeimet nézzék.</p>
                     <p>2021 telén vettem az első, kezdő „mindenes" gépemet, azóta 25 ezer expozíciónál tartok vele. Szeretek játszani a szögekkel, és kipróbálni új dolgokat.</p>
                     <p>2025 végén éreztem rá jobban, azóta tudatosabban fotózom. A versenyt is élvezem, ezért nehéz a kettőt összehangolni.</p>
                 </div>
-                <div class="reveal flex flex-col sm:flex-row gap-4 pt-2" style="--d:260ms">
+                <div id="panel-en" role="tabpanel" aria-labelledby="tab-en" data-panel="en" class="about-panel space-y-4 text-lg text-gray-200 font-light leading-relaxed" hidden>
+                    <p class="text-xl text-white font-normal">Járműmérnöknek tanulok a Miskolci Egyetemen.</p>
+                    <p class="text-gray-400 italic">[Ide jön a személyesebb bemutatkozás: mit szeretsz az autókon és a versenyeken kívül, mivel töltöd a szabadidődet.]</p>
+                </div>
+                <div class="reveal flex flex-col sm:flex-row gap-4 pt-2" style="--d:200ms">
                     <a href="galeria.html" class="text-center bg-accent hover:bg-accenthover text-white px-8 py-3.5 rounded-xl font-semibold transition shadow-xl shadow-accent/25">Képeim megtekintése</a>
                     <a href="kapcsolat.html" class="text-center bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white px-8 py-3.5 rounded-xl font-semibold transition">Írj nekem</a>
                 </div>
@@ -106,6 +124,11 @@
                 <a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-link footer-instagram"><i class="fa-brands fa-instagram text-lg"></i></a>
             </nav>
         </div>
+        <div class="max-w-7xl mx-auto px-6 pb-6 flex flex-wrap justify-center sm:justify-end gap-x-5 gap-y-1 text-xs text-gray-400">
+            <a href="impresszum.html" class="footer-link">Impresszum</a>
+            <a href="adatkezeles.html" class="footer-link">Adatkezelés</a>
+            <a href="aszf.html" class="footer-link">ÁSZF</a>
+        </div>
     </footer>
 
     <button id="back-to-top" class="back-to-top" type="button" aria-label="Vissza az oldal tetejére" title="Vissza a tetejére">
@@ -113,6 +136,7 @@
     </button>
 
     <script src="js/reveal.js"></script>
+    <script src="js/about.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
