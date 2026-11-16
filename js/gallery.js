@@ -8,6 +8,7 @@
     const yearSelect = document.getElementById('filter-year');
     const albumSelect = document.getElementById('filter-album');
     const resetButton = document.getElementById('filter-reset');
+    const searchInput = document.getElementById('filter-search');
     const countLabel = document.getElementById('gallery-count');
     const filterNote = document.getElementById('gallery-filter-note');
     const lb = document.getElementById('lb');
@@ -35,6 +36,7 @@
     let selectedSeries = 'all';
     let selectedYear = 'all';
     let selectedAlbum = 'all';
+    let searchQuery = '';
     let visibleAlbums = [];
     let visiblePhotos = [];
     let lightboxPhotos = [];
@@ -102,14 +104,22 @@
             (selectedYear === 'all' || getYear(a) === Number(selectedYear))
         );
         if (selectedAlbum !== 'all' && !eligibleAlbums.some(a => a.id === selectedAlbum)) selectedAlbum = 'all';
-        const albumOptions = eligibleAlbums.map(a => [a.id, `${a.title} — ${a.place}`]);
+        const albumOptions = eligibleAlbums.map(a => [a.id, a.place ? `${a.title} — ${a.place}` : a.title]);
         fillSelect(albumSelect, 'Minden album', albumOptions, selectedAlbum);
         return eligibleAlbums;
     }
 
+    // Keresés: ékezetek és kis/nagybetű nélkül, minden beírt szónak szerepelnie kell az esemény adataiban
+    const norm = text => String(text || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    function matchesSearch(album) {
+        if (!searchQuery) return true;
+        const haystack = norm([album.title, album.place, album.series, album.year, album.dateStart ? formatDateRange(album.dateStart, album.dateEnd) : ''].join(' '));
+        return norm(searchQuery).split(/\s+/).every(word => haystack.includes(word));
+    }
+
     function render() {
         const eligibleAlbums = setFilterOptions();
-        visibleAlbums = eligibleAlbums.filter(a => selectedAlbum === 'all' || a.id === selectedAlbum);
+        visibleAlbums = eligibleAlbums.filter(a => (selectedAlbum === 'all' || a.id === selectedAlbum) && matchesSearch(a));
         visiblePhotos = photos.filter(p => visibleAlbums.some(a => a.id === p.a.id));
         countLabel.textContent = `${visiblePhotos.length} fotó · ${visibleAlbums.length} album`;
 
@@ -117,6 +127,7 @@
         if (selectedSeries !== 'all') activeFilters.push(selectedSeries);
         if (selectedYear !== 'all') activeFilters.push(String(selectedYear));
         if (selectedAlbum !== 'all') activeFilters.push(G.albums.find(a => a.id === selectedAlbum)?.title || '');
+        if (searchQuery) activeFilters.push(`„${searchQuery}"`);
         filterNote.textContent = activeFilters.length ? `Szűrés: ${activeFilters.join(' · ')}` : 'A szűrők kombinálhatók.';
 
         root.innerHTML = '';
@@ -127,6 +138,13 @@
             root.appendChild(empty);
             document.getElementById('empty-reset').addEventListener('click', resetFilters);
             return;
+        }
+
+        // Alapból csak a legújabb album van nyitva. Szűrésnél és keresésnél több találat esetén mind csukva marad,
+        // egyetlen találat esetén pedig kinyílik.
+        const collapsedSet = root.collapsedAlbums || (root.collapsedAlbums = new Set(G.albums.slice(1).map(a => a.id)));
+        if (selectedSeries !== 'all' || selectedYear !== 'all' || selectedAlbum !== 'all' || searchQuery) {
+            visibleAlbums.forEach(a => { if (visibleAlbums.length === 1) collapsedSet.delete(a.id); else collapsedSet.add(a.id); });
         }
 
         visibleAlbums.forEach(album => {
@@ -142,10 +160,14 @@
             const title = document.createElement('h2');
             title.className = 'gallery-album-title';
             title.textContent = album.title;
-            const place = document.createElement('p');
-            place.className = 'gallery-album-place';
-            place.textContent = album.place || '';
-            titleWrap.append(title, place);
+            titleWrap.appendChild(title);
+            if (album.place) {
+                const place = document.createElement('p');
+                place.className = 'gallery-album-place';
+                place.innerHTML = '<i class="fa-solid fa-location-dot" aria-hidden="true"></i>';
+                place.append(document.createTextNode(` ${album.place}`));
+                titleWrap.appendChild(place);
+            }
             if (album.dateStart) {
                 const date = document.createElement('p');
                 date.className = 'gallery-album-date';
@@ -156,7 +178,6 @@
             const total = document.createElement('p');
             total.className = 'gallery-album-count';
             total.textContent = `${albumPhotos.length} fotó`;
-            const collapsedSet = root.collapsedAlbums || (root.collapsedAlbums = new Set());
             const side = document.createElement('div');
             side.className = 'gallery-album-side';
             const toggle = document.createElement('button');
@@ -171,19 +192,19 @@
                 const button = document.createElement('button');
                 button.type = 'button';
                 button.className = 'gallery-thumb is-loading';
-                button.style.aspectRatio = '3 / 2';
+                button.style.setProperty('--ar', ((p.w && p.h) ? p.w / p.h : 1.5).toFixed(4));
                 button.setAttribute('aria-label', `${p.a.title}, ${p.a.place}: ${p.i + 1}. kép megnyitása`);
                 const img = document.createElement('img');
                 img.src = imageUrl(700, p);
                 img.srcset = `${imageUrl(700, p)} 700w, ${imageUrl(1200, p)} 1200w`;
-                img.sizes = '(max-width: 640px) 94vw, (max-width: 1024px) 46vw, 31vw';
+                img.sizes = '(max-width: 640px) 60vw, 440px';
                 img.loading = 'lazy';
                 img.decoding = 'async';
                 img.alt = `${p.a.title} – ${p.a.place}, ${p.i + 1}. fotó`;
                 img.addEventListener('load', () => {
-                    p.w = img.naturalWidth;
-                    p.h = img.naturalHeight;
-                    button.style.aspectRatio = `${p.w} / ${p.h}`;
+                    
+                    
+                    
                     button.classList.remove('is-loading');
                     button.classList.add('is-loaded');
                 }, { once: true });
@@ -217,7 +238,7 @@
                 toggle.setAttribute('aria-label', state ? 'Album kinyitása' : 'Album összecsukása');
                 if (state) collapsedSet.add(album.id); else collapsedSet.delete(album.id);
             };
-            toggle.addEventListener('click', () => setCollapsed(!section.classList.contains('is-collapsed')));
+            heading.addEventListener('click', () => setCollapsed(!section.classList.contains('is-collapsed')));   // a teljes sor kattintható
             setCollapsed(collapsedSet.has(album.id));
             section.append(heading, collapse);
             root.appendChild(section);
@@ -233,10 +254,13 @@
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.03 }) : null;
+    }, { rootMargin: '0px', threshold: 0.01 }) : null;
 
     function resetFilters() {
         selectedSeries = selectedYear = selectedAlbum = 'all';
+        searchQuery = '';
+        searchInput.value = '';
+        root.collapsedAlbums = undefined;   // újra az alapállapot: csak a legújabb album nyitva
         render();
     }
 
@@ -253,6 +277,11 @@
         render();
     });
     resetButton.addEventListener('click', resetFilters);
+    let searchTimer;
+    searchInput.addEventListener('input', () => {
+        window.clearTimeout(searchTimer);
+        searchTimer = window.setTimeout(() => { searchQuery = searchInput.value.trim(); render(); }, 150);
+    });
 
     function currentPhoto() { return lightboxPhotos[currentIndex]; }
 
@@ -283,6 +312,7 @@
         lbImg.style.transition = animate && !reducedMotion ? 'transform 180ms ease' : 'none';
         lbImg.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${zoom})`;
         lbImg.classList.toggle('is-zoomed', zoom > 1.01);
+        lb.classList.toggle('lb-zoomed', zoom > 1.01);
         lbImg.classList.toggle('is-dragging', Boolean(gesture && gesture.dragging));
         zoomHint.innerHTML = zoom > 1.01
             ? '<i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i> Kattintás a visszaállításhoz · húzd a kép mozgatásához'
@@ -302,7 +332,6 @@
         resetZoom();
         loadingFallbackTried = false;
         lbImg.classList.remove('is-ready');
-        lbLoading.classList.remove('hidden');
         lbError.classList.add('hidden');
         lbImg.alt = `${p.a.title} – ${p.a.place}, ${p.i + 1}. fotó`;
         lbTitle.textContent = p.a.title;
@@ -333,28 +362,51 @@
         };
         lbImg.src = loadingSource;
         if (lbImg.complete && lbImg.naturalWidth > 0) lbImg.onload();
+        else lbLoading.classList.remove('hidden');
     }
 
     function preloadNeighbors() {
         if (lightboxPhotos.length < 2) return;
-        const photo = lightboxPhotos[(currentIndex + 1) % lightboxPhotos.length];
-        const image = new Image();
-        image.decoding = 'async';
-        image.fetchPriority = 'low';
-        image.src = imageUrl(1400, photo);
+        [1, -1].forEach(step => {
+            const photo = lightboxPhotos[(currentIndex + step + lightboxPhotos.length) % lightboxPhotos.length];
+            const image = new Image();
+            image.decoding = 'async';
+            image.src = imageUrl(2200, photo);   // ugyanaz az URL, mint a nagy nézeté, így a böngésző gyorsítótárából jön
+        });
     }
 
+    // Lapozás: az új képet előre betöltjük, a régi addig látszik, és csak utána cserélünk
+    let navToken = 0;
+    let outAnimation = null;
     function showPhoto(index) {
-        if (!lightboxPhotos.length) return;
+        if (lightboxPhotos.length < 2) return;
+        const target = (index + lightboxPhotos.length) % lightboxPhotos.length;
         const direction = index > currentIndex ? 1 : -1;
-        currentIndex = (index + lightboxPhotos.length) % lightboxPhotos.length;
-        loadCurrentImage();
-        if (!reducedMotion && lbImg.animate) {
-            lbImg.animate(
-                [{ opacity: 0, transform: `translate3d(${direction * 48}px, 0, 0) scale(.98)` }, { opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' }],
-                { duration: 280, easing: 'cubic-bezier(.2,.7,.2,1)' }
-            );
-        }
+        const token = ++navToken;
+        const preload = new Image();
+        preload.decoding = 'async';
+        preload.src = imageUrl(2200, lightboxPhotos[target]);
+        const loaded = preload.decode ? preload.decode().catch(() => {}) : new Promise(done => { preload.onload = preload.onerror = done; });
+        const slow = window.setTimeout(() => { if (token === navToken) lbLoading.classList.remove('hidden'); }, 250);
+        const animated = !reducedMotion && Boolean(lbImg.animate);
+        if (outAnimation) outAnimation.cancel();
+        outAnimation = animated
+            ? lbImg.animate([{ opacity: 1 }, { opacity: 0, transform: `translate3d(${-direction * 36}px, 0, 0) scale(.985)` }], { duration: 140, easing: 'ease-in', fill: 'forwards' })
+            : null;
+        const finishedOut = outAnimation ? outAnimation.finished.catch(() => {}) : Promise.resolve();
+        Promise.all([loaded, finishedOut]).then(() => {
+            window.clearTimeout(slow);
+            if (token !== navToken) return;   // közben újabb lapozás indult
+            if (outAnimation) { outAnimation.cancel(); outAnimation = null; }
+            currentIndex = target;
+            loadCurrentImage();
+            if (animated) {
+                lbImg.animate(
+                    [{ opacity: 0, transform: `translate3d(${direction * 36}px, 0, 0) scale(.985)` }, { opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' }],
+                    { duration: 240, easing: 'cubic-bezier(.2,.7,.2,1)' }
+                );
+            }
+        });
     }
 
     function openLightbox(photo) {
@@ -500,6 +552,27 @@
         updateImageTransform(true);
     }, { passive: false });
 
-    // Reserve a stable thumbnail box; no dozens of tiny probe requests on first page load.
-    render();
+    // A képek méretarányát apró mintaképekből olvassuk ki (és megjegyezzük), így a sorok nem ugrálnak betöltéskor
+    function loadDims(list) {
+        let cache = {};
+        try { cache = JSON.parse(localStorage.getItem('adv-dims-v1') || '{}'); } catch (error) { cache = {}; }
+        const pending = [];
+        list.forEach(p => {
+            if (p.w && p.h) return;
+            if (cache[p.f]) { p.w = cache[p.f][0]; p.h = cache[p.f][1]; return; }
+            pending.push(new Promise(done => {
+                const probe = new Image();
+                probe.onload = () => { p.w = probe.naturalWidth; p.h = probe.naturalHeight; cache[p.f] = [p.w, p.h]; done(); };
+                probe.onerror = done;
+                probe.src = imageUrl(64, p);
+            }));
+        });
+        const save = () => { try { localStorage.setItem('adv-dims-v1', JSON.stringify(cache)); } catch (error) { /* nem baj */ } };
+        const timeout = new Promise(done => window.setTimeout(done, 3500));
+        Promise.all(pending).then(save);   // a késve érkező mintákat is megjegyezzük a következő látogatásra
+        return Promise.race([Promise.all(pending), timeout]).then(save);
+    }
+
+    root.innerHTML = '<p style="color:#9ca3af">Képek betöltése…</p>';
+    loadDims(photos).then(render);
 })();
