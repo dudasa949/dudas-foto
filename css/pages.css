@@ -64,3 +64,16 @@
 .faq-body strong { color: #e5e7eb; }
 @keyframes faqIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .faq-body { animation: none; } }
+
+/* Kapcsolat */
+.contact-row { display: flex; align-items: center; gap: 1rem; }
+.contact-icon { width: 48px; height: 48px; flex: none; border-radius: 1rem; display: flex; align-items: center; justify-content: center; background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.25); color: #f97316; }
+.contact-label { display: block; font-size: .8rem; color: #9ca3af; }
+.contact-value { color: #fff; font-weight: 600; }
+a.contact-value:hover { color: #f97316; }
+.contact-faq { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.1rem 1.4rem; border: 1px solid rgba(255,255,255,.12); border-radius: 1.1rem; transition: border-color .25s, background .25s; }
+.contact-faq:hover { border-color: rgba(249,115,22,.5); background: rgba(255,255,255,.03); }
+.contact-faq strong { color: #fff; }
+.contact-faq small { color: #9ca3af; font-size: .85rem; }
+.contact-faq i { color: #f97316; transition: transform .25s; }
+.contact-faq:hover i { transform: translateX(4px); }

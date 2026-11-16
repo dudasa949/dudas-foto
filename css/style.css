@@ -1,4 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(../fonts/outfit-latin-ext-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(../fonts/outfit-latin-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
 
 body {
     font-family: 'Outfit', sans-serif;
@@ -237,7 +252,7 @@ html { scroll-behavior: smooth; }
 .gallery-album-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.15rem; }
 .gallery-album-title-wrap { min-width: 0; }
 .gallery-album-title { margin: 0; color: #f9fafb; font-size: clamp(1.4rem, 2.3vw, 2rem); font-weight: 700; letter-spacing: -.035em; line-height: 1.18; }
-.gallery-album-place { margin: .35rem 0 0; color: #a1a1aa; font-size: .96rem; }
+.gallery-album-place { display: flex; align-items: center; gap: .4rem; margin: .35rem 0 0; color: #a1a1aa; font-size: .96rem; }
 .gallery-album-date { display: flex; align-items: center; gap: .35rem; margin: .42rem 0 0; color: #9ca3af; font-size: .82rem; }
 .gallery-album-date i { color: #f97316; }
 .gallery-album-count { flex: 0 0 auto; margin: 0; color: #9ca3af; font-size: .88rem; white-space: nowrap; }
@@ -449,3 +464,40 @@ body.lightbox-open { overflow: hidden; }
 .gallery-collapse-inner { overflow: hidden; min-height: 0; }
 .gallery-album-section.is-collapsed .gallery-collapse { grid-template-rows: 0fr; opacity: 0; }
 @media (prefers-reduced-motion: reduce) { .gallery-collapse, .gallery-album-toggle i { transition: none; } }
+
+/* Galéria: a képek balról jobbra, egyenlő magasságú sorokban */
+.gallery-masonry { display: flex; flex-wrap: wrap; align-items: flex-start; gap: .85rem; columns: auto; --row-h: 250px; }
+.gallery-masonry::after { content: ""; flex-grow: 1000; }
+.gallery-thumb { flex: var(--ar, 1.5) 1 calc(var(--ar, 1.5) * var(--row-h)); aspect-ratio: var(--ar, 1.5); width: auto; margin: 0; }
+@media (max-width: 900px) { .gallery-masonry { --row-h: 200px; } }
+@media (max-width: 640px) { .gallery-masonry { --row-h: 150px; gap: .55rem; } }
+
+/* Képnézegető: a kép tere az egész képernyő, a felirat rálóg; nagyításkor a kép a teljes képernyőt használja */
+.lb-content { position: static; display: block; max-width: none; padding: 0; }
+.lb-stage { position: fixed; inset: 0; z-index: 1; border-radius: 0; background: none;
+    padding: max(3.4rem, env(safe-area-inset-top)) max(4.5rem, env(safe-area-inset-right)) calc(5.2rem + env(safe-area-inset-bottom)) max(4.5rem, env(safe-area-inset-left)); }
+.lb-bottom-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 3; width: auto;
+    padding: 2.6rem max(1.5rem, env(safe-area-inset-right)) calc(1rem + env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
+    background: linear-gradient(to top, rgba(3,3,4,.92), rgba(3,3,4,0)); transition: opacity .25s ease; }
+.lb-close, .lb-arrow { z-index: 4; }
+.lightbox.lb-zoomed .lb-bottom-bar, .lightbox.lb-zoomed .lb-arrow { opacity: 0; pointer-events: none; }
+@media (max-width: 640px) {
+    .lb-stage { padding: max(3rem, env(safe-area-inset-top)) .25rem calc(4.6rem + env(safe-area-inset-bottom)) .25rem; }
+    .lb-bottom-bar { flex-direction: row; align-items: flex-end; padding: 2rem .9rem calc(.75rem + env(safe-area-inset-bottom)); }
+    .lb-date { display: none; }
+    .lb-caption { padding-right: 0; }
+    .lb-actions { width: auto; flex-direction: column; align-items: flex-end; gap: .5rem; }
+}
+
+/* Galéria: keresőmező, egységes ikonok az album adataiban */
+.gallery-album-place i, .gallery-album-date i { width: 1rem; text-align: center; font-size: .85rem; }
+.gallery-search { position: relative; margin-bottom: .9rem; }
+.gallery-search i { position: absolute; left: .95rem; top: 50%; transform: translateY(-50%); color: #9ca3af; pointer-events: none; }
+.gallery-search input { width: 100%; min-height: 44px; padding: .7rem .9rem .7rem 2.6rem; color: #f3f4f6; background: #131318; border: 1px solid rgba(255,255,255,.12); border-radius: .75rem; font-size: .95rem; transition: border-color .2s; }
+.gallery-search input:focus { outline: none; border-color: #f97316; }
+.gallery-search input::placeholder { color: #6b7280; }
+
+/* Az egész albumsor kattintható; a helyszín ikonja ugyanolyan színű, mint a dátumé */
+.gallery-album-heading { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.gallery-album-heading:hover .gallery-album-toggle { background: rgba(255,255,255,.08); }
+.gallery-album-place i { color: #f97316; }
