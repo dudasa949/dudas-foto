@@ -15,10 +15,13 @@
     <meta property="og:url" content="https://dudasa949.github.io/dudas-foto/kapcsolat.html">
     <meta property="og:image" content="https://res.cloudinary.com/n5bkfxuh/image/upload/c_fill,w_1200,h_630,g_auto,f_jpg,q_auto/v1792327313/mrc26_5muhi_6.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="js/tailwind-config.js"></script>
+    <script src="js/boot.js"></script>
+    <link rel="preload" href="fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/tailwind.css">
     <link rel="icon" type="image/x-icon" sizes="64x64" href="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792336551/favicon.ico">
 </head>
 <body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
@@ -48,42 +51,24 @@
         </nav>
     </header>
 
-    <main class="pt-32 pb-24 max-w-4xl mx-auto px-6 space-y-12">
-        <div class="text-center max-w-2xl mx-auto space-y-4">
-            <span class="text-accent text-xs font-semibold uppercase tracking-widest">Lépj kapcsolatba velem</span>
-            <h1 class="text-4xl font-extrabold tracking-tight">Kérdésed van vagy ajánlatot kérnél?</h1>
-            <p class="text-gray-400 font-light">Írj üzenetet az alábbi űrlapon keresztül, vagy keress bizalommal az elérhetőségeimen.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-cardbg border border-gray-800 p-8 rounded-3xl space-y-3 text-center md:text-left">
-                <div class="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mx-auto md:mx-0">
-                    <i class="fa-solid fa-envelope"></i>
+    <main class="pt-32 pb-24 max-w-6xl mx-auto px-6">
+        <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+            <div class="lg:col-span-2 space-y-8">
+                <div class="space-y-4">
+                    <p class="reveal text-accent font-semibold">Lépj kapcsolatba velem</p>
+                    <h1 class="reveal hero-title text-4xl sm:text-5xl font-extrabold tracking-tight" style="--d:80ms">Kérdésed van vagy ajánlatot kérnél?</h1>
+                    <p class="reveal text-lg text-gray-300 font-light" style="--d:140ms">Írj üzenetet az alábbi űrlapon keresztül, vagy keress bizalommal az elérhetőségeimen.</p>
                 </div>
-                <h3 class="font-bold text-white text-base">E-mail cím</h3>
-                <p class="protected-email text-xs text-gray-400"></p>
+                <ul class="reveal space-y-5" style="--d:200ms">
+                    <li class="contact-row"><span class="contact-icon"><i class="fa-solid fa-envelope"></i></span><div><span class="contact-label">E-mail cím</span><a href="#" class="protected-email contact-value"></a></div></li>
+                    <li class="contact-row"><span class="contact-icon"><i class="fa-solid fa-location-dot"></i></span><div><span class="contact-label">Helyszín</span><span class="contact-value">Miskolc vonzáskörzete</span></div></li>
+                    <li class="contact-row"><span class="contact-icon"><i class="fa-brands fa-instagram"></i></span><div><span class="contact-label">Közösségi Média</span><a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" class="contact-value">Instagram Profil <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a></div></li>
+                </ul>
+                <a href="gyik.html" class="reveal contact-faq" style="--d:260ms"><span><strong>Gyakori kérdések</strong><small class="block">Lehet, hogy a válasz már ott van.</small></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
             </div>
 
-            <div class="bg-cardbg border border-gray-800 p-8 rounded-3xl space-y-3 text-center md:text-left">
-                <div class="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mx-auto md:mx-0">
-                    <i class="fa-solid fa-location-dot"></i>
-                </div>
-                <h3 class="font-bold text-white text-base">Helyszín</h3>
-                <p class="text-xs text-gray-400">Miskolc vonzáskörzete</p>
-            </div>
-
-            <div class="bg-cardbg border border-gray-800 p-8 rounded-3xl space-y-3 text-center md:text-left">
-                <div class="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mx-auto md:mx-0">
-                    <i class="fa-brands fa-instagram"></i>
-                </div>
-                <h3 class="font-bold text-white text-base">Közösségi Média</h3>
-                <a href="https://instagram.com/adudas.949" target="_blank" rel="noopener noreferrer" class="text-xs text-accent hover:underline block">Instagram Profil <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
-            </div>
-        </div>
-
-        <!-- Kapcsolatfelvételi űrlap (Formspree) -->
-<div class="bg-cardbg border border-gray-800 p-8 lg:p-12 rounded-3xl shadow-2xl">
-    <form id="contact-form" action="https://formspree.io/f/xppqnole" method="POST" class="space-y-6">
+            <div class="reveal lg:col-span-3 bg-cardbg border border-white/10 p-6 sm:p-10 rounded-3xl shadow-2xl" style="--d:120ms">
+<form id="contact-form" action="https://formspree.io/f/xppqnole" method="POST" class="space-y-6">
         <input type="hidden" name="_subject" value="Új üzenet az AD Visuals oldalról">
         <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off">
 
@@ -162,7 +147,14 @@
             Az adataidat kizárólag a válaszadáshoz használom fel. Általában 1–2 munkanapon belül válaszolok.
         </p>
     </form>
-</div>
+                <div id="form-success" hidden tabindex="-1" class="text-center py-12 outline-none">
+                    <div class="mx-auto w-16 h-16 rounded-full bg-green-500/15 border border-green-500/30 flex items-center justify-center text-green-400 text-2xl"><i class="fa-solid fa-check"></i></div>
+                    <h2 class="mt-6 text-2xl font-bold text-white">Köszönöm az üzeneted!</h2>
+                    <p class="mt-2 text-gray-300">Hamarosan válaszolok.</p>
+                    <button id="new-message" type="button" class="mt-8 border border-white/20 hover:bg-white/10 px-6 py-3 rounded-xl font-semibold transition">Új üzenet írása</button>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="site-footer border-t border-white/10 text-sm text-gray-400">
@@ -189,6 +181,8 @@
         <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
     </button>
 
+    <script src="js/reveal.js"></script>
+    <script src="js/contact.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

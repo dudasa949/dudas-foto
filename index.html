@@ -16,11 +16,11 @@
     <meta property="og:image" content="https://res.cloudinary.com/n5bkfxuh/image/upload/c_fill,w_1200,h_630,g_auto,f_jpg,q_auto/v1792327313/mrc26_5muhi_6.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <script src="js/boot.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="js/tailwind-config.js"></script>
+    <link rel="preload" href="fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/tailwind.css">
     <link rel="icon" type="image/x-icon" sizes="64x64" href="https://res.cloudinary.com/n5bkfxuh/image/upload/v1792336551/favicon.ico">
 </head>
 <body class="bg-darkbg text-gray-100 antialiased selection:bg-accent selection:text-white">
@@ -78,8 +78,8 @@
                 <a href="rolam.html" class="reveal inline-flex items-center gap-2 text-accent font-semibold hover:gap-3 transition-all" style="--d:160ms">Többet rólam <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="lg:col-span-2 grid grid-cols-3 lg:grid-cols-1 gap-4">
-                <div class="reveal border-l-2 border-accent pl-5"><p class="text-4xl font-extrabold">2024</p><p class="text-gray-400">óta fotózom a gépemmel</p></div>
-                <div class="reveal border-l-2 border-accent pl-5" style="--d:100ms"><p class="text-4xl font-extrabold">25 000</p><p class="text-gray-400">exponálás eddig</p></div>
+                <div class="reveal border-l-2 border-accent pl-5"><p class="text-4xl font-extrabold" data-countup="2024">2024</p><p class="text-gray-400">óta fotózom a gépemmel</p></div>
+                <div class="reveal border-l-2 border-accent pl-5" style="--d:100ms"><p class="text-4xl font-extrabold" data-countup="30000">30 000</p><p class="text-gray-400">exponálás eddig</p></div>
                 <div class="reveal border-l-2 border-accent pl-5" style="--d:200ms"><p class="text-4xl font-extrabold"><span data-count="photos">–</span></p><p class="text-gray-400">kép a galériában, <span data-count="albums">–</span> futamról</p></div>
             </div>
         </section>
@@ -147,6 +147,7 @@
     </button>
 
     <script src="js/gallery-data.js"></script>
+    <script src="js/reveal.js"></script>
     <script src="js/main.js"></script>
     <script src="js/home.js"></script>
 </body>
