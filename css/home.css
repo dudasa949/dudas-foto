@@ -22,9 +22,9 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 .album-card .meta { position: absolute; left: 1.25rem; right: 1.25rem; bottom: 1.1rem; z-index: 1; }
 
 /* Két terület */
-.area-card { position: relative; overflow: hidden; border-radius: 1.5rem; min-height: 360px; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; isolation: isolate; }
+.area-card { position: relative; overflow: hidden; border-radius: 1.5rem; min-height: 440px; display: flex; flex-direction: column; justify-content: flex-start; padding: 2rem; isolation: isolate; }
 .area-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
-.area-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(10,10,12,.92) 8%, rgba(10,10,12,.45) 55%, rgba(10,10,12,.15)); }
+.area-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to bottom, rgba(10,10,12,.9) 0%, rgba(10,10,12,.6) 40%, rgba(10,10,12,0) 70%); }
 .area-card:hover > img { transform: scale(1.05); }
 
 @media (prefers-reduced-motion: reduce) {
