@@ -89,7 +89,11 @@ function initHeroBackgroundSlider() {
     const images = [
         { src: "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792327313/mrc26_5muhi_6.jpg", alt: "MRC 2026 5. forduló – Muhi" },
         { src: "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792319961/mrc26_3viszlo_1.jpg", alt: "MRC 2026 3. forduló – Viszló-Hidvégardó" },
-        { src: "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792327305/mrc26_5muhi_1.jpg", alt: "MRC 2026 5. forduló – Muhi" }
+        { src: "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1792327305/mrc26_5muhi_1.jpg", alt: "MRC 2026 5. forduló – Muhi" },
+        { src: "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1794318295/orb26_5mad_68.jpg", alt: "ORB 2026 5. forduló - Mezőzombor-Mád"},
+        { src: "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1794318291/orb26_5mad_49.jpg", alt: "ORB 2026 5. forduló - Mezőzombor-Mád"},
+        { src: "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1795004992/rcup26_salgo_16__hero.jpg", alt: "R-Cup 2026 - Salgótarján-Kazár"},
+        { src: "https://res.cloudinary.com/n5bkfxuh/image/upload/f_auto,q_auto/v1793380901/civis26_debrecen_31.jpg", alt: "Cívis 2026 - Debrecen"}
     ];
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion || images.length < 2) return;
