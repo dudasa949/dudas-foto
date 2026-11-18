@@ -2,7 +2,7 @@
 window.GALLERY = {
   cloud: "n5bkfxuh",
   albums: [
-    {"title": "III. Zemplén Rally", "place": "Mezőzombor-Mád (Gy3, Gy6)", "series": "ORB", "round": 5, "dateStart": "2026-11-06", "dateEnd": "2026-11-08", "id": "orb26_5mad", "year": 2026, "images": [
+    {"title": "III. Zemplén Rally", "place": "Mezőzombor-Mád (Gy3, Gy6)", "series": "ORB", "round": 5, "dateStart": "2026-11-06", "dateEnd": "2026-11-08", "cover": 14, "id": "orb26_5mad", "year": 2026, "images": [
       ["v1794318283", "orb26_5mad_1.jpg"],
       ["v1794318283", "orb26_5mad_2.jpg"],
       ["v1794318283", "orb26_5mad_3.jpg"],
@@ -79,7 +79,7 @@ window.GALLERY = {
       ["v1794318296", "orb26_5mad_74.jpg"],
       ["v1794318296", "orb26_5mad_75.jpg"]
     ]},
-    {"title": "Auchan Halloween Night Race", "place": "Debrecen", "series": "Cívis Motorsport", "dateStart": "2026-10-23", "dateEnd": "2026-10-23", "id": "civis26_debrecen", "year": 2026, "images": [
+    {"title": "Auchan Halloween Night Race", "place": "Debrecen", "series": "Cívis Motorsport", "dateStart": "2026-10-23", "dateEnd": "2026-10-23", "cover": 20, "id": "civis26_debrecen", "year": 2026, "images": [
       ["v1793380882", "civis26_debrecen_1.jpg"],
       ["v1793380883", "civis26_debrecen_2.jpg"],
       ["v1793380883", "civis26_debrecen_3.jpg"],
@@ -175,7 +175,7 @@ window.GALLERY = {
       ["v1793380938", "civis26_debrecen_93.jpg"],
       ["v1793381698", "civis26_debrecen_94.jpg"]
     ]},
-    {"title": "MRC 2026 · 6. forduló", "place": "Ládbesenyő-Abod", "series": "MRC", "round": 6, "dateStart": "2026-10-10", "dateEnd": "2026-10-11", "id": "mrc26_6ladbesenyo", "year": 2026, "images": [
+    {"title": "MRC 2026 · 6. forduló", "place": "Ládbesenyő-Abod", "series": "MRC", "round": 6, "dateStart": "2026-10-10", "dateEnd": "2026-10-11", "cover": 22, "id": "mrc26_6ladbesenyo", "year": 2026, "images": [
       ["v1792651798", "mrc26_6ladbesenyo_1.jpg"],
       ["v1792651800", "mrc26_6ladbesenyo_2.jpg"],
       ["v1792651800", "mrc26_6ladbesenyo_3.jpg"],
@@ -207,7 +207,7 @@ window.GALLERY = {
       ["v1792651829", "mrc26_6ladbesenyo_29.jpg"],
       ["v1792651830", "mrc26_6ladbesenyo_30.jpg"]
     ]},
-    {"title": "MRC 2026 · 5. forduló", "place": "Muhi-tó", "series": "MRC", "round": 5, "dateStart": "2026-09-11", "dateEnd": "2026-09-13", "id": "mrc26_5muhi", "year": 2026, "images": [
+    {"title": "MRC 2026 · 5. forduló", "place": "Muhi-tó", "series": "MRC", "round": 5, "dateStart": "2026-09-11", "dateEnd": "2026-09-13", "cover": 5, "id": "mrc26_5muhi", "year": 2026, "images": [
       ["v1792327305", "mrc26_5muhi_1.jpg"],
       ["v1792327307", "mrc26_5muhi_2.jpg"],
       ["v1792327307", "mrc26_5muhi_3.jpg"],
@@ -222,7 +222,7 @@ window.GALLERY = {
       ["v1792327324", "mrc26_5muhi_12.jpg"],
       ["v1792327326", "mrc26_5muhi_13.jpg"]
     ]},
-    {"title": "I. Salgó R-Cup Challenge", "place": "Salgótarján-Kazár", "series": "R-Cup Challenge", "dateStart": "2026-07-11", "dateEnd": "2026-07-12", "id": "rcup26_salgo", "year": 2026, "images": [
+    {"title": "I. Salgó R-Cup Challenge", "place": "Salgótarján-Kazár", "series": "R-Cup Challenge", "dateStart": "2026-07-11", "dateEnd": "2026-07-12", "cover": 8, "id": "rcup26_salgo", "year": 2026, "images": [
       ["v1793380745", "rcup26_salgo_1.jpg"],
       ["v1793380745", "rcup26_salgo_2.jpg"],
       ["v1793380745", "rcup26_salgo_3.jpg"],
@@ -256,14 +256,14 @@ window.GALLERY = {
       ["v1793380751", "rcup26_salgo_31.jpg"],
       ["v1793380752", "rcup26_salgo_32.jpg"]
     ]},
-    {"title": "MRC 2026 · 3. forduló", "place": "Viszló-Hidvégardó", "series": "MRC", "round": 3, "dateStart": "2026-06-13", "dateEnd": "2026-06-14", "id": "mrc26_3viszlo", "year": 2026, "images": [
+    {"title": "MRC 2026 · 3. forduló", "place": "Viszló-Hidvégardó", "series": "MRC", "round": 3, "dateStart": "2026-06-13", "dateEnd": "2026-06-14", "cover": 2, "id": "mrc26_3viszlo", "year": 2026, "images": [
       ["v1792319961", "mrc26_3viszlo_1.jpg"],
       ["v1792319961", "mrc26_3viszlo_2.jpg"],
       ["v1792319962", "mrc26_3viszlo_3.jpg"],
       ["v1792319963", "mrc26_3viszlo_4.jpg"],
       ["v1792319548", "mrc26_3viszlo_5.jpg"]
     ]},
-    {"title": "MRC 2026 · 2. forduló", "place": "Sajókaza-Felsőnyárád", "series": "MRC", "round": 2, "dateStart": "2026-05-16", "dateEnd": "2026-05-17", "id": "mrc26_2kaza", "year": 2026, "images": [
+    {"title": "MRC 2026 · 2. forduló", "place": "Sajókaza-Felsőnyárád", "series": "MRC", "round": 2, "dateStart": "2026-05-16", "dateEnd": "2026-05-17", "cover": 17, "id": "mrc26_2kaza", "year": 2026, "images": [
       ["v1792328857", "mrc26_2kaza_1.jpg"],
       ["v1792328859", "mrc26_2kaza_2.jpg"],
       ["v1792328860", "mrc26_2kaza_3.jpg"],
